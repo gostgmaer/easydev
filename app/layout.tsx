@@ -10,71 +10,74 @@ const inter = Inter({
 });
 
 // Utility: safe fallback
-const safe = <T,>(value: T | undefined, fallback: T): T => value ?? fallback;
+function safe<T>(value: T | undefined, fallback: T): T {
+  return value ?? fallback;
+}
+
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Person",
-      "name": safe(siteContent.personal.name, "John Doe"),
-      "url": safe(siteContent.seo.url, "https://www.example.com"),
-      "image": safe(siteContent.personal.profileImage, "https://www.example.com/default-profile.jpg"),
-      "jobTitle": safe(siteContent.personal.profession, "Service Provider"),
-      "sameAs": safe(siteContent.personal.socialLinks, []),
+      "name": safe(siteContent?.personal?.name, "John Doe"),
+      "url": safe(siteContent?.seo?.url, "https://www.example.com"),
+      "image": safe(siteContent?.personal?.profileImage, "https://www.example.com/default-profile.jpg"),
+      "jobTitle": safe(siteContent?.personal?.profession, "Service Provider"),
+      "sameAs": safe(siteContent?.personal?.socialLinks, []),
       "worksFor": {
         "@type": "Organization",
-        "name": safe(siteContent.personal.organization, "Example Organization"),
-        "url": safe(siteContent.personal.organizationUrl, "https://www.example.com")
+        "name": safe(siteContent?.personal?.organization, "Example Organization"),
+        "url": safe(siteContent?.personal?.organizationUrl, "https://www.example.com")
       },
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": safe(siteContent.personal.location, "Unknown Location")
+        "addressLocality": safe(siteContent?.personal?.location, "Unknown Location")
       }
     },
     {
       "@type": "Organization",
-      "name": safe(siteContent.personal.organization, "Example Organization"),
-      "url": safe(siteContent.personal.organizationUrl, "https://www.example.com"),
-      "logo": safe(siteContent.seo.ogImage, "https://www.example.com/default-logo.png"),
-      "sameAs": safe(siteContent.personal.socialLinks, [])
+      "name": safe(siteContent?.personal?.organization, "Example Organization"),
+      "url": safe(siteContent?.personal?.organizationUrl, "https://www.example.com"),
+      "logo": safe(siteContent?.seo?.ogImage, "https://www.example.com/default-logo.png"),
+      "sameAs": safe(siteContent?.personal?.socialLinks, [])
     },
     {
       "@type": "ProfessionalService",
-      "name": safe(siteContent.services.name, "General Service"),
-      "description": safe(siteContent.services.description, "Professional services provided."),
-      "url": safe(siteContent.seo.url, "https://www.example.com"),
-      "logo": safe(siteContent.seo.ogImage, "https://www.example.com/default-logo.png"),
-      "image": safe(siteContent.services.images?.[0], safe(siteContent.seo.ogImage, "https://www.example.com/default-service.jpg")),
-      "areaServed": safe(siteContent.services.areaServed, "Global"),
+      "name": safe(siteContent?.services?.name, "General Service"),
+      "description": safe(siteContent?.services?.description, "Professional services provided."),
+      "url": safe(siteContent?.seo?.url, "https://www.example.com"),
+      "logo": safe(siteContent?.seo?.ogImage, "https://www.example.com/default-logo.png"),
+      "image": safe(siteContent?.services?.images?.[0], safe(siteContent?.seo?.ogImage, "https://www.example.com/default-service.jpg")),
+      "areaServed": safe(siteContent?.services?.areaServed, "Global"),
       "availableChannel": {
         "@type": "ServiceChannel",
-        "serviceUrl": safe(siteContent.seo.url, "https://www.example.com"),
-        "availableLanguage": safe(siteContent.services.languages, ["English"])
+        "serviceUrl": safe(siteContent?.seo?.url, "https://www.example.com"),
+        "availableLanguage": safe(siteContent?.services?.languages, ["English"])
       },
-      "serviceType": safe(siteContent.services.types, ["General Service"]),
-      "priceRange": safe(siteContent.services.priceRange, "$$"),
-      "sameAs": safe(siteContent.personal.socialLinks, []),
+      "serviceType": safe(siteContent?.services?.types, ["General Service"]),
+      "priceRange": safe(siteContent?.services?.priceRange, "$$"),
+      "sameAs": safe(siteContent?.personal?.socialLinks, []),
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "Customer Service",
-        "telephone": safe(siteContent.personal.phone, "+0000000000"),
-        "email": safe(siteContent.personal.email, "info@example.com"),
-        "availableLanguage": safe(siteContent.services.languages, ["English"])
+        "telephone": safe(siteContent?.personal?.phone, "+0000000000"),
+        "email": safe(siteContent?.personal?.email, "info@example.com"),
+        "availableLanguage": safe(siteContent?.services?.languages, ["English"])
       }
     },
     // Projects / Portfolio
-    ...(siteContent.projects?.length
+    ...(siteContent?.projects?.length
       ? siteContent.projects.map((project) => ({
           "@type": "CreativeWork",
-          "name": safe(project.name, "Sample Project"),
-          "description": safe(project.description, "Project description here."),
-          "url": safe(project.url, "https://www.example.com/project"),
-          "image": safe(project.image, "https://www.example.com/default-project.jpg"),
-          "datePublished": safe(project.datePublished, new Date().toISOString()),
-          "keywords": safe(project.keywords, ["project", "example"]),
+          "name": safe(project?.name, "Sample Project"),
+          "description": safe(project?.description, "Project description here."),
+          "url": safe(project?.url, "https://www.example.com/project"),
+          "image": safe(project?.image, "https://www.example.com/default-project.jpg"),
+          "datePublished": safe(project?.datePublished, new Date().toISOString()),
+          "keywords": safe(project?.keywords, ["project", "example"]),
           "author": {
             "@type": "Person",
-            "name": safe(siteContent.personal.name, "John Doe")
+            "name": safe(siteContent?.personal?.name, "John Doe")
           }
         }))
       : [{
@@ -92,15 +95,15 @@ const structuredData = {
         }]
     ),
     // FAQ
-    ...(siteContent.faq?.length
+    ...(siteContent?.faq?.length
       ? [{
           "@type": "FAQPage",
           "mainEntity": siteContent.faq.map(f => ({
             "@type": "Question",
-            "name": f.question,
+            "name": f?.question ?? "Default Question?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": f.answer
+              "text": f?.answer ?? "Default answer."
             }
           }))
         }]
@@ -126,7 +129,7 @@ const structuredData = {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": safe(siteContent.seo.url, "https://www.example.com")
+          "item": safe(siteContent?.seo?.url, "https://www.example.com")
         }
       ]
     }
@@ -134,33 +137,33 @@ const structuredData = {
 };
 
 export const metadata: Metadata = {
-  title: safe(siteContent.seo.title, "Example Site"),
-  description: safe(siteContent.seo.description, "Default site description."),
-  keywords: safe(siteContent.seo.keywords, ["example", "service", "portfolio"]),
-  authors: [{ name: safe(siteContent.seo.author, "John Doe") }],
-  creator: safe(siteContent.seo.author, "John Doe"),
+  title: safe(siteContent?.seo?.title, "Example Site"),
+  description: safe(siteContent?.seo?.description, "Default site description."),
+  keywords: safe(siteContent?.seo?.keywords, ["example", "service", "portfolio"]),
+  authors: [{ name: safe(siteContent?.seo?.author, "John Doe") }],
+  creator: safe(siteContent?.seo?.author, "John Doe"),
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: safe(siteContent.seo.url, "https://www.example.com"),
-    title: safe(siteContent.seo.title, "Example Site"),
-    description: safe(siteContent.seo.description, "Default site description."),
-    siteName: `${safe(siteContent.personal.name, "John Doe")} - Service Provider`,
+    url: safe(siteContent?.seo?.url, "https://www.example.com"),
+    title: safe(siteContent?.seo?.title, "Example Site"),
+    description: safe(siteContent?.seo?.description, "Default site description."),
+    siteName: `${safe(siteContent?.personal?.name, "John Doe")} - Service Provider`,
     images: [
       {
-        url: safe(siteContent.seo.ogImage, "https://www.example.com/default-og.jpg"),
+        url: safe(siteContent?.seo?.ogImage, "https://www.example.com/default-og.jpg"),
         width: 1200,
         height: 630,
-        alt: safe(siteContent.seo.title, "Example Site"),
+        alt: safe(siteContent?.seo?.title, "Example Site"),
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: safe(siteContent.seo.title, "Example Site"),
-    description: safe(siteContent.seo.description, "Default site description."),
+    title: safe(siteContent?.seo?.title, "Example Site"),
+    description: safe(siteContent?.seo?.description, "Default site description."),
     creator: '@kishorsarkar',
-    images: [safe(siteContent.seo.ogImage, "https://www.example.com/default-og.jpg")]
+    images: [safe(siteContent?.seo?.ogImage, "https://www.example.com/default-og.jpg")]
   },
   robots: {
     index: true,
@@ -176,7 +179,7 @@ export const metadata: Metadata = {
   verification: {
     google: 'verification-token-here',
   },
-  metadataBase: new URL(safe(siteContent.seo.url, "https://www.example.com")),
+  metadataBase: new URL(safe(siteContent?.seo?.url, "https://www.example.com")),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
