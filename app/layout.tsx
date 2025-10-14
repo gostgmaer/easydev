@@ -1,7 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { siteContent } from '@/lib/content';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -14,113 +13,116 @@ function safe<T>(value: T | undefined, fallback: T): T {
   return value ?? fallback;
 }
 
+// Fully static structured data
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Person",
-      "name": safe(siteContent?.personal?.name, "John Doe"),
-      "url": safe(siteContent?.seo?.url, "https://www.example.com"),
-      "image": safe(siteContent?.personal?.profileImage, "https://www.example.com/default-profile.jpg"),
-      "jobTitle": safe(siteContent?.personal?.profession, "Service Provider"),
-      "sameAs": safe(siteContent?.personal?.socialLinks, []),
+      "name": "John Doe",
+      "url": "https://www.example.com",
+      "image": "https://www.example.com/default-profile.jpg",
+      "jobTitle": "Web Developer",
+      "sameAs": [
+        "https://www.linkedin.com/in/johndoe",
+        "https://twitter.com/johndoe"
+      ],
       "worksFor": {
         "@type": "Organization",
-        "name": safe(siteContent?.personal?.organization, "Example Organization"),
-        "url": safe(siteContent?.personal?.organizationUrl, "https://www.example.com")
+        "name": "Example Corp",
+        "url": "https://www.example.com"
       },
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": safe(siteContent?.personal?.location, "Unknown Location")
+        "addressLocality": "New York, USA"
       }
     },
     {
       "@type": "Organization",
-      "name": safe(siteContent?.personal?.organization, "Example Organization"),
-      "url": safe(siteContent?.personal?.organizationUrl, "https://www.example.com"),
-      "logo": safe(siteContent?.seo?.ogImage, "https://www.example.com/default-logo.png"),
-      "sameAs": safe(siteContent?.personal?.socialLinks, [])
+      "name": "Example Corp",
+      "url": "https://www.example.com",
+      "logo": "https://www.example.com/default-logo.png",
+      "sameAs": [
+        "https://www.linkedin.com/company/example",
+        "https://www.facebook.com/example"
+      ]
     },
     {
       "@type": "ProfessionalService",
-      "name": safe(siteContent?.services?.name, "General Service"),
-      "description": safe(siteContent?.services?.description, "Professional services provided."),
-      "url": safe(siteContent?.seo?.url, "https://www.example.com"),
-      "logo": safe(siteContent?.seo?.ogImage, "https://www.example.com/default-logo.png"),
-      "image": safe(siteContent?.services?.images?.[0], safe(siteContent?.seo?.ogImage, "https://www.example.com/default-service.jpg")),
-      "areaServed": safe(siteContent?.services?.areaServed, "Global"),
+      "name": "Web Development Services",
+      "description": "We provide professional web development services including frontend, backend, and fullstack solutions.",
+      "url": "https://www.example.com/services",
+      "logo": "https://www.example.com/default-logo.png",
+      "image": "https://www.example.com/default-service.jpg",
+      "areaServed": "Global",
       "availableChannel": {
         "@type": "ServiceChannel",
-        "serviceUrl": safe(siteContent?.seo?.url, "https://www.example.com"),
-        "availableLanguage": safe(siteContent?.services?.languages, ["English"])
+        "serviceUrl": "https://www.example.com/services",
+        "availableLanguage": ["English"]
       },
-      "serviceType": safe(siteContent?.services?.types, ["General Service"]),
-      "priceRange": safe(siteContent?.services?.priceRange, "$$"),
-      "sameAs": safe(siteContent?.personal?.socialLinks, []),
+      "serviceType": ["Web Development", "UI/UX Design", "SEO Optimization"],
+      "priceRange": "$$",
+      "sameAs": [
+        "https://www.linkedin.com/in/johndoe",
+        "https://twitter.com/johndoe"
+      ],
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "Customer Service",
-        "telephone": safe(siteContent?.personal?.phone, "+0000000000"),
-        "email": safe(siteContent?.personal?.email, "info@example.com"),
-        "availableLanguage": safe(siteContent?.services?.languages, ["English"])
+        "telephone": "+1-555-555-5555",
+        "email": "info@example.com",
+        "availableLanguage": ["English"]
       }
     },
-    // Projects / Portfolio
-    ...(siteContent?.projects?.length
-      ? siteContent.projects.map((project) => ({
-          "@type": "CreativeWork",
-          "name": safe(project?.name, "Sample Project"),
-          "description": safe(project?.description, "Project description here."),
-          "url": safe(project?.url, "https://www.example.com/project"),
-          "image": safe(project?.image, "https://www.example.com/default-project.jpg"),
-          "datePublished": safe(project?.datePublished, new Date().toISOString()),
-          "keywords": safe(project?.keywords, ["project", "example"]),
-          "author": {
-            "@type": "Person",
-            "name": safe(siteContent?.personal?.name, "John Doe")
+    // Static Projects / Portfolio
+    {
+      "@type": "CreativeWork",
+      "name": "Portfolio Project 1",
+      "description": "A sample web development project.",
+      "url": "https://www.example.com/project1",
+      "image": "https://www.example.com/project1.jpg",
+      "datePublished": "2025-01-01",
+      "keywords": ["web", "development", "project"],
+      "author": {
+        "@type": "Person",
+        "name": "John Doe"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Portfolio Project 2",
+      "description": "Another sample project showcasing design and development skills.",
+      "url": "https://www.example.com/project2",
+      "image": "https://www.example.com/project2.jpg",
+      "datePublished": "2025-02-01",
+      "keywords": ["design", "frontend", "project"],
+      "author": {
+        "@type": "Person",
+        "name": "John Doe"
+      }
+    },
+    // Static FAQ
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What services do you offer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We provide professional web development, UI/UX design, and SEO services."
           }
-        }))
-      : [{
-          "@type": "CreativeWork",
-          "name": "Sample Project",
-          "description": "Default project description",
-          "url": "https://www.example.com/project",
-          "image": "https://www.example.com/default-project.jpg",
-          "datePublished": new Date().toISOString(),
-          "keywords": ["project", "example"],
-          "author": {
-            "@type": "Person",
-            "name": "John Doe"
+        },
+        {
+          "@type": "Question",
+          "name": "How can I contact you?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can contact us via email at info@example.com or call +1-555-555-5555."
           }
-        }]
-    ),
-    // FAQ
-    ...(siteContent?.faq?.length
-      ? [{
-          "@type": "FAQPage",
-          "mainEntity": siteContent.faq.map(f => ({
-            "@type": "Question",
-            "name": f?.question ?? "Default Question?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": f?.answer ?? "Default answer."
-            }
-          }))
-        }]
-      : [{
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What services do you offer?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "We provide professional services tailored to your needs."
-              }
-            }
-          ]
-        }]
-    ),
+        }
+      ]
+    },
     // Breadcrumb
     {
       "@type": "BreadcrumbList",
@@ -129,7 +131,13 @@ const structuredData = {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": safe(siteContent?.seo?.url, "https://www.example.com")
+          "item": "https://www.example.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.example.com/services"
         }
       ]
     }
@@ -137,33 +145,33 @@ const structuredData = {
 };
 
 export const metadata: Metadata = {
-  title: safe(siteContent?.seo?.title, "Example Site"),
-  description: safe(siteContent?.seo?.description, "Default site description."),
-  keywords: safe(siteContent?.seo?.keywords, ["example", "service", "portfolio"]),
-  authors: [{ name: safe(siteContent?.seo?.author, "John Doe") }],
-  creator: safe(siteContent?.seo?.author, "John Doe"),
+  title: "John Doe - Web Developer",
+  description: "Professional web development services and portfolio by John Doe.",
+  keywords: ["web development", "portfolio", "UI/UX", "SEO"],
+  authors: [{ name: "John Doe" }],
+  creator: "John Doe",
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: safe(siteContent?.seo?.url, "https://www.example.com"),
-    title: safe(siteContent?.seo?.title, "Example Site"),
-    description: safe(siteContent?.seo?.description, "Default site description."),
-    siteName: `${safe(siteContent?.personal?.name, "John Doe")} - Service Provider`,
+    url: "https://www.example.com",
+    title: "John Doe - Web Developer",
+    description: "Professional web development services and portfolio by John Doe.",
+    siteName: "John Doe - Web Developer",
     images: [
       {
-        url: safe(siteContent?.seo?.ogImage, "https://www.example.com/default-og.jpg"),
+        url: "https://www.example.com/default-og.jpg",
         width: 1200,
         height: 630,
-        alt: safe(siteContent?.seo?.title, "Example Site"),
+        alt: "John Doe - Web Developer",
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: safe(siteContent?.seo?.title, "Example Site"),
-    description: safe(siteContent?.seo?.description, "Default site description."),
-    creator: '@kishorsarkar',
-    images: [safe(siteContent?.seo?.ogImage, "https://www.example.com/default-og.jpg")]
+    title: "John Doe - Web Developer",
+    description: "Professional web development services and portfolio by John Doe.",
+    creator: '@johndoe',
+    images: ["https://www.example.com/default-og.jpg"]
   },
   robots: {
     index: true,
@@ -179,7 +187,7 @@ export const metadata: Metadata = {
   verification: {
     google: 'verification-token-here',
   },
-  metadataBase: new URL(safe(siteContent?.seo?.url, "https://www.example.com")),
+  metadataBase: new URL("https://www.example.com"),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
