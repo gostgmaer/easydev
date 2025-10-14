@@ -57,14 +57,14 @@ export default function Contact() {
     alert('Thank you for your message! I\'ll get back to you within 24 hours.');
   };
 
-  const iconMap = {
+  const iconMap:any = {
     'Email': Mail,
     'Phone': Phone,
     'Location': MapPin,
     'Response Time': Clock
   };
 
-  const contactInfo = siteContent.contact.info.map(info => ({
+  const contactInfo = siteContent.contact.info.map((info:any) => ({
     ...info,
     icon: iconMap[info.title] || Mail
   }));
@@ -271,7 +271,7 @@ export default function Contact() {
                   <div className="bg-blue-50 rounded-lg p-4">
                     <h4 className="font-semibold text-blue-900 mb-2">What happens next?</h4>
                     <ul className="text-sm text-blue-800 space-y-1">
-                      <li>• I'll review your project details within 24 hours</li>
+                      <li>• I&lsquo;ll review your project details within 24 hours</li>
                       <li>• Send you a detailed proposal with timeline and pricing</li>
                       <li>• Schedule a call to discuss your requirements in detail</li>
                       <li>• Start working on your project once we agree on terms</li>

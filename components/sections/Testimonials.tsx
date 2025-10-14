@@ -43,7 +43,7 @@ export default function Testimonials() {
             <CardContent className="p-8 md:p-12">
               <Quote className="w-12 h-12 text-blue-300 mb-6" />
               <blockquote className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8">
-                "{testimonials[currentIndex].content}"
+                &quot;{testimonials[currentIndex].content}&quot;
               </blockquote>
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
@@ -112,7 +112,7 @@ export default function Testimonials() {
                   ))}
                 </div>
                 <p className="text-gray-700 mb-4 text-sm leading-relaxed line-clamp-4">
-                  "{testimonial.content}"
+                  &quot;{testimonial.content}&quot;
                 </p>
                 <div className="flex items-center space-x-3">
                   <img

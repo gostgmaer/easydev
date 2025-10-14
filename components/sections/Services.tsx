@@ -12,7 +12,7 @@ import {
 import { siteContent } from '@/lib/content';
 
 export default function Services() {
-  const iconMap = {
+  const iconMap:any = {
     'Express.js Development': Code,
     'Database Design & Optimization': Database,
     'API Development': Server,
@@ -74,7 +74,7 @@ export default function Services() {
           <div className="bg-gradient-to-r from-blue-600 to-emerald-600 rounded-2xl p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">Ready to Start Your Backend Project?</h3>
             <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-              Let's discuss how I can help build robust backend solutions with Express.js and database expertise 
+              Let&apos;s discuss how I can help build robust backend solutions with Express.js and database expertise 
               tailored to your specific requirements.
             </p>
             <button
