@@ -8,7 +8,7 @@ export const siteContent = {
     location: "Mumbai, India",
     website: "https://easydev.in",
     tagline: "Backend Specialist & Database Expert",
-    bio: "Passionate full-stack developer with 4+ years of experience building scalable web applications using Express.js, MySQL, and MongoDB. I specialize in creating robust backend systems and efficient database architectures that power modern web applications.",
+    bio: "Passionate full-stack developer with 4+ years of experience building scalable web applications using Express.js, MySQL, and MongoDB We specialize in creating robust backend systems and efficient database architectures that power modern web applications.",
     availability: "Available for new projects",
     responseTime: "< 12 hours"
   },
@@ -39,7 +39,7 @@ export const siteContent = {
     journey: [
       "I began our development journey in 2020, focusing on backend technologies and database design. What started as curiosity about how web applications work behind the scenes quickly evolved into a passion for building robust, scalable server-side solutions.",
       "Over the years, I've specialized in Express.js for building RESTful APIs and web services, mastered both SQL and NoSQL databases (MySQL and MongoDB), and developed expertise in creating efficient data models and optimizing database performance.",
-      "I believe in writing clean, maintainable code and following industry best practices. Whether it's designing a complex database schema, building a high-performance API, or integrating multiple services, I focus on creating solutions that are both powerful and reliable."
+      "I believe in writing clean, maintainable code and following industry best practices. Whether it's designing a complex database schema, building a high-performance API, or integrating multiple services, We focus on creating solutions that are both powerful and reliable."
     ],
     skills: [
       "Express.js", "Node.js", "MySQL", "MongoDB", "JavaScript", "TypeScript",
@@ -240,7 +240,7 @@ export const siteContent = {
   // Contact Section
   contact: {
     title: "Let's Work Together",
-    subtitle: "Have a backend project in mind? Let's discuss how I can help you build robust, scalable solutions with Express.js and database expertise.",
+    subtitle: "Have a backend project in mind? Let's discuss how We can help you build robust, scalable solutions with Express.js and database expertise.",
     info: [
       {
         title: "Email",
@@ -287,11 +287,11 @@ export const siteContent = {
     faqs: [
       {
         q: "What's your typical project timeline?",
-        a: "Backend projects typically take 2-4 weeks depending on complexity. Simple APIs can be delivered in 1 week, while complex systems with multiple databases may take 6-8 weeks. I provide detailed timelines in our proposals."
+        a: "Backend projects typically take 2-4 weeks depending on complexity. Simple APIs can be delivered in 1 week, while complex systems with multiple databases may take 6-8 weeks. We provide detailed timelines in our proposals."
       },
       {
         q: "Do you work with international clients?",
-        a: "Yes! I work with clients globally and am flexible with time zones. I'm available for calls during IST business hours and can adjust for urgent international projects."
+        a: "Yes! We work with clients globally and am flexible with time zones. I'm available for calls during IST business hours and can adjust for urgent international projects."
       },
       {
         q: "What's included in your backend development service?",
@@ -299,7 +299,7 @@ export const siteContent = {
       },
       {
         q: "Do you provide database migration services?",
-        a: "Absolutely! I specialize in migrating data between MySQL and MongoDB, optimizing existing databases, and helping businesses scale their data infrastructure safely and efficiently."
+        a: "Absolutely! We specialize in migrating data between MySQL and MongoDB, optimizing existing databases, and helping businesses scale their data infrastructure safely and efficiently."
       }
     ]
   },
@@ -315,7 +315,7 @@ export const siteContent = {
   // SEO & Meta
   seo: {
     title: "EasyDev - Express.js Developer | NEXT.JS Expert | Backend Specialist | India",
-    description: "Professional backend developer specializing in Express.js, MySQL, and MongoDB. I build scalable APIs, design efficient databases, and create robust server-side solutions for modern web applications.",
+    description: "Professional backend developer specializing in Express.js, MySQL, and MongoDB. We build scalable APIs, design efficient databases, and create robust server-side solutions for modern web applications.",
     keywords: "Express.js developer, MySQL expert, MongoDB specialist, backend developer, API development, database design, Node.js developer, India",
     author: "Kishor Sarkar",
     url: "https://www.easydev.in/"
