@@ -314,10 +314,10 @@ export const siteContent = {
 
   // SEO & Meta
   seo: {
-    title: "easydev.in - Express.js Developer | MySQL & MongoDB Expert",
+    title: "EasyDev - Express.js Developer | NEXT.JS Expert | Backend Specialist | India",
     description: "Professional backend developer specializing in Express.js, MySQL, and MongoDB. I build scalable APIs, design efficient databases, and create robust server-side solutions for modern web applications.",
     keywords: "Express.js developer, MySQL expert, MongoDB specialist, backend developer, API development, database design, Node.js developer, India",
-    author: "EasyDev",
+    author: "Kishor Sarkar",
     url: "https://www.easydev.in/"
   }
 };
