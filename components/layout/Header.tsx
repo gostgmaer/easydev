@@ -131,11 +131,11 @@ export default function Header() {
                 </Button>
               </div>
               <div className="flex items-center justify-center space-x-6 pt-4 border-t border-gray-200">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                <a href="https://github.com/gostgmaer" target="_blank" rel="noopener noreferrer"
                    className="text-gray-600 hover:text-gray-900 transition-colors">
                   <Github className="h-6 w-6" />
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.linkedin.com/in/kishor-sarkar/" target="_blank" rel="noopener noreferrer"
                    className="text-gray-600 hover:text-gray-900 transition-colors">
                   <Linkedin className="h-6 w-6" />
                 </a>
