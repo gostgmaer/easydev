@@ -1,7 +1,7 @@
 export const siteContent = {
   // Personal Information
   personal: {
-    name: "Kishor Sarkar",
+    name: "EasyDev",
     title: "Full-Stack Developer",
     email: "contact@easydev.in",
     phone: "+91 98765 43210",
@@ -198,7 +198,7 @@ export const siteContent = {
         name: "Rajesh Kumar",
         role: "CTO, TechStart India",
         company: "TechStart India",
-        content: "Kishor delivered an exceptional e-commerce backend system using Express.js and MySQL. His database design was flawless and the API performance exceeded our expectations. Highly recommended for backend development!",
+        content: "EasyDev delivered an exceptional e-commerce backend system using Express.js and MySQL. His database design was flawless and the API performance exceeded our expectations. Highly recommended for backend development!",
         rating: 5,
         avatar: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=150"
       },
@@ -206,7 +206,7 @@ export const siteContent = {
         name: "Priya Sharma",
         role: "Product Manager, InnovateHub",
         company: "InnovateHub",
-        content: "Working with Kishor was a game-changer for our project. His expertise in MongoDB and Express.js helped us build a scalable social platform. The real-time features work perfectly and the code is very well structured.",
+        content: "Working with EasyDev was a game-changer for our project. His expertise in MongoDB and Express.js helped us build a scalable social platform. The real-time features work perfectly and the code is very well structured.",
         rating: 5,
         avatar: "https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&w=150"
       },
@@ -214,7 +214,7 @@ export const siteContent = {
         name: "Amit Patel",
         role: "Founder, RestaurantTech",
         company: "RestaurantTech",
-        content: "Kishor built our entire restaurant management backend from scratch. The MySQL database design is excellent and the Express.js APIs are fast and reliable. Our POS system runs smoothly thanks to his work.",
+        content: "EasyDev built our entire restaurant management backend from scratch. The MySQL database design is excellent and the Express.js APIs are fast and reliable. Our POS system runs smoothly thanks to his work.",
         rating: 5,
         avatar: "https://images.pexels.com/photos/2182969/pexels-photo-2182969.jpeg?auto=compress&cs=tinysrgb&w=150"
       },
@@ -222,7 +222,7 @@ export const siteContent = {
         name: "Sneha Gupta",
         role: "Tech Lead, EduPlatform",
         company: "EduPlatform",
-        content: "The learning management system backend that Kishor developed is outstanding. His MongoDB expertise really showed in the efficient data modeling. The APIs are well-documented and perform excellently under load.",
+        content: "The learning management system backend that EasyDev developed is outstanding. His MongoDB expertise really showed in the efficient data modeling. The APIs are well-documented and perform excellently under load.",
         rating: 5,
         avatar: "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=150"
       },
@@ -230,7 +230,7 @@ export const siteContent = {
         name: "Vikram Singh",
         role: "CEO, HealthcarePlus",
         company: "HealthcarePlus",
-        content: "Kishor's backend development skills are top-notch. He built our healthcare management system with Express.js and MySQL, ensuring HIPAA compliance and excellent performance. Professional and reliable developer.",
+        content: "EasyDev's backend development team are top-notch. He built our healthcare management system with Express.js and MySQL, ensuring HIPAA compliance and excellent performance. Professional and reliable developer.",
         rating: 5,
         avatar: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=150"
       }
@@ -306,9 +306,9 @@ export const siteContent = {
 
   // Social Links
   social: {
-    github: "https://github.com/kishorsarkar",
-    linkedin: "https://linkedin.com/in/kishorsarkar",
-    twitter: "https://twitter.com/kishorsarkar",
+    github: "https://github.com/gostgmaer",
+    linkedin: "https://www.linkedin.com/in/kishor-sarkar/",
+    // twitter: "https://twitter.com/kishorsarkar",
     email: "mailto:contact@easydev.in"
   },
 
@@ -317,7 +317,7 @@ export const siteContent = {
     title: "easydev.in - Express.js Developer | MySQL & MongoDB Expert",
     description: "Professional backend developer specializing in Express.js, MySQL, and MongoDB. I build scalable APIs, design efficient databases, and create robust server-side solutions for modern web applications.",
     keywords: "Express.js developer, MySQL expert, MongoDB specialist, backend developer, API development, database design, Node.js developer, India",
-    author: "Kishor Sarkar",
+    author: "EasyDev",
     url: "https://www.easydev.in/"
   }
 };
