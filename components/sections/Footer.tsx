@@ -174,11 +174,11 @@ export default function Footer() {
               <a href="/terms" className="hover:text-blue-400 transition-colors">
                 Terms of Service
               </a>
-              <div className="flex items-center space-x-1">
+              {/* <div className="flex items-center space-x-1">
                 <span>Made with</span>
                 <Heart className="w-4 h-4 text-red-500 fill-current" />
                 <span>using Next.js</span>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
