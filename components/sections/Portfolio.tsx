@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { trackEvent } from '@/lib/api';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { siteContent } from '@/lib/content';
+import Image from 'next/image';
 
 export default function Portfolio() {
   const [filter, setFilter] = useState('All');
@@ -21,6 +23,23 @@ export default function Portfolio() {
   const filteredProjects = filter === 'All' 
     ? projects 
     : projects.filter(project => project.category === filter);
+
+  const handleProjectView = async (projectTitle: string) => {
+    await trackEvent({
+      event: 'project_view',
+      category: 'Portfolio',
+      label: projectTitle,
+    });
+  };
+
+  const handleFilterChange = async (category: string) => {
+    setFilter(category);
+    await trackEvent({
+      event: 'portfolio_filter',
+      category: 'Portfolio',
+      label: category,
+    });
+  };
 
   return (
     <section id="portfolio" className="py-20 bg-gray-50">
@@ -38,7 +57,7 @@ export default function Portfolio() {
             {categories.map((category) => (
               <button
                 key={category}
-                onClick={() => setFilter(category)}
+                onClick={() => handleFilterChange(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   filter === category
                     ? 'bg-blue-600 text-white'
@@ -56,17 +75,26 @@ export default function Portfolio() {
           {filteredProjects.filter(p => p.featured).map((project, index) => (
             <Card key={index} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 group">
               <div className="relative overflow-hidden">
-                <img
+                <Image
                   src={project.image}
                   alt={project.title}
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
-                  <Button size="sm" className="bg-white text-gray-900 hover:bg-gray-100">
+                  <Button 
+                    size="sm" 
+                    className="bg-white text-gray-900 hover:bg-gray-100"
+                    onClick={() => handleProjectView(project.title)}
+                  >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Live Demo
                   </Button>
-                  <Button size="sm" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900">
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="border-white text-white hover:bg-white hover:text-gray-900"
+                    onClick={() => handleProjectView(`${project.title} - Code`)}
+                  >
                     <Github className="w-4 h-4 mr-2" />
                     Code
                   </Button>
@@ -103,7 +131,12 @@ export default function Portfolio() {
                   </div>
                 )}
                 <div className="flex items-center text-blue-600 hover:text-blue-700 transition-colors cursor-pointer group">
-                  <span className="font-medium">View Project Details</span>
+                  <button 
+                    className="font-medium"
+                    onClick={() => handleProjectView(project.title)}
+                  >
+                    View Project Details
+                  </button>
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </div>
               </CardContent>
@@ -116,7 +149,7 @@ export default function Portfolio() {
           {filteredProjects.filter(p => !p.featured).map((project, index) => (
             <Card key={index} className="overflow-hidden border-none shadow-md hover:shadow-lg transition-all duration-300 group">
               <div className="relative overflow-hidden">
-                <img
+                <Image
                   src={project.image}
                   alt={project.title}
                   className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
@@ -146,16 +179,25 @@ export default function Portfolio() {
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex space-x-2">
-                    <button className="text-gray-600 hover:text-blue-600 transition-colors">
+                    <button 
+                      className="text-gray-600 hover:text-blue-600 transition-colors"
+                      onClick={() => handleProjectView(project.title)}
+                    >
                       <ExternalLink className="w-4 h-4" />
                     </button>
-                    <button className="text-gray-600 hover:text-blue-600 transition-colors">
+                    <button 
+                      className="text-gray-600 hover:text-blue-600 transition-colors"
+                      onClick={() => handleProjectView(`${project.title} - Code`)}
+                    >
                       <Github className="w-4 h-4" />
                     </button>
                   </div>
-                  <span className="text-sm text-blue-600 hover:text-blue-700 transition-colors cursor-pointer">
+                  <button 
+                    className="text-sm text-blue-600 hover:text-blue-700 transition-colors"
+                    onClick={() => handleProjectView(project.title)}
+                  >
                     Learn more →
-                  </span>
+                  </button>
                 </div>
               </CardContent>
             </Card>

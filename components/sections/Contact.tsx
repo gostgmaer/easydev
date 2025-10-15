@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { submitContactForm, trackEvent } from '@/lib/api';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -40,21 +41,49 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-      budget: '',
-      timeline: ''
-    });
-    setIsSubmitting(false);
-    
-    alert('Thank you for your message! I\'ll get back to you within 24 hours.');
+    try {
+      // Track form submission attempt
+      await trackEvent({
+        event: 'contact_form_submit',
+        category: 'Contact',
+        label: formData.subject,
+      });
+
+      // Submit form data
+      await submitContactForm(formData);
+      
+      // Reset form on success
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+        budget: '',
+        timeline: ''
+      });
+      
+      alert('Thank you for your message! I\'ll get back to you within 24 hours.');
+      
+      // Track successful submission
+      await trackEvent({
+        event: 'contact_form_success',
+        category: 'Contact',
+        label: formData.subject,
+      });
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('Sorry, there was an error sending your message. Please try again or contact me directly.');
+      
+      // Track form submission error
+      await trackEvent({
+        event: 'contact_form_error',
+        category: 'Contact',
+        label: 'submission_failed',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const iconMap:any = {
@@ -271,7 +300,7 @@ export default function Contact() {
                   <div className="bg-blue-50 rounded-lg p-4">
                     <h4 className="font-semibold text-blue-900 mb-2">What happens next?</h4>
                     <ul className="text-sm text-blue-800 space-y-1">
-                      <li>• I&lsquo;ll review your project details within 24 hours</li>
+                      <li>• I&apos;ll review your project details within 24 hours</li>
                       <li>• Send you a detailed proposal with timeline and pricing</li>
                       <li>• Schedule a call to discuss your requirements in detail</li>
                       <li>• Start working on your project once we agree on terms</li>

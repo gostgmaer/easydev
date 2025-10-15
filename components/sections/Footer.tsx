@@ -1,10 +1,14 @@
 'use client';
 
 import { Code, Github, Linkedin, Mail, Twitter, Heart } from 'lucide-react';
+import { useState } from 'react';
+import { subscribeToNewsletter, trackEvent } from '@/lib/api';
 import { siteContent } from '@/lib/content';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
 
   const quickLinks = [
     { name: 'About', href: '#about' },
@@ -29,6 +33,37 @@ export default function Footer() {
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId.replace('#', ''))?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setIsSubscribing(true);
+    try {
+      await subscribeToNewsletter(email);
+      setEmail('');
+      alert('Thank you for subscribing to my newsletter!');
+      
+      // Track successful subscription
+      await trackEvent({
+        event: 'newsletter_subscribe',
+        category: 'Newsletter',
+        label: 'footer_form',
+      });
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      alert('Sorry, there was an error subscribing. Please try again.');
+      
+      // Track subscription error
+      await trackEvent({
+        event: 'newsletter_error',
+        category: 'Newsletter',
+        label: 'subscription_failed',
+      });
+    } finally {
+      setIsSubscribing(false);
+    }
   };
 
   return (
@@ -103,16 +138,23 @@ export default function Footer() {
             <p className="text-gray-300 mb-4 text-sm">
               Get the latest insights on web development and tech trends.
             </p>
-            <div className="flex flex-col sm:flex-row gap-2">
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-2">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
+                required
                 className="flex-1 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
-              <button className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors whitespace-nowrap">
-                Subscribe
+              <button 
+                type="submit"
+                disabled={isSubscribing}
+                className="px-6 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white rounded-lg font-semibold transition-colors whitespace-nowrap"
+              >
+                {isSubscribing ? 'Subscribing...' : 'Subscribe'}
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -132,7 +174,11 @@ export default function Footer() {
               <a href="/terms" className="hover:text-blue-400 transition-colors">
                 Terms of Service
               </a>
-            
+              <div className="flex items-center space-x-1">
+                <span>Made with</span>
+                <Heart className="w-4 h-4 text-red-500 fill-current" />
+                <span>using Next.js</span>
+              </div>
             </div>
           </div>
         </div>

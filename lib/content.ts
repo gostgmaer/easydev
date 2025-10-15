@@ -3,10 +3,10 @@ export const siteContent = {
   personal: {
     name: "Kishor Sarkar",
     title: "Full-Stack Developer",
-    email: "kishor.sarkar.in@gmail.com",
+    email: "kishor.sarkar@developer.com",
     phone: "+91 98765 43210",
     location: "Mumbai, India",
-    website: "https://me.easydev.in.dev",
+    website: "https://easydev.in",
     tagline: "Backend Specialist & Database Expert",
     bio: "Passionate full-stack developer with 4+ years of experience building scalable web applications using Express.js, MySQL, and MongoDB. I specialize in creating robust backend systems and efficient database architectures that power modern web applications.",
     availability: "Available for new projects",
@@ -318,6 +318,6 @@ export const siteContent = {
     description: "Professional backend developer specializing in Express.js, MySQL, and MongoDB. I build scalable APIs, design efficient databases, and create robust server-side solutions for modern web applications.",
     keywords: "Express.js developer, MySQL expert, MongoDB specialist, backend developer, API development, database design, Node.js developer, India",
     author: "Kishor Sarkar",
-    url: "https://kishorsarkar.dev"
+    url: "https://www.easydev.in/"
   }
 };

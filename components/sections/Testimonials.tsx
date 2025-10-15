@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 import { siteContent } from '@/lib/content';
+import Image from 'next/image';
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -47,7 +48,7 @@ export default function Testimonials() {
               </blockquote>
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <img
+                  <Image
                     src={testimonials[currentIndex].avatar}
                     alt={testimonials[currentIndex].name}
                     className="w-16 h-16 rounded-full object-cover border-4 border-white shadow-md"
@@ -115,7 +116,7 @@ export default function Testimonials() {
                   &quot;{testimonial.content}&quot;
                 </p>
                 <div className="flex items-center space-x-3">
-                  <img
+                  <Image
                     src={testimonial.avatar}
                     alt={testimonial.name}
                     className="w-10 h-10 rounded-full object-cover"
