@@ -24,7 +24,7 @@ export const siteContent = {
       "API Developer",
       "Full-Stack Engineer"
     ],
-    description: "I build powerful backend systems and APIs using Express.js, design efficient database schemas with MySQL and MongoDB, and create full-stack applications that scale. Specializing in server-side development with a focus on performance and reliability.",
+    description: "We build powerful backend systems and APIs using Express.js, design efficient database schemas with MySQL and MongoDB, and create full-stack applications that scale. Specializing in server-side development with a focus on performance and reliability.",
     stats: {
       experience: "4+",
       projects: "75+",
@@ -37,9 +37,9 @@ export const siteContent = {
     title: "About Us",
     subtitle: "Backend developer and database specialist with expertise in modern server technologies",
     journey: [
-      "I began our development journey in 2020, focusing on backend technologies and database design. What started as curiosity about how web applications work behind the scenes quickly evolved into a passion for building robust, scalable server-side solutions.",
+      "We began our development journey in 2020, focusing on backend technologies and database design. What started as curiosity about how web applications work behind the scenes quickly evolved into a passion for building robust, scalable server-side solutions.",
       "Over the years, I've specialized in Express.js for building RESTful APIs and web services, mastered both SQL and NoSQL databases (MySQL and MongoDB), and developed expertise in creating efficient data models and optimizing database performance.",
-      "I believe in writing clean, maintainable code and following industry best practices. Whether it's designing a complex database schema, building a high-performance API, or integrating multiple services, We focus on creating solutions that are both powerful and reliable."
+      "We believe in writing clean, maintainable code and following industry best practices. Whether it's designing a complex database schema, building a high-performance API, or integrating multiple services, We focus on creating solutions that are both powerful and reliable."
     ],
     skills: [
       "Express.js", "Node.js", "MySQL", "MongoDB", "JavaScript", "TypeScript",
@@ -263,7 +263,7 @@ export const siteContent = {
       {
         title: "Response Time",
         value: "< 12 hours",
-        description: "I reply to all inquiries quickly",
+        description: "We reply to all inquiries quickly",
         href: "#"
       }
     ],
