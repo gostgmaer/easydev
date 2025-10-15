@@ -308,7 +308,7 @@ export const siteContent = {
   social: {
     github: "https://github.com/gostgmaer",
     linkedin: "https://www.linkedin.com/in/kishor-sarkar/",
-    // twitter: "https://twitter.com/kishorsarkar",
+    twitter: "https://twitter.com/easydev",
     email: "mailto:contact@easydev.in"
   },
 
