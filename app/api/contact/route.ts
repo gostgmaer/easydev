@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     
     const msg = {
-      to: 'kishor.sarkar@developer.com',
+      to: 'contact@easydev.in',
       from: 'noreply@kishorsarkar.dev',
       subject: `New Contact Form: ${subject}`,
       html: `
@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
     /*
     const autoReply = {
       to: email,
-      from: 'kishor.sarkar@developer.com',
+      from: 'contact@easydev.in',
       subject: 'Thank you for contacting me!',
       html: `
         <h2>Thank you for your message, ${name}!</h2>

@@ -91,11 +91,11 @@ export async function POST(request: NextRequest) {
     /*
     const welcomeEmail = {
       to: email,
-      from: 'kishor.sarkar@developer.com',
-      subject: 'Welcome to my newsletter!',
+      from: 'contact@easydev.in',
+      subject: 'Welcome to our newsletter!',
       html: `
         <h2>Thanks for subscribing!</h2>
-        <p>You'll receive updates about web development, tech insights, and my latest projects.</p>
+        <p>You'll receive updates about web development, tech insights, and our latest projects.</p>
         <p>Best regards,<br>Kishor Sarkar</p>
       `,
     };

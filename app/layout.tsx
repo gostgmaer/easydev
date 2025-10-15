@@ -48,7 +48,7 @@ const structuredData = {
         "@type": "PostalAddress",
         addressLocality: safe(siteContent.personal.location, "Mumbai, India"),
       },
-      email: safe(siteContent.personal.email, "kishor.sarkar@developer.com"),
+      email: safe(siteContent.personal.email, "contact@easydev.in"),
       telephone: safe(siteContent.personal.phone, "+91 98765 43210"),
       knowsAbout: safe(siteContent.about.skills, []).slice(0, 10),
       alumniOf: {
@@ -113,7 +113,7 @@ const structuredData = {
         "@type": "ContactPoint",
         contactType: "Customer Service",
         telephone: safe(siteContent.personal.phone, "+91 98765 43210"),
-        email: safe(siteContent.personal.email, "kishor.sarkar@developer.com"),
+        email: safe(siteContent.personal.email, "contact@easydev.in"),
         availableLanguage: ["English", "Hindi"],
         hoursAvailable: "Mo-Fr 10:00-19:00",
       },

@@ -3,7 +3,7 @@ export const siteContent = {
   personal: {
     name: "Kishor Sarkar",
     title: "Full-Stack Developer",
-    email: "kishor.sarkar@developer.com",
+    email: "contact@easydev.in",
     phone: "+91 98765 43210",
     location: "Mumbai, India",
     website: "https://easydev.in",
@@ -15,8 +15,8 @@ export const siteContent = {
 
   // Hero Section
   hero: {
-    greeting: "Hi, I'm",
-    name: "Kishor Sarkar",
+    greeting: "Hi, We'are",
+    name: "EasyDev",
     roles: [
       "Express.js Developer",
       "Database Architect", 
@@ -34,10 +34,10 @@ export const siteContent = {
 
   // About Section
   about: {
-    title: "About Me",
+    title: "About Us",
     subtitle: "Backend developer and database specialist with expertise in modern server technologies",
     journey: [
-      "I began my development journey in 2020, focusing on backend technologies and database design. What started as curiosity about how web applications work behind the scenes quickly evolved into a passion for building robust, scalable server-side solutions.",
+      "I began our development journey in 2020, focusing on backend technologies and database design. What started as curiosity about how web applications work behind the scenes quickly evolved into a passion for building robust, scalable server-side solutions.",
       "Over the years, I've specialized in Express.js for building RESTful APIs and web services, mastered both SQL and NoSQL databases (MySQL and MongoDB), and developed expertise in creating efficient data models and optimizing database performance.",
       "I believe in writing clean, maintainable code and following industry best practices. Whether it's designing a complex database schema, building a high-performance API, or integrating multiple services, I focus on creating solutions that are both powerful and reliable."
     ],
@@ -91,7 +91,7 @@ export const siteContent = {
 
   // Services Section
   services: {
-    title: "Services I Offer",
+    title: "Services We Offer",
     subtitle: "Comprehensive backend development services with expertise in Express.js and database technologies",
     list: [
       {
@@ -244,9 +244,9 @@ export const siteContent = {
     info: [
       {
         title: "Email",
-        value: "kishor.sarkar@developer.com",
+        value: "contact@easydev.in",
         description: "Send me an email anytime!",
-        href: "mailto:kishor.sarkar@developer.com"
+        href: "mailto:contact@easydev.in"
       },
       {
         title: "Phone",
@@ -287,7 +287,7 @@ export const siteContent = {
     faqs: [
       {
         q: "What's your typical project timeline?",
-        a: "Backend projects typically take 2-4 weeks depending on complexity. Simple APIs can be delivered in 1 week, while complex systems with multiple databases may take 6-8 weeks. I provide detailed timelines in my proposals."
+        a: "Backend projects typically take 2-4 weeks depending on complexity. Simple APIs can be delivered in 1 week, while complex systems with multiple databases may take 6-8 weeks. I provide detailed timelines in our proposals."
       },
       {
         q: "Do you work with international clients?",
@@ -309,12 +309,12 @@ export const siteContent = {
     github: "https://github.com/kishorsarkar",
     linkedin: "https://linkedin.com/in/kishorsarkar",
     twitter: "https://twitter.com/kishorsarkar",
-    email: "mailto:kishor.sarkar@developer.com"
+    email: "mailto:contact@easydev.in"
   },
 
   // SEO & Meta
   seo: {
-    title: "Kishor Sarkar - Express.js Developer | MySQL & MongoDB Expert",
+    title: "easydev.in - Express.js Developer | MySQL & MongoDB Expert",
     description: "Professional backend developer specializing in Express.js, MySQL, and MongoDB. I build scalable APIs, design efficient databases, and create robust server-side solutions for modern web applications.",
     keywords: "Express.js developer, MySQL expert, MongoDB specialist, backend developer, API development, database design, Node.js developer, India",
     author: "Kishor Sarkar",

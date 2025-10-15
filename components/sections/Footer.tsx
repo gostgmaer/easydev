@@ -43,7 +43,7 @@ export default function Footer() {
     try {
       await subscribeToNewsletter(email);
       setEmail('');
-      alert('Thank you for subscribing to my newsletter!');
+      alert('Thank you for subscribing to our newsletter!');
       
       // Track successful subscription
       await trackEvent({

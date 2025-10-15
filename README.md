@@ -103,4 +103,4 @@ MIT License - feel free to use this template for your own portfolio.
 
 ## Support
 
-For questions or support, contact: kishor.sarkar@developer.com
+For questions or support, contact: contact@easydev.in
