@@ -204,7 +204,7 @@ export default function ContactForm() {
               <FormField
                 label="Services Interested"
                 required
-                error={errors.projectDetails?.servicesInterested}
+                // error={errors.projectDetails?.servicesInterested}
                 description={`${watchedServices.length} service${
                   watchedServices.length !== 1 ? "s" : ""
                 } selected`}
@@ -360,7 +360,7 @@ export default function ContactForm() {
                 </span>
               </label>
 
-              <FormField error={errors.preferences?.privacyConsent}>
+              <FormField label="" error={errors.preferences?.privacyConsent}>
                 <label className="inline-flex items-start space-x-3">
                   <input
                     {...register("preferences.privacyConsent")}
