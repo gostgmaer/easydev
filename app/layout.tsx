@@ -100,7 +100,7 @@ const structuredData = {
           email: "hello@easydev.in",
           contactType: "customer support",
           areaServed: "IN",
-          availableLanguage: ["English", "Hindi","Bengali"],
+          availableLanguage: ["English", "Hindi", "Bengali"],
         },
       ],
       areaServed: {
@@ -279,7 +279,7 @@ const structuredData = {
         "@id": "https://easydev.in",
       },
     },
-  
+
     ...safe(siteContent.portfolio.projects, [])
       .slice(0, 6)
       .map((project, index) => ({

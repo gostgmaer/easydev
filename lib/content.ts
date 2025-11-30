@@ -15,7 +15,7 @@ export const siteContent = {
       "addressLocality": "Mumbai",
       "addressRegion": "Maharashtra",
       "postalCode": "400058",
-      "addressCountry": "India"
+      "addressCountry": "IN"
     }
   },
 
