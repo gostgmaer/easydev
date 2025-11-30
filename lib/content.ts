@@ -320,10 +320,14 @@ export const siteContent = {
 
   // SEO & Meta
   seo: {
-    title: "EasyDev - Express.js Developer | NEXT.JS Expert | Backend Specialist | IN",
-    description: "Professional backend developer specializing in Express.js, MySQL, and MongoDB. We build scalable APIs, design efficient databases, and create robust server-side solutions for modern web applications.",
-    keywords: "Express.js developer, MySQL expert, MongoDB specialist, backend developer, API development, database design, Node.js developer, IN",
+    title: "EasyDev - Full-Stack & Backend Solutions | Express.js, NEXT.JS, Node.js Expert | IN",
+    description: "EasyDev provides professional web development solutions specializing in Express.js, NEXT.JS, Node.js, MySQL, and MongoDB. We create scalable APIs, robust backend systems, optimized databases, and complete web solutions for businesses of all sizes.",
+    keywords: "Express.js developer, NEXT.JS expert, Node.js backend specialist, full-stack developer, API development, database optimization, MySQL, MongoDB, web application development, web solutions, server-side development, IN",
     author: "Kishor Sarkar",
-    url: "https://www.easydev.in/"
+    url: "https://www.easydev.in/",
+    image: "https://www.easydev.in/images/og-image.png",
+    type: "website",
+    locale: "en_IN"
   }
+
 };
