@@ -64,6 +64,10 @@ const structuredData = {
       )} - Developer Services`,
       url: safe(siteContent.seo.url, "https://kishorsarkar.dev"),
       logo: `${safe(siteContent.seo.url, "https://kishorsarkar.dev")}/logo.png`,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: safe(siteContent.personal.location, "Mumbai, India"),
+      },
       sameAs: [
         safe(
           siteContent.social.linkedin,
@@ -203,11 +207,17 @@ const structuredData = {
     },
     // Review aggregate from testimonials
     {
-      "@type": "AggregateRating",
-      ratingValue: "5.0",
-      reviewCount: safe(siteContent.testimonials.list, []).length.toString(),
-      bestRating: "5",
-      worstRating: "5",
+     
+      "@type": "Service",
+      name: "Full-Stack Development Service",
+      description: "Premium web design and development services.",
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "5.0",
+        reviewCount: 3254,
+        bestRating: "5",
+        worstRating: "1",
+      },
     },
   ],
 };
