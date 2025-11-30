@@ -24,7 +24,7 @@ const structuredData = {
       url: safe(siteContent.seo.url, "https://easydev.in"),
       image: `${safe(
         siteContent.seo.url,
-        "https://kishorsarkar.dev"
+        "https://www.easydev.in"
       )}/profile.jpg`,
       jobTitle: safe(siteContent.personal.title, "Full-Stack Developer"),
       description: safe(
@@ -42,7 +42,7 @@ const structuredData = {
       worksFor: {
         "@type": "Organization",
         name: "Freelance Developer",
-        url: safe(siteContent.seo.url, "https://kishorsarkar.dev"),
+        url: safe(siteContent.seo.url, "https://www.easydev.in"),
       },
       address: {
         "@type": "PostalAddress",
@@ -288,7 +288,7 @@ const structuredData = {
         description: project.description,
         url: `${safe(
           siteContent.seo.url,
-          "https://kishorsarkar.dev"
+          "https://www.easydev.in"
         )}#portfolio`,
         image: project.image,
         datePublished: new Date(Date.now() - index * 30 * 24 * 60 * 60 * 1000)
@@ -322,7 +322,7 @@ const structuredData = {
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: safe(siteContent.seo.url, "https://kishorsarkar.dev"),
+          item: safe(siteContent.seo.url, "https://www.easydev.in"),
         },
         {
           "@type": "ListItem",
@@ -330,7 +330,7 @@ const structuredData = {
           name: "About",
           item: `${safe(
             siteContent.seo.url,
-            "https://kishorsarkar.dev"
+            "https://www.easydev.in"
           )}#about`,
         },
         {
@@ -339,7 +339,7 @@ const structuredData = {
           name: "Services",
           item: `${safe(
             siteContent.seo.url,
-            "https://kishorsarkar.dev"
+            "https://www.easydev.in"
           )}#services`,
         },
         {
@@ -348,7 +348,7 @@ const structuredData = {
           name: "Portfolio",
           item: `${safe(
             siteContent.seo.url,
-            "https://kishorsarkar.dev"
+            "https://www.easydev.in"
           )}#portfolio`,
         },
         {
@@ -357,7 +357,7 @@ const structuredData = {
           name: "Contact",
           item: `${safe(
             siteContent.seo.url,
-            "https://kishorsarkar.dev"
+            "https://www.easydev.in"
           )}#contact`,
         },
       ],
@@ -400,7 +400,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: safe(siteContent.seo.url, "https://kishorsarkar.dev"),
+    url: safe(siteContent.seo.url, "https://www.easydev.in/"),
     title: safe(
       siteContent.seo.title,
       "Kishor Sarkar - Express.js Developer | MySQL & MongoDB Expert"
@@ -417,8 +417,8 @@ export const metadata: Metadata = {
       {
         url: `${safe(
           siteContent.seo.url,
-          "https://kishorsarkar.dev"
-        )}/og-image.jpg`,
+          "https://www.easydev.in"
+        )}/og-image.png`,
         width: 1200,
         height: 630,
         alt: `${safe(
@@ -432,7 +432,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: safe(
       siteContent.seo.title,
-      "Kishor Sarkar - Express.js Developer | MySQL & MongoDB Expert"
+      "EasyDev - Complete Web Solution Express.js Developer | MySQL & MongoDB Expert"
     ),
     description: safe(
       siteContent.seo.description,
@@ -440,7 +440,8 @@ export const metadata: Metadata = {
     ),
     creator: "@kishorsarkar",
     images: [
-      `${safe(siteContent.seo.url, "https://kishorsarkar.dev")}/og-image.jpg`,
+      `${safe(siteContent.seo.url, "https://www.easydev.in")}/og-image.png
+      `,
     ],
   },
   robots: {
@@ -457,9 +458,9 @@ export const metadata: Metadata = {
   verification: {
     google: "verification-token-here",
   },
-  metadataBase: new URL(safe(siteContent.seo.url, "https://kishorsarkar.dev")),
+  metadataBase: new URL(safe(siteContent.seo.url, "https://www.easydev.in")),
   alternates: {
-    canonical: safe(siteContent.seo.url, "https://kishorsarkar.dev"),
+    canonical: safe(siteContent.seo.url, "https://www.easydev.in"),
   },
   category: "technology",
   classification: "Business",
