@@ -46,7 +46,7 @@ const structuredData = {
       },
       address: {
         "@type": "PostalAddress",
-        addressLocality: safe(siteContent.personal.location, "Mumbai, India"),
+        addressLocality: safe(siteContent.personal.location, "Mumbai, IN"),
       },
       email: safe(siteContent.personal.email, "contact@easydev.in"),
       telephone: safe(siteContent.personal.phone, "+91 98765 43210"),
@@ -90,7 +90,7 @@ const structuredData = {
         postalCode: safe(siteContent.personal.address.postalCode, "400001"),
         addressCountry: safe(
           siteContent.personal.address.addressCountry,
-          "India"
+          "IN"
         ),
       },
       contactPoint: [
@@ -393,7 +393,7 @@ export const metadata: Metadata = {
   ),
   keywords: safe(
     siteContent.seo.keywords,
-    "Express.js developer, MySQL expert, MongoDB specialist, backend developer, API development, database design, Node.js developer, India"
+    "Express.js developer, MySQL expert, MongoDB specialist, backend developer, API development, database design, Node.js developer, IN"
   ),
   authors: [{ name: safe(siteContent.seo.author, "Kishor Sarkar") }],
   creator: safe(siteContent.seo.author, "Kishor Sarkar"),

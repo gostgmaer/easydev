@@ -5,7 +5,7 @@ export const siteContent = {
     title: "Full-Stack Developer",
     email: "contact@easydev.in",
     phone: "+91 98765 43210",
-    location: "Mumbai, India",
+    location: "Mumbai, IN",
     website: "https://easydev.in",
     tagline: "Backend Specialist & Database Expert",
     bio: "Passionate full-stack developer with 4+ years of experience building scalable web applications using Express.js, MySQL, and MongoDB We specialize in creating robust backend systems and efficient database architectures that power modern web applications.",
@@ -62,7 +62,7 @@ export const siteContent = {
       {
         period: "2022 - Present",
         role: "Senior Backend Developer",
-        company: "TechSolutions India",
+        company: "TechSolutions IN",
         description: "Leading backend development for enterprise applications using Express.js and database optimization. Managing MySQL and MongoDB databases for high-traffic applications.",
         achievements: [
           "Reduced API response time by 60%",
@@ -202,8 +202,8 @@ export const siteContent = {
     list: [
       {
         name: "Rajesh Kumar",
-        role: "CTO, TechStart India",
-        company: "TechStart India",
+        role: "CTO, TechStart IN",
+        company: "TechStart IN",
         content: "EasyDev delivered an exceptional e-commerce backend system using Express.js and MySQL. His database design was flawless and the API performance exceeded our expectations. Highly recommended for backend development!",
         rating: 5,
         avatar: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=150"
@@ -262,7 +262,7 @@ export const siteContent = {
       },
       {
         title: "Location",
-        value: "Mumbai, India",
+        value: "Mumbai, IN",
         description: "Available for remote work globally",
         href: "#"
       },
@@ -320,9 +320,9 @@ export const siteContent = {
 
   // SEO & Meta
   seo: {
-    title: "EasyDev - Express.js Developer | NEXT.JS Expert | Backend Specialist | India",
+    title: "EasyDev - Express.js Developer | NEXT.JS Expert | Backend Specialist | IN",
     description: "Professional backend developer specializing in Express.js, MySQL, and MongoDB. We build scalable APIs, design efficient databases, and create robust server-side solutions for modern web applications.",
-    keywords: "Express.js developer, MySQL expert, MongoDB specialist, backend developer, API development, database design, Node.js developer, India",
+    keywords: "Express.js developer, MySQL expert, MongoDB specialist, backend developer, API development, database design, Node.js developer, IN",
     author: "Kishor Sarkar",
     url: "https://www.easydev.in/"
   }
