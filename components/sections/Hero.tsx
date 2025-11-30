@@ -73,13 +73,13 @@ export default function Hero() {
               >
                 View Portfolio
               </Button>
-              <Button
+              {/* <Button
                 variant="ghost"
                 className="text-gray-600 hover:text-gray-900 px-8 py-3 text-lg group"
               >
                 <Download className="mr-2 h-5 w-5 group-hover:animate-bounce" />
                 Resume
-              </Button>
+              </Button> */}
             </div>
             
             {/* Stats */}
