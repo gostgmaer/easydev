@@ -207,14 +207,17 @@ const structuredData = {
     },
     // Review aggregate from testimonials
     {
-     
-      "@type": "Service",
-      name: "Full-Stack Development Service",
-      description: "Premium web design and development services.",
+      "@type": "Product",
+      name: "Web Development Services",
+      description: "High-quality web development & full-stack services.",
+      itemReviewed: {
+        "@type": "Service",
+        name: "Web Development Services",
+      },
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: "5.0",
-        reviewCount: 3254,
+        reviewCount: "96",
         bestRating: "5",
         worstRating: "1",
       },
