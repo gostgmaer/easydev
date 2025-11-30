@@ -194,6 +194,7 @@ export const siteContent = {
       {
         name: "Rajesh Kumar",
         role: "CTO, TechStart IN",
+          company: "TechStart India",
         content: "EasyDev delivered a complete web solution with frontend, backend, database, and deployment. Everything worked flawlessly. Highly recommended!",
         rating: 5,
         avatar: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=150"
@@ -201,6 +202,7 @@ export const siteContent = {
       {
         name: "Priya Sharma",
         role: "Product Manager, InnovateHub",
+          company: "InnovateHub",
         content: "EasyDev's full-stack expertise transformed our social platform. Frontend, backend, and DevOps were all handled expertly with quick turnarounds.",
         rating: 5,
         avatar: "https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&w=150"
@@ -208,6 +210,7 @@ export const siteContent = {
       {
         name: "Amit Patel",
         role: "Founder, RestaurantTech",
+          company: "RestaurantTech",
         content: "From responsive UI to backend APIs and database optimization, EasyDev delivered a complete, reliable, and scalable solution.",
         rating: 5,
         avatar: "https://images.pexels.com/photos/2182969/pexels-photo-2182969.jpeg?auto=compress&cs=tinysrgb&w=150"
