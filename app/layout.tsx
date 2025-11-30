@@ -44,9 +44,25 @@ const structuredData = {
         name: "Freelance Developer",
         url: safe(siteContent.seo.url, "https://www.easydev.in"),
       },
-      address: {
+       address: {
         "@type": "PostalAddress",
-        addressLocality: safe(siteContent.personal.location, "Mumbai, IN"),
+        streetAddress: safe(
+          siteContent.personal.address.streetAddress,
+          "B-12, Andheri West"
+        ),
+        addressLocality: safe(
+          siteContent.personal.address.addressLocality,
+          "Mumbai"
+        ),
+        addressRegion: safe(
+          siteContent.personal.address.addressRegion,
+          "Maharashtra"
+        ),
+        postalCode: safe(siteContent.personal.address.postalCode, "400001"),
+        addressCountry: safe(
+          siteContent.personal.address.addressCountry,
+          "IN"
+        ),
       },
       email: safe(siteContent.personal.email, "contact@easydev.in"),
       telephone: safe(siteContent.personal.phone, "+91 98765 43210"),
