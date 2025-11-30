@@ -66,7 +66,23 @@ const structuredData = {
       logo: `${safe(siteContent.seo.url, "https://kishorsarkar.dev")}/logo.png`,
       address: {
         "@type": "PostalAddress",
-        addressLocality: safe(siteContent.personal.location, "Mumbai, India"),
+        streetAddress: safe(
+          siteContent.personal.address.streetAddress,
+          "B-12, Andheri West"
+        ),
+        addressLocality: safe(
+          siteContent.personal.address.addressLocality,
+          "Mumbai"
+        ),
+        addressRegion: safe(
+          siteContent.personal.address.addressRegion,
+          "Maharashtra"
+        ),
+        postalCode: safe(siteContent.personal.address.postalCode, "400001"),
+        addressCountry: safe(
+          siteContent.personal.address.addressCountry,
+          "India"
+        ),
       },
       sameAs: [
         safe(
@@ -87,6 +103,26 @@ const structuredData = {
         siteContent.services.subtitle,
         "Comprehensive backend development services with expertise in Express.js and database technologies"
       ),
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: safe(
+          siteContent.personal.address.streetAddress,
+          "B-12, Andheri West"
+        ),
+        addressLocality: safe(
+          siteContent.personal.address.addressLocality,
+          "Mumbai"
+        ),
+        addressRegion: safe(
+          siteContent.personal.address.addressRegion,
+          "Maharashtra"
+        ),
+        postalCode: safe(siteContent.personal.address.postalCode, "400001"),
+        addressCountry: safe(
+          siteContent.personal.address.addressCountry,
+          "India"
+        ),
+      },
       url: `${safe(siteContent.seo.url, "https://kishorsarkar.dev")}#services`,
       logo: `${safe(siteContent.seo.url, "https://kishorsarkar.dev")}/logo.png`,
       image: `${safe(

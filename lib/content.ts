@@ -10,7 +10,13 @@ export const siteContent = {
     tagline: "Backend Specialist & Database Expert",
     bio: "Passionate full-stack developer with 4+ years of experience building scalable web applications using Express.js, MySQL, and MongoDB We specialize in creating robust backend systems and efficient database architectures that power modern web applications.",
     availability: "Available for new projects",
-    responseTime: "< 12 hours"
+    responseTime: "< 12 hours", address: {
+      "streetAddress": "B-12, Andheri West",
+      "addressLocality": "Mumbai",
+      "addressRegion": "Maharashtra",
+      "postalCode": "400058",
+      "addressCountry": "India"
+    }
   },
 
   // Hero Section
@@ -19,7 +25,7 @@ export const siteContent = {
     name: "EasyDev",
     roles: [
       "Express.js Developer",
-      "Database Architect", 
+      "Database Architect",
       "Backend Specialist",
       "API Developer",
       "Full-Stack Engineer"
@@ -65,7 +71,7 @@ export const siteContent = {
         ]
       },
       {
-        period: "2021 - 2022", 
+        period: "2021 - 2022",
         role: "Full-Stack Developer",
         company: "StartupHub Mumbai",
         description: "Built complete web applications using Express.js backend with MySQL database. Developed RESTful APIs and integrated third-party services.",
@@ -278,7 +284,7 @@ export const siteContent = {
     ],
     budgetRanges: [
       "Under ₹50,000",
-      "₹50,000 - ₹1,00,000", 
+      "₹50,000 - ₹1,00,000",
       "₹1,00,000 - ₹2,50,000",
       "₹2,50,000 - ₹5,00,000",
       "₹5,00,000+",
