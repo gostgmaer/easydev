@@ -18,57 +18,57 @@ function safe<T>(value: T | undefined, fallback: T): T {
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
-    // {
-    //   "@type": "Organization",
-    //   name: safe(siteContent.personal.name, "Kishor Sarkar"),
-    //   url: safe(siteContent.seo.url, "https://easydev.in"),
-    //   image: `${safe(
-    //     siteContent.seo.url,
-    //     "https://www.easydev.in"
-    //   )}/logo.png`,
-    //   jobTitle: safe(siteContent.personal.title, "Full-Stack Developer"),
-    //   description: safe(
-    //     siteContent.personal.bio,
-    //     "Backend specialist with expertise in Express.js, MySQL, and MongoDB"
-    //   ),
-    //   sameAs: [
-    //     safe(
-    //       siteContent.social.linkedin,
-    //       "https://linkedin.com/in/kishorsarkar"
-    //     ),
-    //     safe(siteContent.social.twitter, "https://twitter.com/kishorsarkar"),
-    //     safe(siteContent.social.github, "https://github.com/kishorsarkar"),
-    //   ],
-    //   worksFor: {
-    //     "@type": "Organization",
-    //     name: "Freelance Developer",
-    //     url: safe(siteContent.seo.url, "https://www.easydev.in"),
-    //   },
-    //   address: {
-    //     "@type": "PostalAddress",
-    //     streetAddress: safe(
-    //       siteContent.personal.address.streetAddress,
-    //       "B-12, Andheri West"
-    //     ),
-    //     addressLocality: safe(
-    //       siteContent.personal.address.addressLocality,
-    //       "Mumbai"
-    //     ),
-    //     addressRegion: safe(
-    //       siteContent.personal.address.addressRegion,
-    //       "Maharashtra"
-    //     ),
-    //     postalCode: safe(siteContent.personal.address.postalCode, "400001"),
-    //     addressCountry: safe(siteContent.personal.address.addressCountry, "IN"),
-    //   },
-    //   email: safe(siteContent.personal.email, "contact@easydev.in"),
-    //   telephone: safe(siteContent.personal.phone, "+91 98765 43210"),
-    //   knowsAbout: safe(siteContent.about.skills, []).slice(0, 10),
-    //   alumniOf: {
-    //     "@type": "Organization",
-    //     name: "Professional Developer",
-    //   },
-    // },
+    {
+      "@type": "Organization",
+      name: safe(siteContent.personal.name, "Kishor Sarkar"),
+      url: safe(siteContent.seo.url, "https://easydev.in"),
+      image: `${safe(
+        siteContent.seo.url,
+        "https://www.easydev.in"
+      )}/logo.png`,
+      jobTitle: safe(siteContent.personal.title, "Full-Stack Developer"),
+      description: safe(
+        siteContent.personal.bio,
+        "Backend specialist with expertise in Express.js, MySQL, and MongoDB"
+      ),
+      sameAs: [
+        safe(
+          siteContent.social.linkedin,
+          "https://www.linkedin.com/in/kishor-sarkar/"
+        ),
+        safe(siteContent.social.twitter, "https://twitter.com/easydev"),
+        safe(siteContent.social.github, "https://github.com/gostgmaer"),
+      ],
+      worksFor: {
+        "@type": "Organization",
+        name: "Freelance Developer",
+        url: safe(siteContent.seo.url, "https://www.easydev.in"),
+      },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: safe(
+          siteContent.personal.address.streetAddress,
+          "B-12, Andheri West"
+        ),
+        addressLocality: safe(
+          siteContent.personal.address.addressLocality,
+          "Mumbai"
+        ),
+        addressRegion: safe(
+          siteContent.personal.address.addressRegion,
+          "Maharashtra"
+        ),
+        postalCode: safe(siteContent.personal.address.postalCode, "400001"),
+        addressCountry: safe(siteContent.personal.address.addressCountry, "IN"),
+      },
+      email: safe(siteContent.personal.email, "contact@easydev.in"),
+      telephone: safe(siteContent.personal.phone, "+91 98765 43210"),
+      knowsAbout: safe(siteContent.about.skills, []).slice(0, 10),
+      alumniOf: {
+        "@type": "Organization",
+        name: "Professional Developer",
+      },
+    },
     {
       "@type": "Organization",
       name: "Easydev - Complete Web Solution",
