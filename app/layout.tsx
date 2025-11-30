@@ -19,7 +19,7 @@ const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Person",
+      "@type": "Organization",
       name: safe(siteContent.personal.name, "Kishor Sarkar"),
       url: safe(siteContent.seo.url, "https://easydev.in"),
       image: `${safe(
@@ -58,51 +58,21 @@ const structuredData = {
     },
     {
       "@type": "Organization",
-      name: `${safe(
-        siteContent.personal.name,
-        "Kishor Sarkar"
-      )} - Developer Services`,
-      url: safe(siteContent.seo.url, "https://kishorsarkar.dev"),
-      logo: `${safe(siteContent.seo.url, "https://kishorsarkar.dev")}/logo.png`,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: safe(
-          siteContent.personal.address.streetAddress,
-          "B-12, Andheri West"
-        ),
-        addressLocality: safe(
-          siteContent.personal.address.addressLocality,
-          "Mumbai"
-        ),
-        addressRegion: safe(
-          siteContent.personal.address.addressRegion,
-          "Maharashtra"
-        ),
-        postalCode: safe(siteContent.personal.address.postalCode, "400001"),
-        addressCountry: safe(
-          siteContent.personal.address.addressCountry,
-          "India"
-        ),
-      },
-      sameAs: [
-        safe(
-          siteContent.social.linkedin,
-          "https://linkedin.com/in/kishorsarkar"
-        ),
-        safe(siteContent.social.github, "https://github.com/kishorsarkar"),
-      ],
+      name: "Easydev - Complete Web Solution",
+      legalName: "Easydev",
+      url: "https://easydev.in",
+      logo: "https://easydev.in/logo.png",
+      alternateName: "Easydev - Complete Web Solution",
+      slogan: "Complete web solution — dev, devops, bug fix, and more",
+      description:
+        "Easydev provides complete web solutions: custom web & SaaS development, DevOps, performance & security, bug fixing, maintenance and full-stack systems tailored to business needs.",
+      telephone: "+91-8637317273",
+      email: "hello@easydev.in",
+      priceRange: "$$",
       founder: {
         "@type": "Person",
-        name: safe(siteContent.personal.name, "Kishor Sarkar"),
+        name: "Kishor Sarkar",
       },
-    },
-    {
-      "@type": "ProfessionalService",
-      name: "Backend Development Services",
-      description: safe(
-        siteContent.services.subtitle,
-        "Comprehensive backend development services with expertise in Express.js and database technologies"
-      ),
       address: {
         "@type": "PostalAddress",
         streetAddress: safe(
@@ -123,42 +93,193 @@ const structuredData = {
           "India"
         ),
       },
-      url: `${safe(siteContent.seo.url, "https://kishorsarkar.dev")}#services`,
-      logo: `${safe(siteContent.seo.url, "https://kishorsarkar.dev")}/logo.png`,
-      image: `${safe(
-        siteContent.seo.url,
-        "https://kishorsarkar.dev"
-      )}/services.jpg`,
-      areaServed: "Global",
-      availableChannel: {
-        "@type": "ServiceChannel",
-        serviceUrl: `${safe(
-          siteContent.seo.url,
-          "https://kishorsarkar.dev"
-        )}#services`,
-        availableLanguage: ["English", "Hindi"],
-      },
-      serviceType: safe(siteContent.services.list, []).map(
-        (service) => service.title
-      ),
-      priceRange: "$$",
-      sameAs: [
-        safe(
-          siteContent.social.linkedin,
-          "https://linkedin.com/in/kishorsarkar"
-        ),
-        safe(siteContent.social.github, "https://github.com/kishorsarkar"),
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: "+91-8637317273",
+          email: "hello@easydev.in",
+          contactType: "customer support",
+          areaServed: "IN",
+          availableLanguage: ["English", "Hindi","Bengali"],
+        },
       ],
-      contactPoint: {
-        "@type": "ContactPoint",
-        contactType: "Customer Service",
-        telephone: safe(siteContent.personal.phone, "+91 98765 43210"),
-        email: safe(siteContent.personal.email, "contact@easydev.in"),
-        availableLanguage: ["English", "Hindi"],
-        hoursAvailable: "Mo-Fr 10:00-19:00",
+      areaServed: {
+        "@type": "Country",
+        name: "Worldwide",
+      },
+      sameAs: [
+        "https://github.com/easydev",
+        "https://linkedin.com/in/easydev",
+        "https://twitter.com/easydev",
+      ],
+      makesOffer: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Custom Web Development",
+            description:
+              "Tailor-made, high-performance websites built using modern frameworks like React, Next.js, and Node.js. Designed exactly to meet your business requirements with pixel-perfect UI and optimized speed.",
+            serviceOutput:
+              "Responsive website, secure backend, SEO-friendly pages",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Complete Website Maintenance",
+            description:
+              "Comprehensive website monitoring, updates, security patches, bug fixes, backups, and performance optimization for smooth long-term operation.",
+            serviceOutput:
+              "Regular backups, monthly reports, uptime monitoring",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Full Stack Web Application Development",
+            description:
+              "End-to-end development of scalable web applications including frontend, backend, APIs, authentication, databases, dashboards, and cloud integration.",
+            serviceOutput:
+              "Production-ready web apps, API endpoints, admin dashboards",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "SEO Optimization",
+            description:
+              "Boost search rankings and website visibility with on-page SEO, technical SEO fixes, structured data, metadata, Core Web Vitals optimization, and content recommendations.",
+            serviceOutput: "Improved search visibility, faster Core Web Vitals",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "UI/UX Design",
+            description:
+              "Modern, user-friendly, conversion-focused UI/UX design with improved usability, interactions, prototypes, and optimized user journeys.",
+            serviceOutput: "Wireframes, prototypes, final UI kit",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Performance Optimization",
+            description:
+              "Speed enhancements through code optimization, caching, database tuning, image compression, and Core Web Vitals improvements for the best user experience.",
+            serviceOutput: "Faster page loads, reduced TTFB, improved LCP/CLS",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "eCommerce Website Development",
+            description:
+              "Custom online stores with product catalogs, secure checkout, cart systems, inventory management, admin dashboards, and payment gateway integration.",
+            serviceOutput:
+              "Secure store, payment integration, order management",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "API Development & Integration",
+            description:
+              "Development of custom REST/GraphQL APIs and integration with third-party services such as CRM, payment gateways, marketing tools, and automation systems.",
+            serviceOutput:
+              "Secure API endpoints, integrated third-party services",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Landing Page Development",
+            description:
+              "High-converting landing pages optimized for ads, product marketing, sales funnels, and SEO to maximize conversions and leads.",
+            serviceOutput: "Fast, lightweight conversion-focused pages",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Website Redesign & Revamp",
+            description:
+              "Transform outdated websites with modern UI, improved performance, optimized user flow, better conversions, and enhanced SEO structure.",
+            serviceOutput:
+              "Redesigned front-end, migration plan, SEO-safe changes",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Bug Fixing & Troubleshooting",
+            description:
+              "Diagnose and fix errors, crashes, slow performance issues, backend problems, frontend bugs, and security vulnerabilities.",
+            serviceOutput:
+              "Stability fixes, error resolution, security patches",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Server Management & Deployment (DevOps)",
+            description:
+              "Deploy and manage applications on AWS, GCP, DigitalOcean, Vercel, Docker, or VPS with CI/CD pipelines, SSL, monitoring, Infrastructure as Code and performance tuning.",
+            serviceOutput:
+              "CI/CD, monitoring, secure deployments, infrastructure scripts",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Custom Dashboard Development",
+            description:
+              "Powerful admin dashboards, analytics systems, CRMs, reporting tools, and management panels tailored to business needs with real-time visualizations.",
+            serviceOutput: "Interactive dashboards, charts, role-based access",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "SaaS Application Development",
+            description:
+              "Complete SaaS product development including subscription billing, authentication, user roles, dashboards, analytics, cloud deployment, and multi-tenant architecture.",
+            serviceOutput: "Multi-tenant SaaS platform, subscription handling",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "WordPress to Custom Website Migration",
+            description:
+              "Migrate your WordPress site to a modern, fast, secure custom-built platform without losing any content, SEO, or data.",
+            serviceOutput:
+              "SEO-preserving migration, content transfer, improved speed",
+          },
+        },
+      ],
+      hasPOS: "https://easydev.in",
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "https://easydev.in",
       },
     },
-    // Dynamic Projects from portfolio
+  
     ...safe(siteContent.portfolio.projects, [])
       .slice(0, 6)
       .map((project, index) => ({
