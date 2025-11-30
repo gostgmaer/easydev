@@ -1,57 +1,68 @@
 // API Integration Placeholders
 // Replace these with actual API endpoints and implementations
 
-export const API_ENDPOINTS = {
+import { veriable } from "./config";
+
+const { baseURL } = veriable
+
+export const API_ENDPOINTS ={
   // Contact Form Submission
-  CONTACT_FORM: '/api/contact',
-  
+  CONTACT_FORM: `${baseURL}/api/inquiry/submit`,
+
   // Newsletter Subscription
-  NEWSLETTER: '/api/newsletter',
-  
+  NEWSLETTER: `${baseURL}/api/newsletter`,
+
   // Analytics Events
-  ANALYTICS: '/api/analytics',
-  
-  // Portfolio Projects (if dynamic)
-  PROJECTS: '/api/projects',
-  
-  // Testimonials (if dynamic)
-  TESTIMONIALS: '/api/testimonials',
-  
-  // Blog Posts (if added)
-  BLOG: '/api/blog',
-  
-  // File Upload (resume, portfolio files)
-  UPLOAD: '/api/upload',
-  
+  ANALYTICS: `${baseURL}/api/analytics`,
+
+  // Portfolio Projects (dynamic)
+  PROJECTS: `${baseURL}/api/projects`,
+
+  // Testimonials (dynamic)
+  TESTIMONIALS: `${baseURL}/api/testimonials`,
+
+  // Blog Posts
+  BLOG: `${baseURL}/api/blog`,
+
+  // File Upload (resume, portfolio, assets)
+  UPLOAD: `${baseURL}/api/upload`,
+
   // Email Service
-  EMAIL: '/api/email',
-  
-  // CMS Integration (if using headless CMS)
-  CMS: '/api/cms',
-  
-  // Authentication (if admin panel added)
-  AUTH: '/api/auth',
-};
+  EMAIL: `${baseURL}/api/email`,
+
+  // CMS Integration / Headless CMS
+  CMS: `${baseURL}/api/cms`,
+
+  // Authentication / Admin Panel
+  AUTH: `${baseURL}/api/auth`,
+
+  // Settings (for fullstack developer site)
+  SETTINGS: `${baseURL}/api/settings`,
+
+  // Services section
+  SERVICES: `${baseURL}/api/services`,
+
+  // Pricing section
+  PRICING: `${baseURL}/api/pricing`,
+
+  // Messages (contact, client messages)
+  MESSAGES: `${baseURL}/api/messages`,
+
+  // File Manager (optional)
+  FILES: `${baseURL}/api/files`,
+
+  // Notifications (if needed later)
+  NOTIFICATIONS: `${baseURL}/api/notifications`,
+
+  // Admin Dashboard Analytics
+  ADMIN_ANALYTICS: `${baseURL}/api/admin/analytics`,
+}
+
 
 // Contact Form API Integration
-export const submitContactForm = async (formData: {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-  budget?: string;
-  timeline?: string;
-}) => {
+export const submitContactForm = async (formData: any) => {
   try {
-    // TODO: Replace with actual API call
-    // Example integrations:
-    // - EmailJS: https://www.emailjs.com/
-    // - Formspree: https://formspree.io/
-    // - Netlify Forms: Built-in form handling
-    // - Custom backend API
-    
     console.log('📧 Contact Form Submission (PLACEHOLDER):', formData);
-    
     // Placeholder API call
     const response = await fetch(API_ENDPOINTS.CONTACT_FORM, {
       method: 'POST',
@@ -60,11 +71,9 @@ export const submitContactForm = async (formData: {
       },
       body: JSON.stringify(formData),
     });
-    
     if (!response.ok) {
       throw new Error('Failed to submit form');
     }
-    
     return await response.json();
   } catch (error) {
     console.error('Contact form submission error:', error);
@@ -81,9 +90,9 @@ export const subscribeToNewsletter = async (email: string) => {
     // - ConvertKit API
     // - Substack API
     // - Custom email service
-    
+
     console.log('📬 Newsletter Subscription (PLACEHOLDER):', email);
-    
+
     const response = await fetch(API_ENDPOINTS.NEWSLETTER, {
       method: 'POST',
       headers: {
@@ -91,7 +100,7 @@ export const subscribeToNewsletter = async (email: string) => {
       },
       body: JSON.stringify({ email }),
     });
-    
+
     return await response.json();
   } catch (error) {
     console.error('Newsletter subscription error:', error);
@@ -113,9 +122,9 @@ export const trackEvent = async (eventData: {
     // - Mixpanel
     // - Amplitude
     // - Custom analytics
-    
+
     console.log('📊 Analytics Event (PLACEHOLDER):', eventData);
-    
+
     // Google Analytics 4 example
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', eventData.event, {
@@ -124,7 +133,7 @@ export const trackEvent = async (eventData: {
         value: eventData.value,
       });
     }
-    
+
     // Custom analytics API call
     await fetch(API_ENDPOINTS.ANALYTICS, {
       method: 'POST',
@@ -148,9 +157,9 @@ export const fetchProjects = async () => {
     // - Sanity
     // - WordPress REST API
     // - Custom database API
-    
+
     console.log('🗂️ Fetching Projects (PLACEHOLDER)');
-    
+
     const response = await fetch(API_ENDPOINTS.PROJECTS);
     return await response.json();
   } catch (error) {
@@ -174,9 +183,9 @@ export const sendEmail = async (emailData: {
     // - AWS SES
     // - Nodemailer with SMTP
     // - Resend API
-    
+
     console.log('✉️ Sending Email (PLACEHOLDER):', emailData);
-    
+
     const response = await fetch(API_ENDPOINTS.EMAIL, {
       method: 'POST',
       headers: {
@@ -184,7 +193,7 @@ export const sendEmail = async (emailData: {
       },
       body: JSON.stringify(emailData),
     });
-    
+
     return await response.json();
   } catch (error) {
     console.error('Email sending error:', error);
@@ -202,18 +211,18 @@ export const uploadFile = async (file: File, type: 'resume' | 'portfolio' | 'ima
     // - Google Cloud Storage
     // - Azure Blob Storage
     // - Supabase Storage
-    
+
     console.log('📁 File Upload (PLACEHOLDER):', { fileName: file.name, type });
-    
+
     const formData = new FormData();
     formData.append('file', file);
     formData.append('type', type);
-    
+
     const response = await fetch(API_ENDPOINTS.UPLOAD, {
       method: 'POST',
       body: formData,
     });
-    
+
     return await response.json();
   } catch (error) {
     console.error('File upload error:', error);
@@ -230,9 +239,9 @@ export const updateContent = async (section: string, content: any) => {
     // - Contentful Management API
     // - Sanity Client
     // - Custom admin API
-    
+
     console.log('📝 Content Update (PLACEHOLDER):', { section, content });
-    
+
     const response = await fetch(`${API_ENDPOINTS.CMS}/${section}`, {
       method: 'PUT',
       headers: {
@@ -241,7 +250,7 @@ export const updateContent = async (section: string, content: any) => {
       },
       body: JSON.stringify(content),
     });
-    
+
     return await response.json();
   } catch (error) {
     console.error('Content update error:', error);
@@ -263,20 +272,20 @@ export const shareToSocial = async (platform: 'twitter' | 'linkedin' | 'facebook
     // - Facebook Graph API
     // - Buffer API
     // - Hootsuite API
-    
+
     console.log('📱 Social Media Share (PLACEHOLDER):', { platform, content });
-    
+
     const shareUrls = {
       twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(content.text)}&url=${encodeURIComponent(content.url)}`,
       linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(content.url)}`,
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(content.url)}`,
     };
-    
+
     // Open share dialog (client-side)
     if (typeof window !== 'undefined') {
       window.open(shareUrls[platform], '_blank', 'width=600,height=400');
     }
-    
+
     return { success: true, platform, url: shareUrls[platform] };
   } catch (error) {
     console.error('Social media share error:', error);
@@ -296,9 +305,9 @@ export const searchContent = async (query: string, filters?: {
     // - Elasticsearch
     // - Fuse.js (client-side)
     // - Custom search API
-    
+
     console.log('🔍 Content Search (PLACEHOLDER):', { query, filters });
-    
+
     const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`, {
       method: 'POST',
       headers: {
@@ -306,7 +315,7 @@ export const searchContent = async (query: string, filters?: {
       },
       body: JSON.stringify(filters),
     });
-    
+
     return await response.json();
   } catch (error) {
     console.error('Search error:', error);
@@ -328,9 +337,9 @@ export const reportWebVitals = async (metric: {
     // - New Relic
     // - DataDog
     // - Custom monitoring
-    
+
     console.log('⚡ Web Vitals Report (PLACEHOLDER):', metric);
-    
+
     // Send to analytics service
     await fetch('/api/vitals', {
       method: 'POST',
