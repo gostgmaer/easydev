@@ -2,37 +2,38 @@ export const siteContent = {
   // Personal Information
   personal: {
     name: "EasyDev",
-    title: "Full-Stack Developer",
+    title: "Full-Stack Developer & Web Solutions Provider",
     email: "contact@easydev.in",
-    phone: "+91 98765 43210",
-    location: "Mumbai, IN",
+    phone: "+91 8637317273",
+    location: "Mumbai, India",
     website: "https://easydev.in",
-    tagline: "Backend Specialist & Database Expert",
-    bio: "Passionate full-stack developer with 4+ years of experience building scalable web applications using Express.js, MySQL, and MongoDB We specialize in creating robust backend systems and efficient database architectures that power modern web applications.",
+    tagline: "Frontend, Backend, Database, DevOps & Bug Fix Expert",
+    bio: "EasyDev is a professional full-stack development service delivering end-to-end web solutions. We specialize in frontend and backend development, database design, DevOps, bug fixing, and complete application maintenance. Our goal is to provide scalable, high-performance, and reliable web solutions for modern businesses.",
     availability: "Available for new projects",
-    responseTime: "< 12 hours", address: {
-      "streetAddress": "B-12, Andheri West",
-      "addressLocality": "Mumbai",
-      "addressRegion": "Maharashtra",
-      "postalCode": "400058",
-      "addressCountry": "IN"
+    responseTime: "< 12 hours",
+    address: {
+      streetAddress: "B-12, Andheri West",
+      addressLocality: "Mumbai",
+      addressRegion: "Maharashtra",
+      postalCode: "400058",
+      addressCountry: "IN"
     }
   },
 
   // Hero Section
   hero: {
-    greeting: "Hi, We'are",
+    greeting: "Hi, We're",
     name: "EasyDev",
     roles: [
-      "Express.js Developer",
+      "Full-Stack Developer",
+      "Frontend Specialist",
+      "Backend Engineer",
       "Database Architect",
-      "Backend Specialist",
-      "API Developer",
-      "Full-Stack Engineer"
+      "DevOps & Maintenance Expert"
     ],
-    description: "We build powerful backend systems and APIs using Express.js, design efficient database schemas with MySQL and MongoDB, and create full-stack applications that scale. Specializing in server-side development with a focus on performance and reliability.",
+    description: "We deliver complete web solutions with equal focus on frontend, backend, database design, DevOps, and bug fixing. Using modern technologies like React, NEXT.JS, Express.js, MySQL, and MongoDB, we ensure scalable, reliable, and maintainable applications.",
     stats: {
-      experience: "4+",
+      experience: "4+ years",
       projects: "75+",
       clients: "30+"
     }
@@ -40,56 +41,58 @@ export const siteContent = {
 
   // About Section
   about: {
-    title: "About Us",
-    subtitle: "Backend developer and database specialist with expertise in modern server technologies",
+    title: "About EasyDev",
+    subtitle: "Full-stack development, database design, and DevOps specialist",
     journey: [
-      "We began our development journey in 2020, focusing on backend technologies and database design. What started as curiosity about how web applications work behind the scenes quickly evolved into a passion for building robust, scalable server-side solutions.",
-      "Over the years, I've specialized in Express.js for building RESTful APIs and web services, mastered both SQL and NoSQL databases (MySQL and MongoDB), and developed expertise in creating efficient data models and optimizing database performance.",
-      "We believe in writing clean, maintainable code and following industry best practices. Whether it's designing a complex database schema, building a high-performance API, or integrating multiple services, We focus on creating solutions that are both powerful and reliable."
+      "Started in 2020, EasyDev has been delivering end-to-end web solutions for businesses worldwide. Our expertise spans frontend, backend, database design, DevOps, and bug fixing.",
+      "We work with modern technologies like React, NEXT.JS, Express.js, Node.js, MySQL, MongoDB, and cloud services to create scalable and high-performance applications.",
+      "Our approach focuses on clean code, maintainable architecture, and equal priority for all aspects of development—frontend, backend, database, DevOps, and post-launch support."
     ],
     skills: [
-      "Express.js", "Node.js", "MySQL", "MongoDB", "JavaScript", "TypeScript",
-      "REST APIs", "GraphQL", "JWT Authentication", "Mongoose", "Sequelize",
-      "Redis", "Docker", "AWS", "Git", "Postman", "Database Design"
+      "React", "NEXT.JS", "HTML5", "CSS3", "JavaScript", "TypeScript",
+      "Node.js", "Express.js", "MySQL", "MongoDB", "REST APIs", "GraphQL",
+      "JWT Authentication", "Mongoose", "Sequelize", "Redis", "Docker",
+      "AWS", "Git", "CI/CD", "Performance Optimization", "Bug Fixing",
+      "DevOps", "Database Design"
     ],
     achievements: [
-      { title: "Certified Developer", desc: "MongoDB & MySQL Certified" },
-      { title: "Performance Expert", desc: "API Response Time < 100ms" },
-      { title: "Team Collaborator", desc: "Led 8+ Backend Projects" },
-      { title: "Reliable Delivery", desc: "100% On-time Completion" }
+      { title: "Certified Developer", desc: "Frontend & Backend Certified" },
+      { title: "Performance Expert", desc: "API & Frontend Response Time < 100ms" },
+      { title: "Reliable Delivery", desc: "100% On-time Completion" },
+      { title: "Versatile Developer", desc: "Full-stack, Database & DevOps Expertise" }
     ],
     experience: [
       {
         period: "2022 - Present",
-        role: "Senior Backend Developer",
+        role: "Senior Full-Stack Developer",
         company: "TechSolutions IN",
-        description: "Leading backend development for enterprise applications using Express.js and database optimization. Managing MySQL and MongoDB databases for high-traffic applications.",
+        description: "Leading end-to-end development for web applications, covering frontend, backend, database optimization, DevOps, and bug fixing. Ensuring seamless deployment and reliable performance.",
         achievements: [
-          "Reduced API response time by 60%",
-          "Designed scalable database architecture",
-          "Implemented microservices with Express.js"
+          "Optimized frontend and backend performance by 60%",
+          "Implemented CI/CD pipelines for multiple projects",
+          "Designed scalable database architectures and integrated DevOps workflows"
         ]
       },
       {
         period: "2021 - 2022",
         role: "Full-Stack Developer",
         company: "StartupHub Mumbai",
-        description: "Built complete web applications using Express.js backend with MySQL database. Developed RESTful APIs and integrated third-party services.",
+        description: "Built complete web applications with React frontend and Express.js backend. Managed databases, implemented DevOps, and performed bug fixes and optimizations.",
         achievements: [
           "Delivered 15+ full-stack projects",
-          "Optimized database queries by 45%",
-          "Integrated 20+ third-party APIs"
+          "Improved database query performance by 45%",
+          "Integrated DevOps processes and automated deployments"
         ]
       },
       {
         period: "2020 - 2021",
         role: "Junior Developer",
         company: "WebCraft Solutions",
-        description: "Started career focusing on backend development with Express.js and database management. Gained expertise in MySQL and MongoDB.",
+        description: "Focused on backend development and frontend integration. Gained expertise in Express.js, React, and database management while solving complex bugs.",
         achievements: [
-          "Completed 25+ backend projects",
-          "Mastered Express.js framework",
-          "Learned database optimization"
+          "Completed 25+ full-stack projects",
+          "Learned advanced frontend & backend integration",
+          "Mastered database optimization and debugging techniques"
         ]
       }
     ]
@@ -97,100 +100,88 @@ export const siteContent = {
 
   // Services Section
   services: {
-    title: "Services We Offer",
-    subtitle: "Comprehensive backend development services with expertise in Express.js and database technologies",
+    title: "Our Services",
+    subtitle: "Complete web development with equal priority on frontend, backend, database, DevOps, and maintenance",
     list: [
       {
-        title: "Express.js Development",
-        description: "Custom backend applications and APIs built with Express.js. Focus on performance, security, and scalability with modern Node.js practices.",
-        features: ["RESTful APIs", "Middleware Development", "Authentication Systems", "Real-time Applications"]
+        title: "Frontend Development",
+        description: "Build modern, responsive, and interactive web interfaces using React, NEXT.JS, and modern UI/UX principles. Ensure high performance and accessibility.",
+        features: ["React/Next.js Apps", "Responsive Design", "UI/UX Optimization", "Cross-Browser Compatibility"],
+        priceRange: "₹50,000 - ₹2,00,000"
+      },
+      {
+        title: "Backend & API Development",
+        description: "Develop secure, scalable backend systems and APIs using Node.js and Express.js. Focus on performance, authentication, and database integration.",
+        features: ["REST & GraphQL APIs", "Authentication & Authorization", "Third-party Integrations", "Microservices Architecture"],
+        priceRange: "₹50,000 - ₹2,50,000"
       },
       {
         title: "Database Design & Optimization",
-        description: "Expert database architecture using MySQL and MongoDB. Schema design, query optimization, and performance tuning for high-traffic applications.",
-        features: ["MySQL Database Design", "MongoDB Collections", "Query Optimization", "Database Migration"]
+        description: "Design robust database architectures for MySQL and MongoDB. Optimize queries, ensure data integrity, and support high-traffic applications.",
+        features: ["SQL & NoSQL Design", "Query Optimization", "Data Migration", "Performance Tuning"],
+        priceRange: "₹40,000 - ₹2,00,000"
       },
       {
-        title: "API Development",
-        description: "Robust REST and GraphQL APIs with proper documentation, authentication, and rate limiting. Integration with third-party services and payment gateways.",
-        features: ["REST APIs", "GraphQL Endpoints", "API Documentation", "Third-party Integration"]
+        title: "DevOps & Deployment",
+        description: "Implement CI/CD pipelines, cloud deployments, containerization, and monitoring solutions. Ensure seamless deployment and scalable infrastructure.",
+        features: ["CI/CD Pipelines", "Docker & Kubernetes", "AWS/GCP Deployment", "Monitoring & Logging"],
+        priceRange: "₹30,000 - ₹1,50,000"
       },
       {
-        title: "Authentication & Security",
-        description: "Secure authentication systems using JWT, OAuth, and session management. Implementation of security best practices and data protection.",
-        features: ["JWT Authentication", "OAuth Integration", "Role-based Access", "Data Encryption"]
+        title: "Bug Fixing & Maintenance",
+        description: "Fix frontend/backend issues, optimize performance, and maintain applications for long-term stability. Quick turnaround for critical bug fixes.",
+        features: ["Code Debugging", "Performance Optimization", "Security Fixes", "Post-Launch Support"],
+        priceRange: "₹20,000 - ₹1,00,000"
       },
       {
-        title: "Database Migration",
-        description: "Seamless database migrations and data transfer between different systems. MySQL to MongoDB migration and vice versa with data integrity.",
-        features: ["Data Migration", "Schema Conversion", "Data Validation", "Backup Strategies"]
-      },
-      {
-        title: "Performance Optimization",
-        description: "Backend performance tuning, database optimization, and caching strategies. Monitoring and scaling solutions for growing applications.",
-        features: ["Query Optimization", "Caching with Redis", "Performance Monitoring", "Load Balancing"]
+        title: "Full-Stack Development",
+        description: "End-to-end web solutions covering frontend, backend, database, DevOps, and maintenance. Ideal for startups and enterprises looking for a single development partner.",
+        features: ["Complete Web Applications", "API Integration", "Database & DevOps Setup", "Ongoing Maintenance"],
+        priceRange: "₹1,00,000 - ₹5,00,000+"
       }
     ]
   },
 
   // Portfolio Section
   portfolio: {
-    title: "Featured Projects",
-    subtitle: "Showcase of backend systems and full-stack applications built with Express.js, MySQL, and MongoDB",
+    title: "Our Projects",
+    subtitle: "Showcase of full-stack applications, frontend & backend systems, and DevOps implementations",
     projects: [
       {
-        title: "E-commerce Backend API",
+        title: "E-commerce Full-Stack Solution",
         category: "E-commerce",
-        description: "Complete e-commerce backend system with Express.js and MySQL. Features include product management, order processing, payment integration, and admin dashboard APIs.",
+        description: "Complete web solution with responsive frontend, Express.js backend, MySQL database, payment integration, and DevOps deployment.",
         image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800",
-        technologies: ["Express.js", "MySQL", "JWT", "Stripe API", "Multer"],
+        technologies: ["React", "NEXT.JS", "Express.js", "MySQL", "Stripe API", "Docker"],
         featured: true,
-        highlights: ["Payment Gateway Integration", "Order Management System", "Inventory Tracking", "Admin APIs"]
+        highlights: ["Responsive UI", "Payment Gateway", "Inventory & Order Management", "CI/CD Deployment"]
       },
       {
-        title: "Social Media Platform Backend",
-        category: "Social Platform",
-        description: "Scalable social media backend using Express.js and MongoDB. Real-time messaging, post management, user authentication, and social features.",
+        title: "Social Media Platform",
+        category: "Social",
+        description: "Frontend & backend development with real-time messaging, scalable APIs, database optimization, and DevOps setup.",
         image: "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800",
-        technologies: ["Express.js", "MongoDB", "Socket.io", "Cloudinary", "Redis"],
+        technologies: ["React", "Express.js", "MongoDB", "Socket.io", "Redis", "AWS"],
         featured: true,
-        highlights: ["Real-time Messaging", "File Upload System", "Social Features", "Caching with Redis"]
+        highlights: ["Real-time Messaging", "Scalable APIs", "Caching with Redis", "Cloud Deployment"]
       },
       {
         title: "Restaurant Management System",
-        category: "Management System",
-        description: "Complete restaurant management backend with Express.js and MySQL. POS system APIs, inventory management, staff scheduling, and analytics.",
+        category: "Management",
+        description: "Full-stack restaurant system with responsive UI, backend APIs, MySQL database, and analytics dashboards.",
         image: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=800",
-        technologies: ["Express.js", "MySQL", "Sequelize", "Chart.js", "PDF Generation"],
+        technologies: ["React", "Express.js", "MySQL", "Sequelize", "Chart.js"],
         featured: false,
-        highlights: ["POS System APIs", "Inventory Management", "Staff Management", "Sales Analytics"]
+        highlights: ["POS API", "Inventory Tracking", "Staff Management", "Analytics Dashboard"]
       },
       {
-        title: "Learning Management System API",
+        title: "Learning Management System",
         category: "Education",
-        description: "Educational platform backend with Express.js and MongoDB. Course management, student progress tracking, quiz system, and video streaming APIs.",
+        description: "Complete LMS with frontend UI, backend APIs, MongoDB database, and video streaming integration.",
         image: "https://images.pexels.com/photos/5965592/pexels-photo-5965592.jpeg?auto=compress&cs=tinysrgb&w=800",
-        technologies: ["Express.js", "MongoDB", "Mongoose", "AWS S3", "Video Processing"],
+        technologies: ["React", "Express.js", "MongoDB", "AWS S3", "Video Processing"],
         featured: false,
         highlights: ["Course Management", "Progress Tracking", "Quiz System", "Video Streaming"]
-      },
-      {
-        title: "Healthcare Management Backend",
-        category: "Healthcare",
-        description: "Healthcare system backend with Express.js and MySQL. Patient management, appointment scheduling, medical records, and doctor portal APIs.",
-        image: "https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&w=800",
-        technologies: ["Express.js", "MySQL", "JWT", "Nodemailer", "PDF Reports"],
-        featured: false,
-        highlights: ["Patient Management", "Appointment System", "Medical Records", "Report Generation"]
-      },
-      {
-        title: "Real Estate Platform API",
-        category: "Real Estate",
-        description: "Property management backend using Express.js and MongoDB. Property listings, search functionality, user management, and booking system APIs.",
-        image: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800",
-        technologies: ["Express.js", "MongoDB", "Elasticsearch", "Image Processing", "Maps API"],
-        featured: true,
-        highlights: ["Property Search", "Advanced Filtering", "Booking System", "Location Services"]
       }
     ]
   },
@@ -198,115 +189,55 @@ export const siteContent = {
   // Testimonials Section
   testimonials: {
     title: "What Clients Say",
-    subtitle: "Feedback from clients who have worked with me on backend development and database projects",
+    subtitle: "Feedback from clients for full-stack development, frontend, backend, DevOps, and maintenance services",
     list: [
       {
         name: "Rajesh Kumar",
         role: "CTO, TechStart IN",
-        company: "TechStart IN",
-        content: "EasyDev delivered an exceptional e-commerce backend system using Express.js and MySQL. His database design was flawless and the API performance exceeded our expectations. Highly recommended for backend development!",
+        content: "EasyDev delivered a complete web solution with frontend, backend, database, and deployment. Everything worked flawlessly. Highly recommended!",
         rating: 5,
         avatar: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=150"
       },
       {
         name: "Priya Sharma",
         role: "Product Manager, InnovateHub",
-        company: "InnovateHub",
-        content: "Working with EasyDev was a game-changer for our project. His expertise in MongoDB and Express.js helped us build a scalable social platform. The real-time features work perfectly and the code is very well structured.",
+        content: "EasyDev's full-stack expertise transformed our social platform. Frontend, backend, and DevOps were all handled expertly with quick turnarounds.",
         rating: 5,
         avatar: "https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&w=150"
       },
       {
         name: "Amit Patel",
         role: "Founder, RestaurantTech",
-        company: "RestaurantTech",
-        content: "EasyDev built our entire restaurant management backend from scratch. The MySQL database design is excellent and the Express.js APIs are fast and reliable. Our POS system runs smoothly thanks to his work.",
+        content: "From responsive UI to backend APIs and database optimization, EasyDev delivered a complete, reliable, and scalable solution.",
         rating: 5,
         avatar: "https://images.pexels.com/photos/2182969/pexels-photo-2182969.jpeg?auto=compress&cs=tinysrgb&w=150"
-      },
-      {
-        name: "Sneha Gupta",
-        role: "Tech Lead, EduPlatform",
-        company: "EduPlatform",
-        content: "The learning management system backend that EasyDev developed is outstanding. His MongoDB expertise really showed in the efficient data modeling. The APIs are well-documented and perform excellently under load.",
-        rating: 5,
-        avatar: "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=150"
-      },
-      {
-        name: "Vikram Singh",
-        role: "CEO, HealthcarePlus",
-        company: "HealthcarePlus",
-        content: "EasyDev's backend development team are top-notch. He built our healthcare management system with Express.js and MySQL, ensuring HIPAA compliance and excellent performance. Professional and reliable developer.",
-        rating: 5,
-        avatar: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=150"
       }
     ]
   },
 
   // Contact Section
   contact: {
-    title: "Let's Work Together",
-    subtitle: "Have a backend project in mind? Let's discuss how We can help you build robust, scalable solutions with Express.js and database expertise.",
+    title: "Let's Collaborate",
+    subtitle: "Have a web development project in mind? Frontend, backend, database, DevOps—we do it all.",
     info: [
-      {
-        title: "Email",
-        value: "contact@easydev.in",
-        description: "Send me an email anytime!",
-        href: "mailto:contact@easydev.in"
-      },
-      {
-        title: "Phone",
-        value: "+91 98765 43210",
-        description: "Mon-Fri from 10am to 7pm IST",
-        href: "tel:+919876543210"
-      },
-      {
-        title: "Location",
-        value: "Mumbai, IN",
-        description: "Available for remote work globally",
-        href: "#"
-      },
-      {
-        title: "Response Time",
-        value: "< 12 hours",
-        description: "We reply to all inquiries quickly",
-        href: "#"
-      }
+      { title: "Email", value: "contact@easydev.in", description: "Reach us anytime", href: "mailto:contact@easydev.in" },
+      { title: "Phone", value: "+91 98765 43210", description: "Mon-Fri 10am-7pm IST", href: "tel:+919876543210" },
+      { title: "Location", value: "Mumbai, India", description: "Remote work available globally", href: "#" },
+      { title: "Response Time", value: "< 12 hours", description: "We reply quickly to inquiries", href: "#" }
     ],
     services: [
-      "Express.js Development",
-      "Database Design (MySQL/MongoDB)",
-      "API Development",
-      "Backend Architecture",
-      "Database Migration",
-      "Performance Optimization",
-      "Other"
+      "Frontend Development", "Backend & API Development", "Database Design",
+      "DevOps & Deployment", "Bug Fixing & Maintenance", "Full-Stack Development"
     ],
     budgetRanges: [
-      "Under ₹50,000",
-      "₹50,000 - ₹1,00,000",
-      "₹1,00,000 - ₹2,50,000",
-      "₹2,50,000 - ₹5,00,000",
-      "₹5,00,000+",
-      "Let's discuss"
+      "Under ₹50,000", "₹50,000 - ₹1,00,000", "₹1,00,000 - ₹2,50,000",
+      "₹2,50,000 - ₹5,00,000", "₹5,00,000+", "Let's discuss"
     ],
     faqs: [
-      {
-        q: "What's your typical project timeline?",
-        a: "Backend projects typically take 2-4 weeks depending on complexity. Simple APIs can be delivered in 1 week, while complex systems with multiple databases may take 6-8 weeks. We provide detailed timelines in our proposals."
-      },
-      {
-        q: "Do you work with international clients?",
-        a: "Yes! We work with clients globally and am flexible with time zones. I'm available for calls during IST business hours and can adjust for urgent international projects."
-      },
-      {
-        q: "What's included in your backend development service?",
-        a: "Complete backend development including database design, API development, authentication, testing, deployment, and 30 days of post-launch support. Documentation and code comments are always included."
-      },
-      {
-        q: "Do you provide database migration services?",
-        a: "Absolutely! We specialize in migrating data between MySQL and MongoDB, optimizing existing databases, and helping businesses scale their data infrastructure safely and efficiently."
-      }
+      { q: "What's your typical project timeline?", a: "Full-stack projects usually take 3-6 weeks depending on complexity. Simple apps: 1-2 weeks, complex multi-service systems: 6-8 weeks." },
+      { q: "Do you work with international clients?", a: "Yes! We work globally and adjust to client time zones for calls and urgent projects." },
+      { q: "What's included in your services?", a: "Complete web solutions including frontend, backend, database, DevOps, bug fixing, deployment, and post-launch support." },
+      { q: "Do you provide maintenance and bug fixing?", a: "Absolutely! We offer ongoing support, bug fixes, performance optimizations, and DevOps monitoring." }
     ]
   },
 
@@ -320,14 +251,13 @@ export const siteContent = {
 
   // SEO & Meta
   seo: {
-    title: "EasyDev - Full-Stack & Backend Solutions | Express.js, NEXT.JS, Node.js Expert | IN",
-    description: "EasyDev provides professional web development solutions specializing in Express.js, NEXT.JS, Node.js, MySQL, and MongoDB. We create scalable APIs, robust backend systems, optimized databases, and complete web solutions for businesses of all sizes.",
-    keywords: "Express.js developer, NEXT.JS expert, Node.js backend specialist, full-stack developer, API development, database optimization, MySQL, MongoDB, web application development, web solutions, server-side development, IN",
+    title: "EasyDev - Full-Stack & Web Solutions | Frontend, Backend, Database, DevOps Expert",
+    description: "EasyDev provides professional web solutions with expertise in frontend, backend, database design, DevOps, bug fixing, and full-stack development. Scalable, secure, and reliable applications for businesses worldwide.",
+    keywords: "Full-stack developer, frontend developer, backend developer, database optimization, DevOps, bug fixing, React, NEXT.JS, Express.js, Node.js, MySQL, MongoDB, web solutions, API development",
     author: "Kishor Sarkar",
     url: "https://www.easydev.in/",
     image: "https://www.easydev.in/images/og-image.png",
     type: "website",
     locale: "en_IN"
   }
-
 };
