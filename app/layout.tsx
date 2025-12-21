@@ -171,11 +171,13 @@ const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "LocalBusiness",
+      "@type": ["LocalBusiness", "ProfessionalService"],
       "@id": "https://easydev.in/#localbusiness",
       name: "Easydev",
       url: "https://easydev.in",
-      sameAs: ["https://easydev.in"],
+      branchOf: {
+        "@id": "https://easydev.in/#organization",
+      },
       logo: {
         "@type": "ImageObject",
         url: "https://easydev.in/logo.png",
@@ -213,9 +215,19 @@ const structuredData = {
       "@id": "https://easydev.in/#founder",
       name: "Kishor Sarkar",
       jobTitle: "Founder & Lead Engineer",
-      worksFor: {
+      worksFor: { "@id": "https://easydev.in/#organization" },
+      knowsAbout: [
+        "Node.js",
+        "Express.js",
+        "Next.js",
+        "MongoDB",
+        "MySQL",
+        "System Architecture",
+        "API Security",
+      ],
+      alumniOf: {
         "@type": "Organization",
-        name: "Easydev",
+        name: "Self-taught / Industry Experience",
       },
       sameAs: [
         "https://linkedin.com/in/kishorsarkar",
@@ -233,10 +245,7 @@ const structuredData = {
         "@type": "WebSite",
         "@id": "https://easydev.in/#website",
       },
-      about: {
-        "@type": "Organization",
-        name: "Easydev",
-      },
+      about: { "@id": "https://easydev.in/#organization" },
     },
     {
       "@type": "WebSite",
@@ -256,6 +265,22 @@ const structuredData = {
       },
     },
     {
+      "@type": "ContactPage",
+      "@id": "https://easydev.in/#contactpage",
+      url: "https://easydev.in/#contact",
+      name: "Contact Easydev",
+      about: { "@id": "https://easydev.in/#organization" },
+      isPartOf: { "@id": "https://easydev.in/#website" },
+    },
+    {
+      "@type": "AboutPage",
+      "@id": "https://easydev.in/#aboutpage",
+      url: "https://easydev.in/#about",
+      name: "About Easydev",
+      about: { "@id": "https://easydev.in/#organization" },
+      isPartOf: { "@id": "https://easydev.in/#website" },
+    },
+    {
       "@type": "Organization",
       "@id": "https://easydev.in/#organization",
       name: "Easydev",
@@ -267,6 +292,16 @@ const structuredData = {
         width: 512,
         height: 512,
       },
+      knowsAbout: [
+        "Web Development",
+        "SaaS Development",
+        "DevOps",
+        "API Development",
+        "Cloud Deployment",
+        "Performance Optimization",
+        "UI/UX Design",
+        "SEO Optimization",
+      ],
       image: "https://easydev.in/logo.png",
       alternateName: "EasyDev - Full-Stack & Web Solutions",
       slogan: "Complete web solution — dev, devops, bug fix, and more",
@@ -324,10 +359,9 @@ const structuredData = {
         name: "Easydev Services",
         itemListElement: servicesSchema,
       },
-      hasPOS: "https://easydev.in",
+
       mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": "https://easydev.in",
+        "@id": "https://easydev.in/#homepage",
       },
     },
     ...safe(siteContent.portfolio.projects, [])
