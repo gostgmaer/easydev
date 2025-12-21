@@ -175,7 +175,7 @@ const structuredData = {
       "@id": "https://easydev.in/#localbusiness",
       name: "Easydev",
       url: "https://easydev.in",
-      sameAs: { "@id": "https://easydev.in/#organization" },
+      sameAs: ["https://easydev.in"],
       logo: {
         "@type": "ImageObject",
         url: "https://easydev.in/logo.png",
@@ -224,10 +224,10 @@ const structuredData = {
     },
     {
       "@type": "WebPage",
-      "@id": "https://easydev.in",
+      "@id": "https://easydev.in/#homepage",
       url: "https://easydev.in",
       name: "Easydev – Web Development, SaaS & DevOps Services",
-     "inLanguage": ["en-US", "en"],
+      inLanguage: ["en-US", "en"],
 
       isPartOf: {
         "@type": "WebSite",
@@ -409,15 +409,12 @@ const structuredData = {
     // Review aggregate from testimonials
     {
       "@type": "Service",
+      "@id": "https://easydev.in/#web-development-service",
       name: "Web Development Services",
-      description: "High-quality web development & full-stack services.",
-      itemReviewed: {
-        "@type": "Service",
-        name: "Web Development Services",
-      },
+      provider: { "@id": "https://easydev.in/#organization" },
       aggregateRating: {
         "@type": "AggregateRating",
-        ratingValue: "5.0",
+        ratingValue: "5",
         reviewCount: "96",
         bestRating: "5",
         worstRating: "1",
