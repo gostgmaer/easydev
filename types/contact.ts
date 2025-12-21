@@ -38,3 +38,12 @@ export interface FAQ {
   q: string;
   a: string;
 }
+
+
+
+
+export interface ContactSubmissionResponse {
+  success: boolean;
+  message: string;
+  id?: string;
+}

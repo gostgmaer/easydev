@@ -132,7 +132,7 @@ export default function Footer() {
         </div>
 
         {/* Newsletter Signup */}
-        <div className="border-t border-gray-800 mt-8 pt-8">
+        {/* <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="max-w-md mx-auto text-center">
             <h4 className="text-lg font-semibold mb-2">Stay Updated</h4>
             <p className="text-gray-300 mb-4 text-sm">
@@ -156,7 +156,7 @@ export default function Footer() {
               </button>
             </form>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Bottom Footer */}
@@ -174,11 +174,7 @@ export default function Footer() {
               <a href="/terms" className="hover:text-blue-400 transition-colors">
                 Terms of Service
               </a>
-              {/* <div className="flex items-center space-x-1">
-                <span>Made with</span>
-                <Heart className="w-4 h-4 text-red-500 fill-current" />
-                <span>using Next.js</span>
-              </div> */}
+           
             </div>
           </div>
         </div>

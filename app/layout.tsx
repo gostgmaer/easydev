@@ -395,6 +395,8 @@ export const metadata: Metadata = {
     siteContent.seo.title,
     "Kishor Sarkar - Express.js Developer | MySQL & MongoDB Expert"
   ),
+  category: "technology",
+
   description: safe(
     siteContent.seo.description,
     "Professional backend developer specializing in Express.js, MySQL, and MongoDB. I build scalable APIs, design efficient databases, and create robust server-side solutions for modern web applications."
@@ -470,7 +472,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: safe(siteContent.seo.url, "https://www.easydev.in"),
   },
-  category: "technology",
   classification: "Business",
   referrer: "origin-when-cross-origin",
   formatDetection: {

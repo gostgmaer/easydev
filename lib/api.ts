@@ -1,11 +1,13 @@
 // API Integration Placeholders
 // Replace these with actual API endpoints and implementations
 
+import { ContactFormData, ContactSubmissionResponse } from "@/types/contact";
 import { veriable } from "./config";
+import { ContactFormDataPre } from "@/components/sections/contact/Form";
 
 const { baseURL } = veriable
 
-export const API_ENDPOINTS ={
+export const API_ENDPOINTS = {
   // Contact Form Submission
   CONTACT_FORM: `${baseURL}/api/inquiry/submit`,
 
@@ -322,6 +324,27 @@ export const searchContent = async (query: string, filters?: {
     return { results: [] };
   }
 };
+
+
+// Dummy API service - simulates real API call
+export const submitContactFormPre = async (data: ContactFormDataPre): Promise<ContactSubmissionResponse> => {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 1500));
+
+  // Simulate random success/failure for demo purposes
+  const isSuccess = Math.random() > 0.1; // 90% success rate
+
+  if (isSuccess) {
+    return {
+      success: true,
+      message: 'Thank you for your interest! We\'ll be in touch soon.',
+      id: `contact_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+    };
+  } else {
+    throw new Error('Failed to submit form. Please try again.');
+  }
+};
+
 
 // Performance Monitoring
 export const reportWebVitals = async (metric: {

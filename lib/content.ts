@@ -7,6 +7,7 @@ export const siteContent = {
     phone: "+91 8637317273",
     location: "Mumbai, India",
     website: "https://easydev.in",
+    logo: "/logo.png",
     tagline: "Frontend, Backend, Database, DevOps & Bug Fix Expert",
     bio: "EasyDev is a professional full-stack development service delivering end-to-end web solutions. We specialize in frontend and backend development, database design, DevOps, bug fixing, and complete application maintenance. Our goal is to provide scalable, high-performance, and reliable web solutions for modern businesses.",
     availability: "Available for new projects",

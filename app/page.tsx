@@ -6,20 +6,22 @@ import Testimonials from '@/components/sections/Testimonials';
 import Contact from '@/components/sections/Contact';
 import Footer from '@/components/sections/Footer';
 import Header from '@/components/layout/Header';
+import CommingSoon from '@/components/comingsoon';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      {/* <Header /> */}
       <main>
-        <Hero />
+        {/* <Hero />
         <About />
         <Services />
         <Portfolio />
         <Testimonials />
-        <Contact />
+        <Contact /> */}
+        <CommingSoon/>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
