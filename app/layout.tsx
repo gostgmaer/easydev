@@ -175,6 +175,13 @@ const structuredData = {
       "@id": "https://easydev.in/#localbusiness",
       name: "Easydev",
       url: "https://easydev.in",
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "5",
+        reviewCount: "96",
+        bestRating: "5",
+        worstRating: "1",
+      },
       branchOf: {
         "@id": "https://easydev.in/#organization",
       },
@@ -446,13 +453,6 @@ const structuredData = {
       "@id": "https://easydev.in/#web-development-service",
       name: "Web Development Services",
       provider: { "@id": "https://easydev.in/#organization" },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "5",
-        reviewCount: "96",
-        bestRating: "5",
-        worstRating: "1",
-      },
     },
   ],
 };
