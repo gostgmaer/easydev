@@ -469,12 +469,14 @@ export const metadata: Metadata = {
 
   openGraph: {
     type: "website",
-    locale: "en_US",
+
     url: "https://www.easydev.in/",
     title: "Easydev | Web Development, SaaS & DevOps Company",
     description:
       "Easydev delivers scalable web solutions including custom development, SaaS platforms, DevOps, and performance optimization.",
     siteName: "Easydev",
+    locale: "en_US",
+
     images: [
       {
         url: "https://www.easydev.in/og-image.png",
@@ -487,6 +489,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
+    site: "@easydev",
     title: "Easydev | Web Development, SaaS & DevOps Company",
     description:
       "Custom web development, SaaS solutions, DevOps, and performance optimization by Easydev.",
@@ -509,9 +512,29 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.easydev.in",
   },
+  themeColor: "#3B82F6",
+  appleWebApp: {
+    capable: true,
+    title: "Easydev",
+    statusBarStyle: "default",
+  },
+  manifest: "/site.webmanifest",
+  publisher: "Easydev",
 
   classification: "Business",
   referrer: "origin-when-cross-origin",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  other: {
+    "google-site-verification": "verification-token-here",
+    "msvalidate.01": "bing-verification-code",
+  },
 };
 
 export default function RootLayout({
