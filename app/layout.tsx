@@ -18,13 +18,101 @@ function safe<T>(value: T | undefined, fallback: T): T {
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
-    
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://easydev.in/#localbusiness",
+      name: "Easydev",
+      url: "https://easydev.in",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://easydev.in/logo.png",
+        width: 512,
+        height: 512,
+      },
+      image: "https://easydev.in/logo.png",
+      telephone: "+91-8637317273",
+      email: "hello@easydev.in",
+        address: {
+        "@type": "PostalAddress",
+        streetAddress: safe(
+          siteContent.personal.address.streetAddress,
+          "B-12, Andheri West"
+        ),
+        addressLocality: safe(
+          siteContent.personal.address.addressLocality,
+          "Mumbai"
+        ),
+        addressRegion: safe(
+          siteContent.personal.address.addressRegion,
+          "Maharashtra"
+        ),
+        postalCode: safe(siteContent.personal.address.postalCode, "400001"),
+        addressCountry: safe(siteContent.personal.address.addressCountry, "IN"),
+      },
+      priceRange: "$$",
+      areaServed: {
+        "@type": "Country",
+        name: "Worldwide",
+      },
+    },
+    {
+      "@type": "Person",
+      "@id": "https://easydev.in/#founder",
+      name: "Kishor Sarkar",
+      jobTitle: "Founder & Lead Engineer",
+      worksFor: {
+        "@type": "Organization",
+        name: "Easydev",
+      },
+      sameAs: [
+        "https://linkedin.com/in/kishorsarkar",
+        "https://github.com/kishorsarkar",
+      ],
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://easydev.in/#homepage",
+      url: "https://easydev.in",
+      name: "Easydev – Complete Web Solution",
+      isPartOf: {
+        "@type": "WebSite",
+        "@id": "https://easydev.in/#website",
+      },
+      about: {
+        "@type": "Organization",
+        name: "Easydev",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://easydev.in/#website",
+      url: "https://easydev.in",
+      name: "Easydev",
+      publisher: {
+        "@type": "Organization",
+        "@id": "https://easydev.in/#organization",
+        name: "Easydev",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://easydev.in/logo.png",
+          width: 512,
+          height: 512,
+        },
+      },
+    },
     {
       "@type": "Organization",
-      name: "Easydev - Complete Web Solution",
+      "@id": "https://easydev.in/#organization",
+      name: "Easydev",
       legalName: "Easydev",
       url: "https://easydev.in",
-      logo: "https://easydev.in/logo.png",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://easydev.in/logo.png",
+        width: 512,
+        height: 512,
+      },
+      image: "https://easydev.in/logo.png",
       alternateName: "Easydev - Complete Web Solution",
       slogan: "Complete web solution — dev, devops, bug fix, and more",
       description:
@@ -53,9 +141,7 @@ const structuredData = {
         postalCode: safe(siteContent.personal.address.postalCode, "400001"),
         addressCountry: safe(siteContent.personal.address.addressCountry, "IN"),
       },
-      image: [
-        "https://easydev.in/logo.png"
-      ],
+
       contactPoint: [
         {
           "@type": "ContactPoint",
