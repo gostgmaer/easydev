@@ -255,7 +255,7 @@ export const siteContent = {
 
   // SEO & Meta
   seo: {
-    title: "EasyDev - Full-Stack & Web Solutions | Frontend, Backend, Database, DevOps Expert",
+    title: "Easydev – Web Development, SaaS & DevOps Services",
     description: "EasyDev provides professional web solutions with expertise in frontend, backend, database design, DevOps, bug fixing, and full-stack development. Scalable, secure, and reliable applications for businesses worldwide.",
     keywords: "Full-stack developer, frontend developer, backend developer, database optimization, DevOps, bug fixing, React, NEXT.JS, Express.js, Node.js, MySQL, MongoDB, web solutions, API development",
     author: "Kishor Sarkar",

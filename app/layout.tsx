@@ -225,7 +225,9 @@ const structuredData = {
       "@type": "WebPage",
       "@id": "https://easydev.in/#homepage",
       url: "https://easydev.in",
-      name: "Easydev – Complete Web Solution",
+      name: "Easydev – Web Development, SaaS & DevOps Services",
+      inLanguage: "en-US,en",
+
       isPartOf: {
         "@type": "WebSite",
         "@id": "https://easydev.in/#website",
@@ -265,7 +267,7 @@ const structuredData = {
         height: 512,
       },
       image: "https://easydev.in/logo.png",
-      alternateName: "Easydev - Complete Web Solution",
+      alternateName: "EasyDev - Full-Stack & Web Solutions",
       slogan: "Complete web solution — dev, devops, bug fix, and more",
       description:
         "Easydev provides complete web solutions: custom web & SaaS development, DevOps, performance & security, bug fixing, maintenance and full-stack systems tailored to business needs.",
@@ -417,20 +419,14 @@ const structuredData = {
         worstRating: "1",
       },
     },
-    {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      reviewCount: "96",
-      bestRating: "5",
-      worstRating: "1",
-    },
+    
   ],
 };
 
 export const metadata: Metadata = {
   title: safe(
     siteContent.seo.title,
-    "Kishor Sarkar - Express.js Developer | MySQL & MongoDB Expert"
+    "Easydev – Web Development, SaaS & DevOps Services"
   ),
   category: "technology",
 
@@ -479,7 +475,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: safe(
       siteContent.seo.title,
-      "EasyDev - Complete Web Solution Express.js Developer | MySQL & MongoDB Expert"
+      "EasyDev - Full-Stack & Web Solutions"
     ),
     description: safe(
       siteContent.seo.description,
