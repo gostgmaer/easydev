@@ -54,8 +54,7 @@ const structuredData = {
         addressCountry: safe(siteContent.personal.address.addressCountry, "IN"),
       },
       image: [
-        "https://easydev.in/images/logo.png",
-        "https://easydev.in/images/team.jpg",
+        "https://easydev.in/logo.png"
       ],
       contactPoint: [
         {
