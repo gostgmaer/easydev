@@ -13,6 +13,158 @@ const inter = Inter({
 function safe<T>(value: T | undefined, fallback: T): T {
   return value ?? fallback;
 }
+const servicesSchema = [
+  {
+    "@type": "Service",
+    "@id": "https://easydev.in/#custom-web-development",
+    name: "Custom Web Development",
+    serviceType: "Web Development",
+    provider: { "@type": "Organization", name: "Easydev" },
+    areaServed: "Worldwide",
+    description:
+      "Custom, scalable, high-performance websites built using modern frameworks like Next.js, React, and Node.js, tailored to business needs.",
+  },
+  {
+    "@type": "Service",
+    "@id": "https://easydev.in/#website-maintenance",
+    name: "Website Maintenance & Support",
+    serviceType: "Website Maintenance",
+    provider: { "@type": "Organization", name: "Easydev" },
+    areaServed: "Worldwide",
+    description:
+      "Ongoing website maintenance including updates, bug fixes, security patches, backups, uptime monitoring, and performance optimization.",
+  },
+  {
+    "@type": "Service",
+    "@id": "https://easydev.in/#full-stack-development",
+    name: "Full Stack Web Application Development",
+    serviceType: "Web Application Development",
+    provider: { "@type": "Organization", name: "Easydev" },
+    areaServed: "Worldwide",
+    description:
+      "End-to-end development of scalable web applications including frontend, backend, APIs, authentication, databases, and dashboards.",
+  },
+  {
+    "@type": "Service",
+    "@id": "https://easydev.in/#seo-optimization",
+    name: "SEO Optimization",
+    serviceType: "Search Engine Optimization",
+    provider: { "@type": "Organization", name: "Easydev" },
+    areaServed: "Worldwide",
+    description:
+      "Technical SEO, on-page optimization, Core Web Vitals improvements, structured data, and search visibility enhancements.",
+  },
+  {
+    "@type": "Service",
+    "@id": "https://easydev.in/#ui-ux-design",
+    name: "UI/UX Design",
+    serviceType: "UI/UX Design",
+    provider: { "@type": "Organization", name: "Easydev" },
+    areaServed: "Worldwide",
+    description:
+      "Modern, user-focused UI/UX design with wireframes, prototypes, design systems, and conversion-focused interfaces.",
+  },
+  {
+    "@type": "Service",
+    "@id": "https://easydev.in/#performance-optimization",
+    name: "Performance Optimization",
+    serviceType: "Website Performance Optimization",
+    provider: { "@type": "Organization", name: "Easydev" },
+    areaServed: "Worldwide",
+    description:
+      "Speed and performance optimization through caching, code splitting, database tuning, and Core Web Vitals improvements.",
+  },
+  {
+    "@type": "Service",
+    "@id": "https://easydev.in/#ecommerce-development",
+    name: "eCommerce Website Development",
+    serviceType: "eCommerce Development",
+    provider: { "@type": "Organization", name: "Easydev" },
+    areaServed: "Worldwide",
+    description:
+      "Custom eCommerce platforms with secure checkout, payment gateways, inventory management, and admin dashboards.",
+  },
+  {
+    "@type": "Service",
+    "@id": "https://easydev.in/#api-development",
+    name: "API Development & Integration",
+    serviceType: "API Development",
+    provider: { "@type": "Organization", name: "Easydev" },
+    areaServed: "Worldwide",
+    description:
+      "Secure REST and GraphQL API development with third-party integrations including payment, CRM, and automation services.",
+  },
+  {
+    "@type": "Service",
+    "@id": "https://easydev.in/#landing-page-development",
+    name: "Landing Page Development",
+    serviceType: "Landing Page Development",
+    provider: { "@type": "Organization", name: "Easydev" },
+    areaServed: "Worldwide",
+    description:
+      "High-converting landing pages optimized for ads, SEO, speed, and lead generation.",
+  },
+  {
+    "@type": "Service",
+    "@id": "https://easydev.in/#website-redesign",
+    name: "Website Redesign & Revamp",
+    serviceType: "Website Redesign",
+    provider: { "@type": "Organization", name: "Easydev" },
+    areaServed: "Worldwide",
+    description:
+      "Complete website revamp with modern UI, improved performance, SEO-safe structure, and better user experience.",
+  },
+  {
+    "@type": "Service",
+    "@id": "https://easydev.in/#bug-fixing",
+    name: "Bug Fixing & Troubleshooting",
+    serviceType: "Bug Fixing",
+    provider: { "@type": "Organization", name: "Easydev" },
+    areaServed: "Worldwide",
+    description:
+      "Identification and resolution of frontend, backend, performance, and security issues across web applications.",
+  },
+  {
+    "@type": "Service",
+    "@id": "https://easydev.in/#devops-services",
+    name: "Server Management & DevOps",
+    serviceType: "DevOps Services",
+    provider: { "@type": "Organization", name: "Easydev" },
+    areaServed: "Worldwide",
+    description:
+      "CI/CD pipelines, cloud deployments, Docker, monitoring, SSL, server optimization, and infrastructure management.",
+  },
+  {
+    "@type": "Service",
+    "@id": "https://easydev.in/#dashboard-development",
+    name: "Custom Dashboard Development",
+    serviceType: "Dashboard Development",
+    provider: { "@type": "Organization", name: "Easydev" },
+    areaServed: "Worldwide",
+    description:
+      "Custom admin dashboards, analytics systems, CRMs, and reporting tools with role-based access.",
+  },
+  {
+    "@type": "Service",
+    "@id": "https://easydev.in/#saas-development",
+    name: "SaaS Application Development",
+    serviceType: "SaaS Development",
+    provider: { "@type": "Organization", name: "Easydev" },
+    areaServed: "Worldwide",
+    description:
+      "Complete SaaS development including subscriptions, multi-tenancy, authentication, analytics, and cloud deployment.",
+  },
+  {
+    "@type": "Service",
+    "@id": "https://easydev.in/#wordpress-migration",
+    name: "WordPress to Custom Website Migration",
+    serviceType: "Website Migration",
+    provider: { "@type": "Organization", name: "Easydev" },
+    areaServed: "Worldwide",
+    description:
+      "SEO-safe migration from WordPress to modern custom-built platforms with improved performance and security.",
+  },
+];
 
 // Dynamic structured data based on content
 const structuredData = {
@@ -161,167 +313,11 @@ const structuredData = {
         "https://linkedin.com/in/easydev",
         "https://twitter.com/easydev",
       ],
-      makesOffer: [
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Custom Web Development",
-            description:
-              "Tailor-made, high-performance websites built using modern frameworks like React, Next.js, and Node.js. Designed exactly to meet your business requirements with pixel-perfect UI and optimized speed.",
-            serviceOutput:
-              "Responsive website, secure backend, SEO-friendly pages",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Complete Website Maintenance",
-            description:
-              "Comprehensive website monitoring, updates, security patches, bug fixes, backups, and performance optimization for smooth long-term operation.",
-            serviceOutput:
-              "Regular backups, monthly reports, uptime monitoring",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Full Stack Web Application Development",
-            description:
-              "End-to-end development of scalable web applications including frontend, backend, APIs, authentication, databases, dashboards, and cloud integration.",
-            serviceOutput:
-              "Production-ready web apps, API endpoints, admin dashboards",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "SEO Optimization",
-            description:
-              "Boost search rankings and website visibility with on-page SEO, technical SEO fixes, structured data, metadata, Core Web Vitals optimization, and content recommendations.",
-            serviceOutput: "Improved search visibility, faster Core Web Vitals",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "UI/UX Design",
-            description:
-              "Modern, user-friendly, conversion-focused UI/UX design with improved usability, interactions, prototypes, and optimized user journeys.",
-            serviceOutput: "Wireframes, prototypes, final UI kit",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Performance Optimization",
-            description:
-              "Speed enhancements through code optimization, caching, database tuning, image compression, and Core Web Vitals improvements for the best user experience.",
-            serviceOutput: "Faster page loads, reduced TTFB, improved LCP/CLS",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "eCommerce Website Development",
-            description:
-              "Custom online stores with product catalogs, secure checkout, cart systems, inventory management, admin dashboards, and payment gateway integration.",
-            serviceOutput:
-              "Secure store, payment integration, order management",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "API Development & Integration",
-            description:
-              "Development of custom REST/GraphQL APIs and integration with third-party services such as CRM, payment gateways, marketing tools, and automation systems.",
-            serviceOutput:
-              "Secure API endpoints, integrated third-party services",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Landing Page Development",
-            description:
-              "High-converting landing pages optimized for ads, product marketing, sales funnels, and SEO to maximize conversions and leads.",
-            serviceOutput: "Fast, lightweight conversion-focused pages",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Website Redesign & Revamp",
-            description:
-              "Transform outdated websites with modern UI, improved performance, optimized user flow, better conversions, and enhanced SEO structure.",
-            serviceOutput:
-              "Redesigned front-end, migration plan, SEO-safe changes",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Bug Fixing & Troubleshooting",
-            description:
-              "Diagnose and fix errors, crashes, slow performance issues, backend problems, frontend bugs, and security vulnerabilities.",
-            serviceOutput:
-              "Stability fixes, error resolution, security patches",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Server Management & Deployment (DevOps)",
-            description:
-              "Deploy and manage applications on AWS, GCP, DigitalOcean, Vercel, Docker, or VPS with CI/CD pipelines, SSL, monitoring, Infrastructure as Code and performance tuning.",
-            serviceOutput:
-              "CI/CD, monitoring, secure deployments, infrastructure scripts",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Custom Dashboard Development",
-            description:
-              "Powerful admin dashboards, analytics systems, CRMs, reporting tools, and management panels tailored to business needs with real-time visualizations.",
-            serviceOutput: "Interactive dashboards, charts, role-based access",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "SaaS Application Development",
-            description:
-              "Complete SaaS product development including subscription billing, authentication, user roles, dashboards, analytics, cloud deployment, and multi-tenant architecture.",
-            serviceOutput: "Multi-tenant SaaS platform, subscription handling",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "WordPress to Custom Website Migration",
-            description:
-              "Migrate your WordPress site to a modern, fast, secure custom-built platform without losing any content, SEO, or data.",
-            serviceOutput:
-              "SEO-preserving migration, content transfer, improved speed",
-          },
-        },
-      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Easydev Services",
+        itemListElement: servicesSchema,
+      },
       hasPOS: "https://easydev.in",
       mainEntityOfPage: {
         "@type": "WebPage",
