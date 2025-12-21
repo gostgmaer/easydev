@@ -458,91 +458,60 @@ const structuredData = {
 };
 
 export const metadata: Metadata = {
-  title: safe(
-    siteContent.seo.title,
-    "Easydev – Web Development, SaaS & DevOps Services"
-  ),
+  title: "Easydev | Web Development, SaaS & DevOps Company",
+  description:
+    "Easydev is a full-service web development company offering custom websites, SaaS applications, DevOps, performance optimization, and long-term maintenance.",
   category: "technology",
 
-  description: safe(
-    siteContent.seo.description,
-    "Professional backend developer specializing in Express.js, MySQL, and MongoDB. I build scalable APIs, design efficient databases, and create robust server-side solutions for modern web applications."
-  ),
-  keywords: safe(
-    siteContent.seo.keywords,
-    "Express.js developer, MySQL expert, MongoDB specialist, backend developer, API development, database design, Node.js developer, IN"
-  ),
-  authors: [{ name: safe(siteContent.seo.author, "Kishor Sarkar") }],
-  creator: safe(siteContent.seo.author, "Kishor Sarkar"),
+  authors: [{ name: "Easydev" }],
+  creator: "Easydev",
+  applicationName: "Easydev",
+
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: safe(siteContent.seo.url, "https://www.easydev.in/"),
-    title: safe(
-      siteContent.seo.title,
-      "Kishor Sarkar - Express.js Developer | MySQL & MongoDB Expert"
-    ),
-    description: safe(
-      siteContent.seo.description,
-      "Professional backend developer specializing in Express.js, MySQL, and MongoDB. I build scalable APIs, design efficient databases, and create robust server-side solutions for modern web applications."
-    ),
-    siteName: `${safe(
-      siteContent.personal.name,
-      "Kishor Sarkar"
-    )} - Developer Portfolio`,
+    url: "https://www.easydev.in/",
+    title: "Easydev | Web Development, SaaS & DevOps Company",
+    description:
+      "Easydev delivers scalable web solutions including custom development, SaaS platforms, DevOps, and performance optimization.",
+    siteName: "Easydev",
     images: [
       {
-        url: `${safe(
-          siteContent.seo.url,
-          "https://www.easydev.in"
-        )}/og-image.png`,
+        url: "https://www.easydev.in/og-image.png",
         width: 1200,
         height: 630,
-        alt: `${safe(
-          siteContent.personal.name,
-          "Kishor Sarkar"
-        )} - Backend Developer`,
+        alt: "Easydev – Web Development & SaaS Solutions",
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: safe(siteContent.seo.title, "EasyDev - Full-Stack & Web Solutions"),
-    description: safe(
-      siteContent.seo.description,
-      "Professional backend developer specializing in Express.js, MySQL, and MongoDB. I build scalable APIs, design efficient databases, and create robust server-side solutions for modern web applications."
-    ),
-    creator: "@kishorsarkar",
-    images: [
-      `${safe(siteContent.seo.url, "https://www.easydev.in")}/og-image.png
-      `,
-    ],
+    title: "Easydev | Web Development, SaaS & DevOps Company",
+    description:
+      "Custom web development, SaaS solutions, DevOps, and performance optimization by Easydev.",
+    creator: "@easydev",
+    images: ["https://www.easydev.in/og-image.png"],
   },
+
   robots: {
     index: true,
     follow: true,
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "verification-token-here",
-  },
-  metadataBase: new URL(safe(siteContent.seo.url, "https://www.easydev.in")),
+
+  metadataBase: new URL("https://www.easydev.in"),
   alternates: {
-    canonical: safe(siteContent.seo.url, "https://www.easydev.in"),
+    canonical: "https://www.easydev.in",
   },
+
   classification: "Business",
   referrer: "origin-when-cross-origin",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
 };
 
 export default function RootLayout({
