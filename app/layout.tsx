@@ -175,6 +175,7 @@ const structuredData = {
       "@id": "https://easydev.in/#localbusiness",
       name: "Easydev",
       url: "https://easydev.in",
+      sameAs: { "@id": "https://easydev.in/#organization" },
       logo: {
         "@type": "ImageObject",
         url: "https://easydev.in/logo.png",
@@ -203,7 +204,7 @@ const structuredData = {
       },
       priceRange: "$$",
       areaServed: {
-        "@type": "Country",
+        "@type": "AdministrativeArea",
         name: "Worldwide",
       },
     },
@@ -223,10 +224,10 @@ const structuredData = {
     },
     {
       "@type": "WebPage",
-      "@id": "https://easydev.in/#homepage",
+      "@id": "https://easydev.in",
       url: "https://easydev.in",
       name: "Easydev – Web Development, SaaS & DevOps Services",
-      inLanguage: "en-US,en",
+     "inLanguage": ["en-US", "en"],
 
       isPartOf: {
         "@type": "WebSite",
@@ -302,12 +303,15 @@ const structuredData = {
           telephone: "+91-8637317273",
           email: "hello@easydev.in",
           contactType: "customer support",
-          areaServed: "IN",
+          areaServed: {
+            "@type": "AdministrativeArea",
+            name: "Worldwide",
+          },
           availableLanguage: ["English", "Hindi", "Bengali"],
         },
       ],
       areaServed: {
-        "@type": "Country",
+        "@type": "AdministrativeArea",
         name: "Worldwide",
       },
       sameAs: [
@@ -404,7 +408,7 @@ const structuredData = {
     },
     // Review aggregate from testimonials
     {
-      "@type": "Product",
+      "@type": "Service",
       name: "Web Development Services",
       description: "High-quality web development & full-stack services.",
       itemReviewed: {
@@ -419,7 +423,6 @@ const structuredData = {
         worstRating: "1",
       },
     },
-    
   ],
 };
 
@@ -473,10 +476,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: safe(
-      siteContent.seo.title,
-      "EasyDev - Full-Stack & Web Solutions"
-    ),
+    title: safe(siteContent.seo.title, "EasyDev - Full-Stack & Web Solutions"),
     description: safe(
       siteContent.seo.description,
       "Professional backend developer specializing in Express.js, MySQL, and MongoDB. I build scalable APIs, design efficient databases, and create robust server-side solutions for modern web applications."
