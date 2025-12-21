@@ -9,55 +9,55 @@ const { baseURL } = veriable
 
 export const API_ENDPOINTS = {
   // Contact Form Submission
-  CONTACT_FORM: `${baseURL}/api/inquiry/submit`,
+  CONTACT_FORM: `${baseURL}/inquiry/submit`,
 
   // Newsletter Subscription
-  NEWSLETTER: `${baseURL}/api/newsletter`,
+  NEWSLETTER: `${baseURL}/newsletter`,
 
   // Analytics Events
-  ANALYTICS: `${baseURL}/api/analytics`,
+  ANALYTICS: `${baseURL}/analytics`,
 
   // Portfolio Projects (dynamic)
-  PROJECTS: `${baseURL}/api/projects`,
+  PROJECTS: `${baseURL}/projects`,
 
   // Testimonials (dynamic)
-  TESTIMONIALS: `${baseURL}/api/testimonials`,
+  TESTIMONIALS: `${baseURL}/testimonials`,
 
   // Blog Posts
-  BLOG: `${baseURL}/api/blog`,
+  BLOG: `${baseURL}/blog`,
 
   // File Upload (resume, portfolio, assets)
-  UPLOAD: `${baseURL}/api/upload`,
+  UPLOAD: `${baseURL}/upload`,
 
   // Email Service
-  EMAIL: `${baseURL}/api/email`,
+  EMAIL: `${baseURL}/email`,
 
   // CMS Integration / Headless CMS
-  CMS: `${baseURL}/api/cms`,
+  CMS: `${baseURL}/cms`,
 
   // Authentication / Admin Panel
-  AUTH: `${baseURL}/api/auth`,
+  AUTH: `${baseURL}/auth`,
 
   // Settings (for fullstack developer site)
-  SETTINGS: `${baseURL}/api/settings`,
+  SETTINGS: `${baseURL}/settings`,
 
   // Services section
-  SERVICES: `${baseURL}/api/services`,
+  SERVICES: `${baseURL}/services`,
 
   // Pricing section
-  PRICING: `${baseURL}/api/pricing`,
+  PRICING: `${baseURL}/pricing`,
 
   // Messages (contact, client messages)
-  MESSAGES: `${baseURL}/api/messages`,
+  MESSAGES: `${baseURL}/messages`,
 
   // File Manager (optional)
-  FILES: `${baseURL}/api/files`,
+  FILES: `${baseURL}/files`,
 
   // Notifications (if needed later)
-  NOTIFICATIONS: `${baseURL}/api/notifications`,
+  NOTIFICATIONS: `${baseURL}/notifications`,
 
   // Admin Dashboard Analytics
-  ADMIN_ANALYTICS: `${baseURL}/api/admin/analytics`,
+  ADMIN_ANALYTICS: `${baseURL}/admin/analytics`,
 }
 
 
@@ -310,7 +310,7 @@ export const searchContent = async (query: string, filters?: {
 
     console.log('🔍 Content Search (PLACEHOLDER):', { query, filters });
 
-    const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`, {
+    const response = await fetch(`/search?q=${encodeURIComponent(query)}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -364,7 +364,7 @@ export const reportWebVitals = async (metric: {
     console.log('⚡ Web Vitals Report (PLACEHOLDER):', metric);
 
     // Send to analytics service
-    await fetch('/api/vitals', {
+    await fetch('/vitals', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
