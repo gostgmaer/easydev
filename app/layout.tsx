@@ -463,20 +463,40 @@ export const metadata: Metadata = {
     "Easydev is a full-service web development company offering custom websites, SaaS applications, DevOps, performance optimization, and long-term maintenance.",
   category: "technology",
 
+  applicationName: "Easydev",
+  publisher: "Easydev",
+  generator: "Next.js",
+
   authors: [{ name: "Easydev" }],
   creator: "Easydev",
-  applicationName: "Easydev",
+
+  metadataBase: new URL("https://www.easydev.in"),
+
+  alternates: {
+    canonical: "https://www.easydev.in",
+    languages: {
+      "en-US": "https://www.easydev.in",
+      "en-IN": "https://www.easydev.in",
+    },
+  },
+
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
+
+  colorScheme: "light dark",
 
   openGraph: {
     type: "website",
-
+    locale: "en_US",
+    // localeAlternate: ["en_GB", "en_IN"],
     url: "https://www.easydev.in/",
     title: "Easydev | Web Development, SaaS & DevOps Company",
     description:
       "Easydev delivers scalable web solutions including custom development, SaaS platforms, DevOps, and performance optimization.",
     siteName: "Easydev",
-    locale: "en_US",
-
     images: [
       {
         url: "https://www.easydev.in/og-image.png",
@@ -490,39 +510,13 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@easydev",
+    creator: "@easydev",
     title: "Easydev | Web Development, SaaS & DevOps Company",
     description:
       "Custom web development, SaaS solutions, DevOps, and performance optimization by Easydev.",
-    creator: "@easydev",
     images: ["https://www.easydev.in/og-image.png"],
   },
 
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-
-  metadataBase: new URL("https://www.easydev.in"),
-  alternates: {
-    canonical: "https://www.easydev.in",
-  },
-  themeColor: "#3B82F6",
-  appleWebApp: {
-    capable: true,
-    title: "Easydev",
-    statusBarStyle: "default",
-  },
-  manifest: "/site.webmanifest",
-  publisher: "Easydev",
-
-  classification: "Business",
-  referrer: "origin-when-cross-origin",
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -531,6 +525,39 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-touch-icon.png",
   },
+
+  themeColor: "#3B82F6",
+
+  appleWebApp: {
+    capable: true,
+    title: "Easydev",
+    statusBarStyle: "default",
+  },
+
+  manifest: "/site.webmanifest",
+
+  appLinks: {
+    web: {
+      url: "https://www.easydev.in",
+      // shouldFallback: true,
+    },
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  referrer: "origin-when-cross-origin",
+  classification: "Business",
+
   other: {
     "google-site-verification": "verification-token-here",
     "msvalidate.01": "bing-verification-code",
