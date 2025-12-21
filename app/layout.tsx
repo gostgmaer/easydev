@@ -32,7 +32,7 @@ const structuredData = {
       image: "https://easydev.in/logo.png",
       telephone: "+91-8637317273",
       email: "hello@easydev.in",
-        address: {
+      address: {
         "@type": "PostalAddress",
         streetAddress: safe(
           siteContent.personal.address.streetAddress,
@@ -420,6 +420,13 @@ const structuredData = {
         bestRating: "5",
         worstRating: "1",
       },
+    },
+    {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      reviewCount: "96",
+      bestRating: "5",
+      worstRating: "1",
     },
   ],
 };
