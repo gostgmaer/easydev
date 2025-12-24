@@ -1,6 +1,6 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, Award, Users, Zap, Target, TrendingUp } from 'lucide-react';
+import { CircleCheck as CheckCircle, Award, Users, Zap, Target, TrendingUp } from 'lucide-react';
 import { siteContent } from '@/lib/content';
 
 export default function About() {

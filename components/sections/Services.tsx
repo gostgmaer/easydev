@@ -1,14 +1,7 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { 
-  Code, 
-  Palette,
-  Database,
-  Cloud,
-  Target,
-  HeadphonesIcon
-} from 'lucide-react';
+import { Code, Palette, Database, Cloud, Target, Headphones as HeadphonesIcon } from 'lucide-react';
 import { siteContent } from '@/lib/content';
 
 export default function Services() {
