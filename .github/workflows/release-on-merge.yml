@@ -1,0 +1,62 @@
+name: Release on Merge to Main
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch tags
+        run: git fetch --tags
+
+      - name: Calculate next version
+        id: version
+        run: |
+          LAST_TAG=$(git tag --list 'v*' --sort=-v:refname | head -n 1)
+          [ -z "$LAST_TAG" ] && LAST_TAG="v0.0.0"
+
+          VERSION="${LAST_TAG#v}"
+
+          MAJOR=$(echo "$VERSION" | cut -d. -f1)
+          MINOR=$(echo "$VERSION" | cut -d. -f2)
+          PATCH=$(echo "$VERSION" | cut -d. -f3)
+
+          MAJOR=${MAJOR:-0}
+          MINOR=${MINOR:-0}
+          PATCH=${PATCH:-0}
+
+          PATCH=$((PATCH + 1))
+
+          NEW_TAG="v$MAJOR.$MINOR.$PATCH"
+
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+          echo "New version: $NEW_TAG"
+
+      - name: Create Git tag
+        run: |
+          git tag -a "$NEW_TAG" -m "Release $NEW_TAG"
+          git push origin "$NEW_TAG"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.NEW_TAG }}
+          name: Release ${{ env.NEW_TAG }}
+          body: |
+            🚀 Automated release
+
+            Version: ${{ env.NEW_TAG }}
+            Trigger: Merge into `main`
+            Repository: ${{ github.repository }}
