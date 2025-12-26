@@ -10,7 +10,7 @@ export const siteContent = {
     email: "contact@easydev.in",
     phone: "+91 8637317273",
     location: "Mumbai, India",
-    website: "https://easydev.in",
+    website: "https://www.easydev.in",
     logo: "/logo.png",
     tagline:
       "Custom Web Development, SaaS Solutions & Scalable Digital Products",

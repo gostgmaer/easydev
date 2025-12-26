@@ -16,7 +16,7 @@ function safe<T>(value: T | undefined, fallback: T): T {
 const servicesSchema = [
   {
     "@type": "Service",
-    "@id": "https://easydev.in/#custom-web-development",
+    "@id": "https://www.easydev.in/#custom-web-development",
     name: "Custom Web Development",
     serviceType: "Web Development",
     provider: { "@type": "Organization", name: "Easydev" },
@@ -26,7 +26,7 @@ const servicesSchema = [
   },
   {
     "@type": "Service",
-    "@id": "https://easydev.in/#website-maintenance",
+    "@id": "https://www.easydev.in/#website-maintenance",
     name: "Website Maintenance & Support",
     serviceType: "Website Maintenance",
     provider: { "@type": "Organization", name: "Easydev" },
@@ -36,7 +36,7 @@ const servicesSchema = [
   },
   {
     "@type": "Service",
-    "@id": "https://easydev.in/#full-stack-development",
+    "@id": "https://www.easydev.in/#full-stack-development",
     name: "Full Stack Web Application Development",
     serviceType: "Web Application Development",
     provider: { "@type": "Organization", name: "Easydev" },
@@ -46,7 +46,7 @@ const servicesSchema = [
   },
   {
     "@type": "Service",
-    "@id": "https://easydev.in/#seo-optimization",
+    "@id": "https://www.easydev.in/#seo-optimization",
     name: "SEO Optimization",
     serviceType: "Search Engine Optimization",
     provider: { "@type": "Organization", name: "Easydev" },
@@ -56,7 +56,7 @@ const servicesSchema = [
   },
   {
     "@type": "Service",
-    "@id": "https://easydev.in/#ui-ux-design",
+    "@id": "https://www.easydev.in/#ui-ux-design",
     name: "UI/UX Design",
     serviceType: "UI/UX Design",
     provider: { "@type": "Organization", name: "Easydev" },
@@ -66,7 +66,7 @@ const servicesSchema = [
   },
   {
     "@type": "Service",
-    "@id": "https://easydev.in/#performance-optimization",
+    "@id": "https://www.easydev.in/#performance-optimization",
     name: "Performance Optimization",
     serviceType: "Website Performance Optimization",
     provider: { "@type": "Organization", name: "Easydev" },
@@ -76,7 +76,7 @@ const servicesSchema = [
   },
   {
     "@type": "Service",
-    "@id": "https://easydev.in/#ecommerce-development",
+    "@id": "https://www.easydev.in/#ecommerce-development",
     name: "eCommerce Website Development",
     serviceType: "eCommerce Development",
     provider: { "@type": "Organization", name: "Easydev" },
@@ -86,7 +86,7 @@ const servicesSchema = [
   },
   {
     "@type": "Service",
-    "@id": "https://easydev.in/#api-development",
+    "@id": "https://www.easydev.in/#api-development",
     name: "API Development & Integration",
     serviceType: "API Development",
     provider: { "@type": "Organization", name: "Easydev" },
@@ -96,7 +96,7 @@ const servicesSchema = [
   },
   {
     "@type": "Service",
-    "@id": "https://easydev.in/#landing-page-development",
+    "@id": "https://www.easydev.in/#landing-page-development",
     name: "Landing Page Development",
     serviceType: "Landing Page Development",
     provider: { "@type": "Organization", name: "Easydev" },
@@ -106,7 +106,7 @@ const servicesSchema = [
   },
   {
     "@type": "Service",
-    "@id": "https://easydev.in/#website-redesign",
+    "@id": "https://www.easydev.in/#website-redesign",
     name: "Website Redesign & Revamp",
     serviceType: "Website Redesign",
     provider: { "@type": "Organization", name: "Easydev" },
@@ -116,7 +116,7 @@ const servicesSchema = [
   },
   {
     "@type": "Service",
-    "@id": "https://easydev.in/#bug-fixing",
+    "@id": "https://www.easydev.in/#bug-fixing",
     name: "Bug Fixing & Troubleshooting",
     serviceType: "Bug Fixing",
     provider: { "@type": "Organization", name: "Easydev" },
@@ -126,7 +126,7 @@ const servicesSchema = [
   },
   {
     "@type": "Service",
-    "@id": "https://easydev.in/#devops-services",
+    "@id": "https://www.easydev.in/#devops-services",
     name: "Server Management & DevOps",
     serviceType: "DevOps Services",
     provider: { "@type": "Organization", name: "Easydev" },
@@ -136,7 +136,7 @@ const servicesSchema = [
   },
   {
     "@type": "Service",
-    "@id": "https://easydev.in/#dashboard-development",
+    "@id": "https://www.easydev.in/#dashboard-development",
     name: "Custom Dashboard Development",
     serviceType: "Dashboard Development",
     provider: { "@type": "Organization", name: "Easydev" },
@@ -146,7 +146,7 @@ const servicesSchema = [
   },
   {
     "@type": "Service",
-    "@id": "https://easydev.in/#saas-development",
+    "@id": "https://www.easydev.in/#saas-development",
     name: "SaaS Application Development",
     serviceType: "SaaS Development",
     provider: { "@type": "Organization", name: "Easydev" },
@@ -156,7 +156,7 @@ const servicesSchema = [
   },
   {
     "@type": "Service",
-    "@id": "https://easydev.in/#wordpress-migration",
+    "@id": "https://www.easydev.in/#wordpress-migration",
     name: "WordPress to Custom Website Migration",
     serviceType: "Website Migration",
     provider: { "@type": "Organization", name: "Easydev" },
@@ -172,9 +172,9 @@ const structuredData = {
   "@graph": [
     {
       "@type": ["LocalBusiness", "ProfessionalService"],
-      "@id": "https://easydev.in/#localbusiness",
+      "@id": "https://www.easydev.in/#localbusiness",
       name: "Easydev",
-      url: "https://easydev.in",
+      url: "https://www.easydev.in",
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: "5",
@@ -183,15 +183,15 @@ const structuredData = {
         worstRating: "1",
       },
       branchOf: {
-        "@id": "https://easydev.in/#organization",
+        "@id": "https://www.easydev.in/#organization",
       },
       logo: {
         "@type": "ImageObject",
-        url: "https://easydev.in/logo.png",
+        url: "https://www.easydev.in/logo.png",
         width: 512,
         height: 512,
       },
-      image: "https://easydev.in/logo.png",
+      image: "https://www.easydev.in/logo.png",
       telephone: "+91-8637317273",
       email: "hello@easydev.in",
       address: {
@@ -219,10 +219,10 @@ const structuredData = {
     },
     {
       "@type": "Person",
-      "@id": "https://easydev.in/#founder",
+      "@id": "https://www.easydev.in/#founder",
       name: "Kishor Sarkar",
       jobTitle: "Founder & Lead Engineer",
-      worksFor: { "@id": "https://easydev.in/#organization" },
+      worksFor: { "@id": "https://www.easydev.in/#organization" },
       knowsAbout: [
         "Node.js",
         "Express.js",
@@ -243,29 +243,29 @@ const structuredData = {
     },
     {
       "@type": "WebPage",
-      "@id": "https://easydev.in/#homepage",
-      url: "https://easydev.in",
+      "@id": "https://www.easydev.in/#homepage",
+      url: "https://www.easydev.in",
       name: "Easydev – Web Development, SaaS & DevOps Services",
       inLanguage: ["en-US", "en"],
 
       isPartOf: {
         "@type": "WebSite",
-        "@id": "https://easydev.in/#website",
+        "@id": "https://www.easydev.in/#website",
       },
-      about: { "@id": "https://easydev.in/#organization" },
+      about: { "@id": "https://www.easydev.in/#organization" },
     },
     {
       "@type": "WebSite",
-      "@id": "https://easydev.in/#website",
-      url: "https://easydev.in",
+      "@id": "https://www.easydev.in/#website",
+      url: "https://www.easydev.in",
       name: "Easydev",
       publisher: {
         "@type": "Organization",
-        "@id": "https://easydev.in/#organization",
+        "@id": "https://www.easydev.in/#organization",
         name: "Easydev",
         logo: {
           "@type": "ImageObject",
-          url: "https://easydev.in/logo.png",
+          url: "https://www.easydev.in/logo.png",
           width: 512,
           height: 512,
         },
@@ -273,29 +273,29 @@ const structuredData = {
     },
     {
       "@type": "ContactPage",
-      "@id": "https://easydev.in/#contactpage",
-      url: "https://easydev.in/#contact",
+      "@id": "https://www.easydev.in/#contactpage",
+      url: "https://www.easydev.in/#contact",
       name: "Contact Easydev",
-      about: { "@id": "https://easydev.in/#organization" },
-      isPartOf: { "@id": "https://easydev.in/#website" },
+      about: { "@id": "https://www.easydev.in/#organization" },
+      isPartOf: { "@id": "https://www.easydev.in/#website" },
     },
     {
       "@type": "AboutPage",
-      "@id": "https://easydev.in/#aboutpage",
-      url: "https://easydev.in/#about",
+      "@id": "https://www.easydev.in/#aboutpage",
+      url: "https://www.easydev.in/#about",
       name: "About Easydev",
-      about: { "@id": "https://easydev.in/#organization" },
-      isPartOf: { "@id": "https://easydev.in/#website" },
+      about: { "@id": "https://www.easydev.in/#organization" },
+      isPartOf: { "@id": "https://www.easydev.in/#website" },
     },
     {
       "@type": "Organization",
-      "@id": "https://easydev.in/#organization",
+      "@id": "https://www.easydev.in/#organization",
       name: "Easydev",
       legalName: "Easydev",
-      url: "https://easydev.in",
+      url: "https://www.easydev.in",
       logo: {
         "@type": "ImageObject",
-        url: "https://easydev.in/logo.png",
+        url: "https://www.easydev.in/logo.png",
         width: 512,
         height: 512,
       },
@@ -309,7 +309,7 @@ const structuredData = {
         "UI/UX Design",
         "SEO Optimization",
       ],
-      image: "https://easydev.in/logo.png",
+      image: "https://www.easydev.in/logo.png",
       alternateName: "EasyDev - Full-Stack & Web Solutions",
       slogan: "Complete web solution — dev, devops, bug fix, and more",
       description:
@@ -368,7 +368,7 @@ const structuredData = {
       },
 
       mainEntityOfPage: {
-        "@id": "https://easydev.in/#homepage",
+        "@id": "https://www.easydev.in/#homepage",
       },
     },
     ...safe(siteContent.portfolio.projects, [])
@@ -450,9 +450,9 @@ const structuredData = {
     // Review aggregate from testimonials
     {
       "@type": "Service",
-      "@id": "https://easydev.in/#web-development-service",
+      "@id": "https://www.easydev.in/#web-development-service",
       name: "Web Development Services",
-      provider: { "@id": "https://easydev.in/#organization" },
+      provider: { "@id": "https://www.easydev.in/#organization" },
     },
   ],
 };
