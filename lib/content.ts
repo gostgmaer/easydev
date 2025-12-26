@@ -149,12 +149,12 @@ export const siteContent = {
         label: "Company updates & professional insights",
         icon: Linkedin
       },
-      {
-        name: "Twitter / X",
-        url: "https://twitter.com/easydev",
-        label: "Tech thoughts, updates & announcements",
-        icon: Twitter
-      },
+      // {
+      //   name: "Twitter / X",
+      //   url: "https://twitter.com/easydev",
+      //   label: "Tech thoughts, updates & announcements",
+      //   icon: Twitter
+      // },
       {
         name: "Email",
         url: "mailto:contact@easydev.in",

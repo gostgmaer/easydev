@@ -42,15 +42,15 @@ export const TIMELINE_OPTIONS: string[] = [
 export const CONTACT_INFO: ContactInfo[] = [
   {
     title: "Email",
-    value: "hello@developer.com",
-    href: "mailto:hello@developer.com",
+    value: "hello@easydev.in",
+    href: "mailto:hello@easydev.in",
     description: "Get in touch for project inquiries",
     icon: Mail,
   },
   {
     title: "Phone",
-    value: "+1 (555) 123-4567",
-    href: "tel:+15551234567",
+    value: "+91 863-731-7273",
+    href: "tel:+918637317273",
     description: "Available Monday to Friday",
     icon: Phone,
   },
