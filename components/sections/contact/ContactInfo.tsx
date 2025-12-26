@@ -66,14 +66,14 @@ export default function ContactInfo() {
             <MessageCircle className="w-4 h-4 mr-2" />
             WhatsApp
           </a>
-          <a
+          {/* <a
             href="/portfolio.pdf"
             download
             className="w-full border border-gray-300 hover:border-gray-400 hover:bg-gray-50 text-gray-700 font-medium py-3 px-4 rounded-lg flex items-center justify-center transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
           >
             <Globe className="w-4 h-4 mr-2" />
             Download Portfolio
-          </a>
+          </a> */}
         </div>
       </div>
     </div>
