@@ -48,8 +48,8 @@ jobs:
 
       - name: Commit version file
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config user.name "gostgmaer"
+          git config user.email "kishor81160@gmail.com"
           git add src/version.ts
           git commit -m "chore: release $NEW_TAG" || echo "No changes"
 
