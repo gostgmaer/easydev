@@ -13,17 +13,15 @@ export default function Footer() {
   const quickLinks = [
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
-    { name: 'Case Studies', href: '#case-studies' },
     { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Blog', href: '#blog' },
     { name: 'Contact', href: '#contact' }
   ];
 
   const services = [
-    { name: 'Custom Web Development', href: '#services' },
-    { name: 'UI/UX Design', href: '#services' },
-    { name: 'Cloud Infrastructure', href: '#services' },
-    { name: 'Digital Strategy', href: '#services' }
+    { name: 'Web Development', href: '#services' },
+    { name: 'Mobile Apps', href: '#services' },
+    { name: 'E-commerce', href: '#services' },
+    { name: 'API Development', href: '#services' }
   ];
 
   const socialLinks = [
@@ -77,11 +75,10 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <Code className="h-8 w-8 text-blue-400" />
-              <span className="text-2xl font-bold">EasyDev</span>
+              <span className="text-2xl font-bold">{siteContent.personal.name}</span>
             </div>
-            <p className="text-gray-300 mb-6 max-w-lg leading-relaxed">
-              We are a premier digital agency that transforms ambitious ideas into powerful digital solutions. 
-              From concept to deployment and beyond, we deliver comprehensive solutions that drive business growth.
+            <p className="text-gray-300 mb-6 max-w-md leading-relaxed">
+              {siteContent.personal.bio}
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -167,7 +164,7 @@ export default function Footer() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-4 text-sm text-gray-400">
-              <span>© {currentYear} EasyDev Agency. All rights reserved.</span>
+              <span>© {currentYear} {siteContent.personal.name}. All rights reserved.</span>
             </div>
             
             <div className="flex items-center space-x-6 text-sm text-gray-400">
@@ -176,9 +173,6 @@ export default function Footer() {
               </a>
               <a href="/terms" className="hover:text-blue-400 transition-colors">
                 Terms of Service
-              </a>
-              <a href="/sitemap" className="hover:text-blue-400 transition-colors">
-                Sitemap
               </a>
            
             </div>
