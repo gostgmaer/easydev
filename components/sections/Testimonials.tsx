@@ -140,7 +140,7 @@ export default function Testimonials() {
                     <h4 className="font-semibold text-gray-900 text-sm">
                       {testimonial.name}
                     </h4>
-                    <p className="text-gray-600 text-xs">{testimonial.role}</p>
+                    <p className="text-gray-600 text-xs ">{testimonial.role}</p>
                   </div>
                 </div>
               </CardContent>
