@@ -7,32 +7,34 @@ import { siteContent } from '@/lib/content';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isSubscribing, setIsSubscribing] = useState(false);
 
   const quickLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Contact', href: '#contact' }
+    { name: "About", href: "#about" },
+    { name: "Services", href: "#services" },
+    { name: "Portfolio", href: "#portfolio" },
+    { name: "Contact", href: "#contact" },
   ];
 
   const services = [
-    { name: 'Web Development', href: '#services' },
-    { name: 'Mobile Apps', href: '#services' },
-    { name: 'E-commerce', href: '#services' },
-    { name: 'API Development', href: '#services' }
+    { name: "Web Development", href: "#services" },
+    { name: "Mobile Apps", href: "#services" },
+    { name: "E-commerce", href: "#services" },
+    { name: "API Development", href: "#services" },
   ];
 
-  const socialLinks = [
-    { icon: Github, href: siteContent.social.github, label: 'GitHub' },
-    { icon: Linkedin, href: siteContent.social.linkedin, label: 'LinkedIn' },
-    { icon: Twitter, href: siteContent.social.twitter, label: 'Twitter' },
-    { icon: Mail, href: siteContent.social.email, label: 'Email' }
-  ];
+  // const socialLinks = [
+  //   { icon: Github, href: siteContent.social., label: 'GitHub' },
+  //   { icon: Linkedin, href: siteContent.social.linkedin, label: 'LinkedIn' },
+  //   { icon: Twitter, href: siteContent.social.twitter, label: 'Twitter' },
+  //   { icon: Mail, href: siteContent.social.email, label: 'Email' }
+  // ];
 
   const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId.replace('#', ''))?.scrollIntoView({ behavior: 'smooth' });
+    document
+      .getElementById(sectionId.replace("#", ""))
+      ?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
@@ -42,24 +44,24 @@ export default function Footer() {
     setIsSubscribing(true);
     try {
       await subscribeToNewsletter(email);
-      setEmail('');
-      alert('Thank you for subscribing to our newsletter!');
-      
+      setEmail("");
+      alert("Thank you for subscribing to our newsletter!");
+
       // Track successful subscription
       await trackEvent({
-        event: 'newsletter_subscribe',
-        category: 'Newsletter',
-        label: 'footer_form',
+        event: "newsletter_subscribe",
+        category: "Newsletter",
+        label: "footer_form",
       });
     } catch (error) {
-      console.error('Newsletter subscription error:', error);
-      alert('Sorry, there was an error subscribing. Please try again.');
-      
+      console.error("Newsletter subscription error:", error);
+      alert("Sorry, there was an error subscribing. Please try again.");
+
       // Track subscription error
       await trackEvent({
-        event: 'newsletter_error',
-        category: 'Newsletter',
-        label: 'subscription_failed',
+        event: "newsletter_error",
+        category: "Newsletter",
+        label: "subscription_failed",
       });
     } finally {
       setIsSubscribing(false);
@@ -75,22 +77,24 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <Code className="h-8 w-8 text-blue-400" />
-              <span className="text-2xl font-bold">{siteContent.personal.name}</span>
+              <span className="text-2xl font-bold">
+                {siteContent.personal.name}
+              </span>
             </div>
             <p className="text-gray-300 mb-6 max-w-md leading-relaxed">
               {siteContent.personal.bio}
             </p>
             <div className="flex space-x-4">
-              {socialLinks.map((social) => (
+              {siteContent.social.links.map((social) => (
                 <a
                   key={social.label}
-                  href={social.href}
+                  href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:bg-blue-600 hover:text-white transition-all duration-300"
                   aria-label={social.label}
                 >
-                  <social.icon className="w-5 h-5" />
+                  <social.icon />
                 </a>
               ))}
             </div>
@@ -98,7 +102,9 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white">
+              Quick Links
+            </h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -164,17 +170,25 @@ export default function Footer() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-4 text-sm text-gray-400">
-              <span>© {currentYear} {siteContent.personal.name}. All rights reserved.</span>
+              <span>
+                © {currentYear} {siteContent.personal.name}. All rights
+                reserved.
+              </span>
             </div>
-            
+
             <div className="flex items-center space-x-6 text-sm text-gray-400">
-              <a href="/privacy" className="hover:text-blue-400 transition-colors">
+              <a
+                href="/privacy"
+                className="hover:text-blue-400 transition-colors"
+              >
                 Privacy Policy
               </a>
-              <a href="/terms" className="hover:text-blue-400 transition-colors">
+              <a
+                href="/terms"
+                className="hover:text-blue-400 transition-colors"
+              >
                 Terms of Service
               </a>
-           
             </div>
           </div>
         </div>

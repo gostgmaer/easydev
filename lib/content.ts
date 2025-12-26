@@ -1,3 +1,5 @@
+import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+
 export const siteContent = {
   // =============================
   // Agency Information
@@ -137,25 +139,25 @@ export const siteContent = {
         name: "GitHub",
         url: "https://github.com/gostgmaer",
         label: "Open-source projects & code samples",
-        icon: "github"
+        icon: Github
       },
       {
         name: "LinkedIn",
         url: "https://www.linkedin.com/in/kishor-sarkar/",
         label: "Company updates & professional insights",
-        icon: "linkedin"
+        icon: Linkedin
       },
       {
         name: "Twitter / X",
         url: "https://twitter.com/easydev",
         label: "Tech thoughts, updates & announcements",
-        icon: "twitter"
+        icon: Twitter
       },
       {
         name: "Email",
         url: "mailto:contact@easydev.in",
         label: "Start a conversation with our team",
-        icon: "email"
+        icon: Mail
       }
     ],
     cta: {
