@@ -43,13 +43,14 @@ export default function ContactInfo() {
         <div className="space-y-3">
           <a
             href="mailto:hello@developer.com"
+            target="_blank"
             className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             <Mail className="w-4 h-4 mr-2" />
             Send Email
           </a>
           <a
-            href="https://calendly.com/developer-schedule"
+            href="https://calendly.com/kishor81160/new-meeting"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full border border-gray-300 hover:border-gray-400 hover:bg-gray-50 text-gray-700 font-medium py-3 px-4 rounded-lg flex items-center justify-center transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
@@ -66,14 +67,14 @@ export default function ContactInfo() {
             <MessageCircle className="w-4 h-4 mr-2" />
             WhatsApp
           </a>
-          <a
+          {/* <a
             href="/portfolio.pdf"
             download
             className="w-full border border-gray-300 hover:border-gray-400 hover:bg-gray-50 text-gray-700 font-medium py-3 px-4 rounded-lg flex items-center justify-center transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
           >
             <Globe className="w-4 h-4 mr-2" />
             Download Portfolio
-          </a>
+          </a> */}
         </div>
       </div>
     </div>
