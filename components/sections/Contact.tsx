@@ -3,12 +3,6 @@
 import { useState } from "react";
 import { submitContactForm, trackEvent } from "@/lib/api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -20,7 +14,7 @@ import {
   Send,
   MessageCircle,
   Calendar,
-  Globe
+  Globe,
 } from "lucide-react";
 import { siteContent } from "@/lib/content";
 import ContactForm from "./contact/ContactForm";
@@ -275,22 +269,18 @@ export default function Contact() {
   const budgetRanges = siteContent.contact.budgetRanges;
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-br from-gray-50 to-white">
+    <section id="contact" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium mb-6">
-            <MessageCircle className="w-4 h-4 mr-2" />
-            Get In Touch
-          </div>
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             {siteContent.contact.title}
           </h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             {siteContent.contact.subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Contact Information */}
           <div className="lg:col-span-1">
           <ContactInfo/>
@@ -303,23 +293,19 @@ export default function Contact() {
         </div>
 
         {/* FAQ Section */}
-        <div className="mt-20">
-          <h3 className="text-3xl font-bold text-gray-900 text-center mb-12">
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">
             Frequently Asked Questions
           </h3>
-          <div className="max-w-4xl mx-auto">
-            <Accordion type="single" collapsible className="space-y-4">
-              {siteContent.contact.faqs.map((faq: any, index: number) => (
-                <AccordionItem key={index} value={`item-${index}`} className="bg-white rounded-lg shadow-md border-none">
-                  <AccordionTrigger className="px-6 py-4 text-left font-semibold text-gray-900 hover:text-blue-600 transition-colors">
-                    {faq.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed">
-                    {faq.a}
-                  </AccordionContent>
-                </AccordionItem>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {siteContent.contact.faqs.map((faq: any, index: number) => (
+              <Card key={index} className="border-none shadow-md">
+                <CardContent className="p-6">
+                  <h4 className="font-semibold text-gray-900 mb-2">{faq.q}</h4>
+                  <p className="text-gray-600 text-sm">{faq.a}</p>
+                </CardContent>
+              </Card>
             ))}
-            </Accordion>
           </div>
         </div>
       </div>
