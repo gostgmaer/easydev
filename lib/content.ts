@@ -55,11 +55,21 @@ export const siteContent = {
   about: {
     title: "About EasyDev",
     subtitle: "Your long-term technology partner, not just a vendor",
+
     journey: [
-      "EasyDev was founded with a simple belief: great software is built when engineering, communication, and accountability come together. Since 2020, we’ve helped startups and businesses build reliable digital products from scratch and scale them with confidence.",
-      "Our team works across the full stack — frontend, backend, databases, DevOps, and cloud infrastructure — ensuring that every part of your product works seamlessly together.",
-      "We focus on clean architecture, performance, security, and maintainability. Whether it’s a new product, a system rewrite, or ongoing maintenance, we treat every project like our own."
+      "EasyDev was founded with a simple belief: great software is built when strong engineering, honest communication, and real accountability come together. Since 2020, we’ve helped startups, founders, and growing businesses turn ideas into reliable digital products — and scale them with confidence.",
+      "We don’t just write code. We take time to understand your business goals, users, and constraints before making technical decisions. This approach helps us build systems that are practical, scalable, and easy to maintain over time.",
+      "Our team works across the full stack — frontend, backend, databases, DevOps, and cloud infrastructure — ensuring that every part of your product works seamlessly together instead of feeling stitched together.",
+      "Whether you’re launching an MVP, modernizing an existing system, fixing long-standing bugs, or looking for a dependable engineering partner, we treat every project like it’s our own product."
     ],
+
+    philosophy: [
+      "Clarity over complexity — simple, readable systems scale better",
+      "Ownership mindset — we take responsibility, not shortcuts",
+      "Security and performance are built-in, not afterthoughts",
+      "Long-term maintainability matters more than quick hacks"
+    ],
+
     skills: [
       "React",
       "Next.js",
@@ -71,34 +81,61 @@ export const siteContent = {
       "Express.js",
       "MySQL",
       "MongoDB",
+      "PostgreSQL",
       "REST APIs",
       "GraphQL",
-      "Authentication & Security",
+      "Authentication & Authorization",
+      "Security Best Practices",
       "Redis",
       "Docker",
       "AWS",
-      "CI/CD",
+      "Cloud Infrastructure",
+      "CI/CD Pipelines",
       "DevOps",
       "Performance Optimization",
-      "Bug Fixing & Maintenance"
+      "Bug Fixing & Maintenance",
+      "System Refactoring",
+      "Technical Consulting"
     ],
+
     achievements: [
-      { title: "Trusted Partner", desc: "Long-term relationships with growing teams" },
-      { title: "Performance-Focused", desc: "Fast, optimized, and scalable systems" },
-      { title: "On-Time Delivery", desc: "Clear timelines and predictable outcomes" },
-      { title: "End-to-End Ownership", desc: "From idea to production and beyond" }
+      {
+        title: "Trusted Technology Partner",
+        desc: "Building long-term relationships with founders, startups, and growing teams"
+      },
+      {
+        title: "Performance-Focused Systems",
+        desc: "Fast, optimized, and scalable applications built for real users"
+      },
+      {
+        title: "On-Time & Transparent Delivery",
+        desc: "Clear timelines, realistic estimates, and predictable outcomes"
+      },
+      {
+        title: "End-to-End Ownership",
+        desc: "From idea validation to production deployment and ongoing support"
+      }
     ],
+
+    values: [
+      "Honest communication and realistic commitments",
+      "Clean, maintainable, and well-documented code",
+      "Proactive problem solving instead of reactive fixes",
+      "Respect for deadlines, budgets, and product vision"
+    ],
+
     experience: [
       {
         period: "2022 – Present",
         role: "Full-Stack & DevOps Lead",
         company: "EasyDev",
         description:
-          "Leading complete web projects including frontend architecture, backend APIs, database optimization, cloud deployments, and CI/CD pipelines. Acting as a technical partner for clients.",
+          "Leading end-to-end web and cloud projects — from frontend architecture and backend APIs to database optimization, cloud infrastructure, and CI/CD automation. Acting as a hands-on technical partner rather than just a delivery team.",
         achievements: [
           "Improved application performance by up to 60%",
-          "Built reusable backend architectures",
-          "Automated deployments and monitoring"
+          "Designed reusable backend and service architectures",
+          "Automated deployments, monitoring, and rollback strategies",
+          "Helped startups scale from MVP to production-ready systems"
         ]
       },
       {
@@ -106,11 +143,11 @@ export const siteContent = {
         role: "Full-Stack Developer",
         company: "Startup & SMB Clients",
         description:
-          "Worked closely with startups to ship MVPs, iterate quickly, and scale products. Owned both frontend and backend delivery.",
+          "Worked closely with founders and small teams to ship MVPs, iterate quickly based on feedback, and prepare systems for growth. Owned both frontend and backend delivery while balancing speed and quality.",
         achievements: [
-          "Delivered 15+ production applications",
-          "Optimized complex database queries",
-          "Introduced DevOps best practices"
+          "Delivered 15+ production-ready applications",
+          "Optimized complex database queries and APIs",
+          "Introduced CI/CD and DevOps workflows for faster releases"
         ]
       },
       {
@@ -118,16 +155,20 @@ export const siteContent = {
         role: "Backend & Web Developer",
         company: "Early-Stage Projects",
         description:
-          "Focused on backend systems, API design, and debugging complex production issues while supporting frontend integrations.",
+          "Focused on backend systems, API design, authentication, and debugging complex production issues while supporting frontend integrations and deployments.",
         achievements: [
-          "Solved critical production bugs",
-          "Built secure authentication systems",
-          "Strengthened database performance"
+          "Resolved critical production bugs under tight deadlines",
+          "Built secure authentication and authorization systems",
+          "Improved database reliability and performance"
         ]
       }
-    ]
-  },
-    // =============================
+    ],
+
+    closingNote:
+      "At EasyDev, we believe technology should reduce stress — not create it. If you’re looking for a reliable team that communicates clearly, builds thoughtfully, and stands by their work, we’d love to be part of your journey."
+  }
+  ,
+  // =============================
   // Social & Community Links
   // =============================
   social: {
@@ -258,39 +299,94 @@ export const siteContent = {
   testimonials: {
     title: "Clients Trust EasyDev",
     subtitle: "What people say after working with us",
-    list: [
-      {
-        name: "Rajesh Kumar",
-        role: "CTO",
-        company: "TechStart India",
-        content:
-          "EasyDev felt like an extension of our internal team. From architecture to deployment, everything was handled professionally.",
-        rating: 5,
-        avatar:
-          "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg"
-      },
-      {
-        name: "Priya Sharma",
-        role: "Product Manager",
-        company: "InnovateHub",
-        content:
-          "Clear communication, strong technical decisions, and reliable delivery. We’ll definitely work with EasyDev again.",
-        rating: 5,
-        avatar:
-          "https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg"
-      },
-      {
-        name: "Amit Patel",
-        role: "Founder",
-        company: "RestaurantTech",
-        content:
-          "From UI to backend and DevOps, EasyDev handled everything smoothly. Highly dependable team.",
-        rating: 5,
-        avatar:
-          "https://images.pexels.com/photos/2182969/pexels-photo-2182969.jpeg"
-      }
-    ]
-  },
+
+   list: [
+     {
+       name: "Rajesh Kumar",
+       role: "CTO",
+       company: "TechStart India",
+       content:
+        "EasyDev felt like an extension of our internal team. From architecture to deployment, everything was handled professionally and with great attention to detail.",
+      rating: 5,
+      avatar:
+        "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg"
+    },
+    {
+      name: "Priya Sharma",
+      role: "Product Manager",
+      company: "InnovateHub",
+      content:
+        "Clear communication, strong technical decisions, and reliable delivery. EasyDev made complex problems feel manageable.",
+      rating: 5,
+      avatar:
+        "https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg"
+    },
+    {
+      name: "Amit Patel",
+      role: "Founder",
+      company: "RestaurantTech",
+      content:
+        "From UI to backend and DevOps, EasyDev handled everything smoothly. We finally had a tech partner we could rely on.",
+      rating: 5,
+      avatar:
+        "https://images.pexels.com/photos/2182969/pexels-photo-2182969.jpeg"
+    },
+
+    // --- Added Testimonials ---
+
+    {
+      name: "Neha Verma",
+      role: "Startup Founder",
+      company: "FinEdge",
+      content:
+        "What stood out most was ownership. EasyDev didn’t just complete tasks — they cared about the product’s success like it was their own.",
+      rating: 5,
+      avatar:
+        "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg"
+    },
+    {
+      name: "Sandeep Rao",
+      role: "Engineering Manager",
+      company: "SaaSFlow",
+      content:
+        "We came in with performance issues and messy code. EasyDev helped us refactor, stabilize, and improve speed significantly.",
+      rating: 5,
+      avatar:
+        "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg"
+    },
+    {
+      name: "Ankit Mehta",
+      role: "Co-Founder",
+      company: "LogiCore",
+      content:
+        "EasyDev helped us launch our MVP on time and guided us through scaling decisions. Their advice saved us months of rework.",
+      rating: 5,
+      avatar:
+        "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg"
+    },
+    {
+      name: "Ritika Joshi",
+      role: "Operations Lead",
+      company: "HealthBridge",
+      content:
+        "They were proactive, responsive, and very transparent about timelines. No surprises, just consistent delivery.",
+      rating: 5,
+      avatar:
+        "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg"
+    },
+    {
+      name: "Mohit Agarwal",
+      role: "Founder",
+      company: "EduStack",
+      content:
+        "Bug fixing, performance optimization, and new features — EasyDev handled everything without us worrying about tech.",
+      rating: 5,
+      avatar:
+        "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg"
+    }
+  ]
+  }
+  ,
 
   // =============================
   // Contact Section
@@ -344,21 +440,42 @@ export const siteContent = {
     faqs: [
       {
         q: "How do projects usually start?",
-        a: "We begin with a short discussion to understand goals, scope, and timelines before proposing a clear plan."
+        a: "We begin with a short conversation to understand your goals, current challenges, and timelines. Based on that, we suggest a clear and practical plan."
+      },
+      {
+        q: "What kind of projects do you work on?",
+        a: "We work on web applications, SaaS products, MVPs, backend systems, UI/UX improvements, and long-term product development."
       },
       {
         q: "Do you work with international clients?",
-        a: "Yes, we collaborate with teams worldwide and adapt to different time zones."
+        a: "Yes, we collaborate with teams worldwide and are comfortable working across different time zones."
       },
       {
-        q: "Do you offer long-term support?",
-        a: "Absolutely. Many of our clients work with us for ongoing development and maintenance."
+        q: "Can you take over or improve an existing project?",
+        a: "Absolutely. We often audit existing codebases, fix issues, improve performance, and continue development without disrupting current users."
       },
       {
-        q: "Can you take over existing projects?",
-        a: "Yes, we frequently audit, fix, and improve existing codebases."
+        q: "How do you handle communication during a project?",
+        a: "We keep communication simple and transparent using tools like Slack, email, and regular check-ins to ensure everything stays aligned."
+      },
+      {
+        q: "Do you offer long-term support and maintenance?",
+        a: "Yes. Many clients work with us long-term for ongoing development, improvements, performance optimization, and technical support."
+      },
+      {
+        q: "How do you estimate project timelines and cost?",
+        a: "After understanding the scope, we provide realistic estimates with clear milestones. We focus on predictable delivery rather than overpromising."
+      },
+      {
+        q: "Can you help scale a product as usage grows?",
+        a: "Yes. We design systems with scalability in mind and help optimize infrastructure, performance, and architecture as growth increases."
+      },
+      {
+        q: "What makes EasyDev different from other development agencies?",
+        a: "We work as partners, not just service providers. We care about product quality, long-term growth, and making smart technical decisions that support real business goals."
       }
     ]
+
   },
   // =============================
   // Portfolio Section
