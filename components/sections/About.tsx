@@ -22,10 +22,12 @@ export default function About() {
             {siteContent.about.subtitle}
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">our Journey</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              our Journey
+            </h3>
             <div className="space-y-6">
               {siteContent.about.journey.map((paragraph, index) => (
                 <p key={index} className="text-gray-700 leading-relaxed">
@@ -34,9 +36,11 @@ export default function About() {
               ))}
             </div>
           </div>
-          
+
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Technical Skills</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              Technical Skills
+            </h3>
             <div className="flex flex-wrap gap-3 mb-8">
               {skills.map((skill) => (
                 <Badge
@@ -48,13 +52,18 @@ export default function About() {
                 </Badge>
               ))}
             </div>
-            
+
             <div className="grid grid-cols-2 gap-4">
               {achievements.map((achievement, index) => (
-                <Card key={index} className="border-none shadow-md hover:shadow-lg transition-shadow">
+                <Card
+                  key={index}
+                  className="border-none shadow-md hover:shadow-lg transition-shadow"
+                >
                   <CardContent className="p-4 text-center">
                     <achievement.icon className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                    <h4 className="font-semibold text-gray-900 mb-1">{achievement.title}</h4>
+                    <h4 className="font-semibold text-gray-900 mb-1">
+                      {achievement.title}
+                    </h4>
                     <p className="text-sm text-gray-600">{achievement.desc}</p>
                   </CardContent>
                 </Card>
@@ -62,9 +71,9 @@ export default function About() {
             </div>
           </div>
         </div>
-        
+
         {/* Experience Timeline */}
-        <div className="mb-16">
+        {/* <div className="mb-16">
           <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Professional Experience</h3>
           <div className="max-w-4xl mx-auto">
             <div className="space-y-8">
@@ -91,7 +100,7 @@ export default function About() {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
