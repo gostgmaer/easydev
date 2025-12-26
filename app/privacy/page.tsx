@@ -1,6 +1,6 @@
-import LegalLayout from "@/components/LegalLayout";
+import LegalLayout from "@/components/policy";
 
-// import LegalLayout from "@/components/LegalLayout";
+// import LegalLayout from "@/components/";
 export const metadata = {
   title: "Privacy Policy | EasyDev",
   description:
