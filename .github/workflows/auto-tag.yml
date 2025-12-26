@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'src/version.ts'
 
 permissions:
   contents: write
@@ -13,47 +15,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Fetch tags
-        run: git fetch --tags
-
       - name: Calculate next tag
-        id: version
         run: |
-          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-          echo "Last tag: $LAST_TAG"
+          git fetch --tags
 
-          VERSION=${LAST_TAG#v}
-          IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+          LAST_TAG=$(git tag --list 'v*' --sort=-v:refname | head -n 1)
+          [ -z "$LAST_TAG" ] && LAST_TAG="v0.0.0"
+
+          VERSION="${LAST_TAG#v}"
+
+          MAJOR=$(echo "$VERSION" | cut -d. -f1)
+          MINOR=$(echo "$VERSION" | cut -d. -f2)
+          PATCH=$(echo "$VERSION" | cut -d. -f3)
+
+          MAJOR=${MAJOR:-0}
+          MINOR=${MINOR:-0}
+          PATCH=${PATCH:-0}
+
           PATCH=$((PATCH + 1))
 
           NEW_TAG="v$MAJOR.$MINOR.$PATCH"
-          echo "New tag: $NEW_TAG"
-
           echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
 
-      - name: Ensure version file exists
+      - name: Write version file
         run: |
           mkdir -p src
           echo "export const APP_VERSION = \"$NEW_TAG\";" > src/version.ts
 
       - name: Commit version file
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-
+          git config user.name "gostgmaer"
+          git config user.email "kishor81160@gmail.com"
           git add src/version.ts
-          git commit -m "chore: release $NEW_TAG" || echo "Nothing to commit"
+          git commit -m "chore: release $NEW_TAG" || echo "No changes"
 
-      - name: Create tag
+      - name: Create & push tag
         run: |
-          git tag $NEW_TAG || echo "Tag already exists"
-
-      - name: Push changes
-        run: |
+          git tag -a "$NEW_TAG" -m "Release $NEW_TAG"
           git push origin main
-          git push origin $NEW_TAG
+          git push origin "$NEW_TAG"
