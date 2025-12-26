@@ -48,7 +48,6 @@ jobs:
 
       - name: Commit version file
         run: |
-
           git add src/version.ts
           git commit -m "chore: auto release $NEW_TAG" || echo "No changes"
 

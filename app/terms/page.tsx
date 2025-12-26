@@ -1,4 +1,4 @@
-import LegalLayout from "@/components/LegalLayout";
+import LegalLayout from "@/components/policy";
 
 export const metadata = {
   title: "Terms & Conditions | EasyDev",
