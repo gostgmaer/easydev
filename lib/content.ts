@@ -6,23 +6,25 @@ export const siteContent = {
   // =============================
   personal: {
     name: "EasyDev",
-    title: "Full-Service Web Development Agency",
+    title: "Full-Service Web Development & Digital Solutions Agency",
     email: "contact@easydev.in",
     phone: "+91 8637317273",
     location: "Mumbai, India",
     website: "https://easydev.in",
     logo: "/logo.png",
-    tagline: "Building Reliable Web Products with Care, Clarity & Code",
-    bio: "EasyDev is a full-service web development agency helping startups, founders, and growing businesses turn ideas into reliable digital products. From frontend and backend development to database design, DevOps, and long-term maintenance — we take ownership of the entire engineering lifecycle so our clients can focus on growth.",
+    tagline:
+      "Custom Web Development, SaaS Solutions & Scalable Digital Products",
+    bio:
+      "EasyDev is a results-driven web development agency specializing in custom web development, full-stack engineering, SaaS platforms, and scalable digital solutions. We partner with startups, growing businesses, and enterprises to design, build, deploy, and maintain high-performance web applications. Our team combines clean code, modern UI/UX design, secure backend architecture, and reliable DevOps practices to deliver digital products that scale with your business.",
     availability: "Currently accepting new projects",
-    responseTime: "Usually replies within 12 hours",
+    responseTime: "Usually responds within 6 hours",
     address: {
       streetAddress: "B-12, Andheri West",
       addressLocality: "Mumbai",
       addressRegion: "Maharashtra",
       postalCode: "400058",
-      addressCountry: "IN"
-    }
+      addressCountry: "IN",
+    },
   },
 
   // =============================

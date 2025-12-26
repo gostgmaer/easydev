@@ -37,7 +37,9 @@ export default function ContactInfo() {
 
       {/* Quick Actions */}
       <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-        <h3 className="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h3>
+        <h3 className="text-xl font-semibold text-gray-900 mb-4">
+          Quick Actions
+        </h3>
         <div className="space-y-3">
           <a
             href="mailto:hello@developer.com"
@@ -56,7 +58,7 @@ export default function ContactInfo() {
             Schedule Call
           </a>
           <a
-            href="https://wa.me/15551234567"
+            href="https://wa.me/+918637317273"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full border border-gray-300 hover:border-gray-400 hover:bg-gray-50 text-gray-700 font-medium py-3 px-4 rounded-lg flex items-center justify-center transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
