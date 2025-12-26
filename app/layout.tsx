@@ -359,7 +359,7 @@ const structuredData = {
       sameAs: [
         "https://github.com/easydev",
         "https://linkedin.com/in/easydev",
-        "https://twitter.com/easydev",
+        // "https://twitter.com/easydev",
       ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
