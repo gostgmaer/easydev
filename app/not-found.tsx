@@ -43,7 +43,7 @@ export default function NotFound() {
         <div className="pt-8">
           <p className="text-sm text-muted-foreground">
             If you think this is a mistake, please{" "}
-            <Link href="/contact" className="text-primary hover:underline">
+            <Link href="/#contact" className="text-primary hover:underline">
               contact me
             </Link>
           </p>
