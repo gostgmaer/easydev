@@ -41,7 +41,7 @@ export default function ContactForm() {
         timelinePreference: "",
       },
       message: {
-        subject: "",
+        subject: "Website Development Request",
         body: "",
       },
       preferences: {
@@ -59,7 +59,6 @@ export default function ContactForm() {
     setIsSubmitting(true);
 
     try {
-
       await submitContactForm(data);
       setSubmitSuccess(true);
       reset();
@@ -163,7 +162,7 @@ export default function ContactForm() {
                 <input
                   {...register("client.phone")}
                   type="tel"
-                  placeholder="+1 234 567 890"
+                  placeholder="+91 758 567 890"
                   className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
                     errors.client?.phone
                       ? "border-red-300 focus:ring-red-500 focus:border-red-500"
@@ -285,11 +284,11 @@ export default function ContactForm() {
 
         {/* Message */}
         <div className="space-y-6">
-          <h4 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+          {/* <h4 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
             Project Message
-          </h4>
+          </h4> */}
 
-          <FormField
+          {/* <FormField
             label="Project Type"
             required
             error={errors.message?.subject}
@@ -305,7 +304,7 @@ export default function ContactForm() {
                   : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
               }`}
             />
-          </FormField>
+          </FormField> */}
 
           <FormField
             label="Project Description"
@@ -355,8 +354,8 @@ export default function ContactForm() {
                   className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1"
                 />
                 <span className="text-sm text-gray-700">
-                  I&apos;d like to receive occasional updates about new services and
-                  web development tips.
+                  I&apos;d like to receive occasional updates about new services
+                  and web development tips.
                 </span>
               </label>
 

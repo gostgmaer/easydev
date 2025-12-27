@@ -49,9 +49,9 @@ export default function Hero() {
             </h1>
 
             <div className="text-xl sm:text-2xl text-gray-600 mb-8 min-h-[2rem]">
-              <span className="font-semibold transition-all duration-500 ease-in-out">
+              <strong className="font-semibold transition-all duration-500 ease-in-out">
                 {roles[currentRole]}
-              </span>
+              </strong>
             </div>
 
             <p className="text-lg text-gray-700 mb-8 max-w-2xl">
