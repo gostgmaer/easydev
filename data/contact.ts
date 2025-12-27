@@ -7,20 +7,20 @@ import {
 import type { ContactInfo, ServiceOption, FAQ } from "../types/contact";
 
 export const SERVICE_OPTIONS: ServiceOption[] = [
-  { key: "custom_website", value: "Custom Website Development" },
-  { key: "responsive_design", value: "Mobile-Friendly (Responsive) Websites" },
-  { key: "landing_page", value: "Landing Page & Marketing Website Creation" },
-  { key: "backend_api", value: "Backend Functionality & API Setup" },
-  { key: "admin_dashboard", value: "Admin Panel & Dashboard Development" },
-  { key: "bug_fixing", value: "Bug Fixing & Issue Resolution" },
-  { key: "payment_integration", value: "Payment Gateway Integration" },
-  { key: "third_party_integration", value: "Third-Party Integrations" },
-  { key: "auth_setup", value: "User Login & Secure Authentication Setup" },
-  { key: "realtime_features", value: "Real-Time Features (Chat, Notifications, etc.)" },
-  { key: "seo_friendly", value: "SEO-Friendly Web Development" },
-  { key: "consultation", value: "Web Strategy & Consultation" },
-  { key: "maintenance", value: "Website Maintenance" },
+  { key: "custom_website", value: "Custom Website & Web App Development" },
+  // { key: "landing_page", value: "High-Converting Landing Page Development" },
+  { key: "backend_api", value: "Scalable Backend Development & API Integration" },
+  { key: "admin_dashboard", value: "Admin Dashboard & Internal Tools" },
+  { key: "bug_fixing", value: "Bug Fixing, Optimization & Performance Enhancements" },
+  { key: "payment_integration", value: "Payment Gateway Setup & Integration" },
+  { key: "third_party_integration", value: "Third-Party API & Plugin Integrations" },
+  { key: "auth_setup", value: "Secure Authentication & User Management" },
+  { key: "realtime_features", value: "Real-Time Features (Chat, Notifications, Live Updates)" },
+  { key: "seo_friendly", value: "SEO-Optimized Web Development" },
+  { key: "consultation", value: "Product Strategy & Technical Consultation" },
+  { key: "maintenance", value: "Ongoing Maintenance & Support" },
 ];
+
 
 export const BUDGET_RANGES: string[] = [
   "Under $5,000",
