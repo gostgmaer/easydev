@@ -24,10 +24,18 @@ export const generateSectionMeta = (section: string) => {
 				.slice(0, 3)
 				.join(", ")}.`,
 		},
-		contact: { title: `Contact ${siteContent.personal.name} - Get In Touch`, description: `Contact ${siteContent.personal.name} for professional development services. ${siteContent.personal.responseTime} response time.` },
+		contact: {
+			title: `Contact ${siteContent.personal.name} - Get In Touch`,
+			description: `Contact ${siteContent.personal.name} for professional development services. ${siteContent.personal.responseTime} response time.`,
+		},
 	};
 
-	return sectionMeta[section as keyof typeof sectionMeta] || { title: baseTitle, description: baseDescription };
+	return (
+		sectionMeta[section as keyof typeof sectionMeta] || {
+			title: baseTitle,
+			description: baseDescription,
+		}
+	);
 };
 
 // Generate structured data for projects
@@ -51,5 +59,13 @@ export const generateBreadcrumbData = (currentPage: string) => {
 		{ name: currentPage, url: `${siteContent.seo.url}#${currentPage.toLowerCase()}` },
 	];
 
-	return { "@type": "BreadcrumbList", itemListElement: breadcrumbs.map((item, index) => ({ "@type": "ListItem", position: index + 1, name: item.name, item: item.url })) };
+	return {
+		"@type": "BreadcrumbList",
+		itemListElement: breadcrumbs.map((item, index) => ({
+			"@type": "ListItem",
+			position: index + 1,
+			name: item.name,
+			item: item.url,
+		})),
+	};
 };
