@@ -60,6 +60,7 @@ export const API_ENDPOINTS = {
 	ADMIN_ANALYTICS: `${baseURL}/admin/analytics`,
 };
 
+
 // Contact Form API Integration
 export const submitContactForm = async (formData: any) => {
 	try {
