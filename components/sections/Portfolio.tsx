@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { trackEvent } from "@/lib/api";
+import { useState, useEffect } from "react";
+import { trackEvent, fetchProjects } from "@/lib/api";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -22,16 +22,26 @@ export default function Portfolio() {
     "Real Estate",
   ];
 
-  const projects = siteContent.portfolio.projects.map((project) => ({
-    ...project,
-    liveUrl: "#",
-    githubUrl: "#",
-  }));
+  const [projects, setProjects] = useState(
+		siteContent.portfolio.projects.map((p) => ({ ...p, liveUrl: "#", githubUrl: "#" })),
+	);
 
-  const filteredProjects =
-    filter === "All"
-      ? projects
-      : projects.filter((project) => project.category === filter);
+	useEffect(() => {
+		let mounted = true;
+		(async () => {
+			try {
+				const remote = await fetchProjects();
+				if (mounted && Array.isArray(remote) && remote.length > 0) setProjects(remote as any);
+			} catch (e) {
+				// fetchProjects already logs errors; leave projects as fallback
+			}
+		})();
+		return () => {
+			mounted = false;
+		};
+	}, []);
+
+  const filteredProjects = filter === "All" ? projects : projects.filter((project) => project.category === filter);
 
   const handleProjectView = async (projectTitle: string) => {
     await trackEvent({

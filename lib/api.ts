@@ -143,6 +143,30 @@ export const fetchProjects = async () => {
 	}
 };
 
+// Fetch Testimonials
+export const fetchTestimonials = async () => {
+	try {
+		const response = await fetch(API_ENDPOINTS.TESTIMONIALS);
+		if (!response.ok) throw new Error("Failed to fetch testimonials");
+		return await response.json();
+	} catch (error) {
+		console.error("Testimonials fetch error:", error);
+		return [];
+	}
+};
+
+// Fetch Blog Posts
+export const fetchBlogPosts = async () => {
+	try {
+		const response = await fetch(API_ENDPOINTS.BLOG);
+		if (!response.ok) throw new Error("Failed to fetch blog posts");
+		return await response.json();
+	} catch (error) {
+		console.error("Blog fetch error:", error);
+		return [];
+	}
+};
+
 // Email Service Integration
 export const sendEmail = async (emailData: { to: string; subject: string; html: string; text?: string }) => {
 	try {

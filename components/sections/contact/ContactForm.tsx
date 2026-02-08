@@ -12,7 +12,8 @@ import {
   TIMELINE_OPTIONS,
 } from "../../../data/contact";
 import FormField from "./FormField";
-import { submitContactForm } from "@/lib/api";
+import { submitContactForm, subscribeToNewsletter } from "@/lib/api";
+import { useErrorModal } from "@/components/ui/error-modal";
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -54,22 +55,37 @@ export default function ContactForm() {
 
   const watchedServices = watch("projectDetails.servicesInterested");
   const messageLength = watch("message.body")?.length || 0;
+  const { showError } = useErrorModal();
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
 
     try {
-      await submitContactForm(data);
-      setSubmitSuccess(true);
-      reset();
+			await submitContactForm(data);
 
-      // Reset success state after 5 seconds
-      setTimeout(() => setSubmitSuccess(false), 15000);
-    } catch (error) {
+			// Subscribe to newsletter if requested (non-blocking)
+			if (data.preferences?.newsletterOptIn && data.client?.email) {
+				try {
+					await subscribeToNewsletter(data.client.email);
+				} catch (err) {
+					console.error("Newsletter subscription failed:", err);
+					if (showError)
+						showError("Newsletter subscription failed", (err as Error)?.message || "Please try subscribing later.");
+				}
+			}
+
+			setSubmitSuccess(true);
+			reset();
+
+			// Reset success state after 5 seconds
+			setTimeout(() => setSubmitSuccess(false), 15000);
+		} catch (error) {
       console.error("Form submission error:", error);
-      alert(
-        "Sorry, there was an error sending your message. Please try again or contact me directly."
-      );
+      if (showError) {
+				showError("Failed to send message", (error as Error)?.message || "Please try again later.");
+			} else {
+				alert((error as Error)?.message || "Sorry, there was an error sending your message.");
+			}
     } finally {
       setIsSubmitting(false);
     }

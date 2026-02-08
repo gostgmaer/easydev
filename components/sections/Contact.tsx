@@ -10,6 +10,7 @@ import { Mail, Phone, MapPin, Clock, Send, MessageCircle, Calendar, Globe } from
 import { siteContent } from "@/lib/content";
 import ContactForm from "./contact/ContactForm";
 import ContactInfo from "./contact/ContactInfo";
+import { useErrorModal } from "@/components/ui/error-modal";
 
 const SERVICE_OPTIONS = [
 	// Short Core Services
@@ -62,6 +63,8 @@ export default function Contact() {
 
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
+	const { showError } = useErrorModal();
+
 	const handleClientChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 		setFormData((prev) => ({ ...prev, client: { ...prev.client, [name]: value } }));
@@ -98,18 +101,26 @@ export default function Contact() {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (!formData.preferences.privacyConsent) {
-			alert("Please agree to the Privacy Policy before submitting.");
+			showError("Privacy consent required", "Please agree to the Privacy Policy before submitting.");
 			return;
 		}
 
 		setIsSubmitting(true);
 
 		try {
-			await trackEvent({ event: "contact_form_submit", category: "Contact", label: formData.message.subject || "New Inquiry" });
+			await trackEvent({
+				event: "contact_form_submit",
+				category: "Contact",
+				label: formData.message.subject || "New Inquiry",
+			});
 
 			const payload = {
 				client: formData.client,
-				projectDetails: { ...formData.projectDetails, budgetRange: formData.projectDetails.budgetRange || "Not sure", timelinePreference: formData.projectDetails.timelinePreference || "Flexible" },
+				projectDetails: {
+					...formData.projectDetails,
+					budgetRange: formData.projectDetails.budgetRange || "Not sure",
+					timelinePreference: formData.projectDetails.timelinePreference || "Flexible",
+				},
 				message: { subject: formData.message.subject || "New Inquiry", body: formData.message.body },
 				preferences: formData.preferences,
 			};
@@ -123,12 +134,13 @@ export default function Contact() {
 				preferences: { preferredContactMethod: "Email", newsletterOptIn: false, privacyConsent: false },
 			});
 
+			// simple success feedback — keep using alert for success (non-error)
 			alert("Thank you for your message! I'll get back to you within 24 hours.");
 
 			await trackEvent({ event: "contact_form_success", category: "Contact", label: payload.message.subject });
 		} catch (error) {
 			console.error("Form submission error:", error);
-			alert("Sorry, there was an error sending your message. Please try again or contact me directly.");
+			showError("Failed to send message", (error as Error)?.message || "Please try again or contact me directly.");
 
 			await trackEvent({ event: "contact_form_error", category: "Contact", label: "submission_failed" });
 		} finally {
