@@ -2,6 +2,9 @@ import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Services from "@/components/sections/Services";
 import Portfolio from "@/components/sections/Portfolio";
+import CaseStudies from "@/components/sections/CaseStudies";
+import Pricing from "@/components/sections/Pricing";
+import FAQ from "@/components/sections/FAQ";
 import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
@@ -9,27 +12,32 @@ import Header from "@/components/layout/Header";
 import CommingSoon from "@/components/comingsoon";
 
 export default function Home() {
+  console.log("asda");
+  
   return (
-    <div className="min-h-screen bg-white">
-      {process.env.IS_MENTAINCE == "true" ? (
-        <main>
-          <CommingSoon />
-        </main>
-      ) : (
-        <>
-          {" "}
-          <Header />
-          <main>
-            <Hero />
-            <About />
-            <Services />
-            <Portfolio />
-            <Testimonials />
-            <Contact />
-          </main>
-          <Footer />
-        </>
-      )}
-    </div>
-  );
+		<div className='min-h-screen bg-white'>
+			{process.env.IS_MENTAINCE == "true" ?
+				<main>
+					<CommingSoon />
+				</main>
+			:	<>
+					{" "}
+					<Header />
+					<main>
+						<Hero />
+						<About />
+						<Services />
+						<Portfolio />
+						<CaseStudies />
+						<Pricing />
+						<Testimonials />
+
+						<Contact />
+						<FAQ />
+					</main>
+					<Footer />
+				</>
+			}
+		</div>
+	);
 }
