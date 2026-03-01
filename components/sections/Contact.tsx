@@ -177,20 +177,21 @@ export default function Contact() {
 					</div>
 				</div>
 
-				{/* FAQ Section */}
-				<div className='mt-16'>
-					<h3 className='text-2xl font-bold text-gray-900 text-center mb-8'>Frequently Asked Questions</h3>
-					<div className='grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto'>
-						{siteContent.contact.faqs.map((faq: any, index: number) => (
-							<Card
-								key={index}
-								className='border-none shadow-md'>
-								<CardContent className='p-6'>
-									<h4 className='font-semibold text-gray-900 mb-2'>{faq.q}</h4>
-									<p className='text-gray-600 text-sm'>{faq.a}</p>
-								</CardContent>
-							</Card>
-						))}
+				{/* Calendly Booking Section */}
+				<div className='mt-16 max-w-4xl mx-auto'>
+					<div className='text-center mb-12'>
+						<h3 className='text-2xl font-bold text-gray-900 mb-4'>Schedule a Free Consultation</h3>
+						<p className='text-gray-600'>Have specific questions? Book a 30-minute call with our team.</p>
+					</div>
+					<div className='bg-white rounded-2xl shadow-lg p-8 border border-gray-200'>
+						<iframe
+							title='Book a consultation with EasyDev'
+							src='https://calendly.com/easydev/consultation?hide_event_type_details=1&hide_gdpr_policy=1'
+							width='100%'
+							height='600'
+							frameBorder='0'
+							loading='lazy'
+							className='rounded-lg'></iframe>
 					</div>
 				</div>
 			</div>

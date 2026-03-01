@@ -1,9 +1,10 @@
-// API Integration Placeholders
+// API Integration with Comprehensive Error Handling
 // Replace these with actual API endpoints and implementations
 
 import { ContactFormData, ContactSubmissionResponse } from "@/types/contact";
 import { veriable } from "./config";
 import { ContactFormDataPre } from "@/components/sections/contact/Form";
+import { safeFetch, safeGet, safePost } from "./safe-fetch";
 
 const { baseURL } = veriable;
 
@@ -60,272 +61,328 @@ export const API_ENDPOINTS = {
 	ADMIN_ANALYTICS: `${baseURL}/admin/analytics`,
 };
 
-
-// Contact Form API Integration
+/**
+ * Contact Form API Integration
+ */
 export const submitContactForm = async (formData: any) => {
 	try {
-		console.log("📧 Contact Form Submission (PLACEHOLDER):", formData);
-		// Placeholder API call
-		const response = await fetch(API_ENDPOINTS.CONTACT_FORM, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(formData) });
-		if (!response.ok) {
-			throw new Error("Failed to submit form");
+		// Validate formData
+		if (!formData) {
+			throw new Error("Form data is required");
 		}
-		return await response.json();
+
+		console.log("📧 Contact Form Submission:", {
+			...formData,
+			message: formData.message?.body?.substring(0, 50) + "..." || "N/A",
+		});
+
+		const result = await safePost<any>(API_ENDPOINTS.CONTACT_FORM, formData, { timeout: 10000 });
+
+		if (!result.success) {
+			throw new Error(result.error || "Failed to submit contact form.");
+		}
+
+		console.log("✅ Contact form submitted successfully");
+		return result.data;
 	} catch (error) {
-		console.error("Contact form submission error:", error);
+		console.error("❌ Contact form submission error:", error instanceof Error ? error.message : String(error));
 		throw error;
 	}
 };
 
-// Newsletter Subscription API
+/**
+ * Newsletter Subscription API
+ */
 export const subscribeToNewsletter = async (email: string) => {
 	try {
-		// TODO: Replace with actual newsletter service
-		// Example integrations:
-		// - Mailchimp API
-		// - ConvertKit API
-		// - Substack API
-		// - Custom email service
+		// Validate email
+		if (!email || typeof email !== "string") {
+			throw new Error("Valid email address is required");
+		}
 
-		console.log("📬 Newsletter Subscription (PLACEHOLDER):", email);
+		const normalizedEmail = email.trim().toLowerCase();
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (!emailRegex.test(normalizedEmail)) {
+			throw new Error("Invalid email format");
+		}
 
-		const response = await fetch(API_ENDPOINTS.NEWSLETTER, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
+		console.log("📬 Newsletter Subscription (PLACEHOLDER):", normalizedEmail);
 
-		return await response.json();
+		const result = await safePost<any>(API_ENDPOINTS.NEWSLETTER, { email: normalizedEmail }, { timeout: 10000 });
+
+		if (!result.success) {
+			throw new Error(result.error || "Failed to subscribe to newsletter.");
+		}
+
+		console.log("✅ Newsletter subscription successful");
+		return result.data;
 	} catch (error) {
-		console.error("Newsletter subscription error:", error);
+		console.error("❌ Newsletter subscription error:", error instanceof Error ? error.message : String(error));
 		throw error;
 	}
 };
 
-// Analytics Event Tracking
-export const trackEvent = async (eventData: { event: string; category: string; label?: string; value?: number }) => {
+/**
+ * Analytics Event Tracking API
+ * Non-critical - errors should not affect user experience
+ */
+export const trackEvent = async (eventData: any) => {
 	try {
-		// TODO: Replace with actual analytics service
-		// Example integrations:
-		// - Google Analytics 4
-		// - Mixpanel
-		// - Amplitude
-		// - Custom analytics
+		// Validate event data
+		if (!eventData || typeof eventData !== "object") {
+			console.warn("⚠️ Invalid event data for analytics");
+			return;
+		}
 
 		console.log("📊 Analytics Event (PLACEHOLDER):", eventData);
 
 		// Google Analytics 4 example
-		if (typeof window !== "undefined" && window.gtag) {
-			window.gtag("event", eventData.event, { event_category: eventData.category, event_label: eventData.label, value: eventData.value });
+		if (typeof window !== "undefined" && (window as any).gtag) {
+			try {
+				(window as any).gtag("event", eventData.event, {
+					event_category: eventData.category,
+					event_label: eventData.label,
+					value: eventData.value,
+				});
+			} catch (gaError) {
+				console.warn(
+					"⚠️ Google Analytics error (non-critical):",
+					gaError instanceof Error ? gaError.message : String(gaError),
+				);
+			}
 		}
 
-		// Custom analytics API call
-		await fetch(API_ENDPOINTS.ANALYTICS, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(eventData) });
+		// Custom analytics API call - fire and forget
+		safePost(API_ENDPOINTS.ANALYTICS, eventData, { timeout: 5000 })
+			.then((result) => {
+				if (!result.success) {
+					console.warn("⚠️ Analytics error:", result.error);
+				}
+			})
+			.catch((error: any) => {
+				if (error instanceof Error && error.name !== "AbortError") {
+					console.warn("⚠️ Analytics tracking error (non-critical):", error.message);
+				}
+			});
 	} catch (error) {
-		console.error("Analytics tracking error:", error);
+		// Silently fail - analytics is not critical
+		console.warn("⚠️ Analytics error (ignored):", error instanceof Error ? error.message : String(error));
 	}
 };
 
-// Dynamic Content Fetching (if using CMS)
+/**
+ * Fetch Projects with Error Handling
+ */
 export const fetchProjects = async () => {
 	try {
 		// TODO: Replace with actual CMS or database API
-		// Example integrations:
-		// - Strapi CMS
-		// - Contentful
-		// - Sanity
-		// - WordPress REST API
-		// - Custom database API
-
 		console.log("🗂️ Fetching Projects (PLACEHOLDER)");
 
-		const response = await fetch(API_ENDPOINTS.PROJECTS);
-		return await response.json();
+		const result = await safeGet<any[]>(API_ENDPOINTS.PROJECTS, { timeout: 10000 });
+
+		if (!result.success) {
+			console.warn("⚠️ Projects fetch error:", result.error);
+			return [];
+		}
+
+		return Array.isArray(result.data) ? result.data : [];
 	} catch (error) {
-		console.error("Projects fetch error:", error);
+		console.error("❌ Projects fetch error:", error instanceof Error ? error.message : String(error));
 		return [];
 	}
 };
 
-// Fetch Testimonials
+/**
+ * Fetch Testimonials with Error Handling
+ */
 export const fetchTestimonials = async () => {
 	try {
-		const response = await fetch(API_ENDPOINTS.TESTIMONIALS);
-		if (!response.ok) throw new Error("Failed to fetch testimonials");
-		return await response.json();
+		const result = await safeGet<any[]>(API_ENDPOINTS.TESTIMONIALS, { timeout: 10000 });
+
+		if (!result.success) {
+			console.warn("⚠️ Testimonials fetch error:", result.error);
+			return [];
+		}
+
+		return Array.isArray(result.data) ? result.data : [];
 	} catch (error) {
-		console.error("Testimonials fetch error:", error);
+		console.error("❌ Testimonials fetch error:", error instanceof Error ? error.message : String(error));
 		return [];
 	}
 };
 
-// Fetch Blog Posts
+/**
+ * Fetch Blog Posts with Error Handling
+ */
 export const fetchBlogPosts = async () => {
 	try {
-		const response = await fetch(API_ENDPOINTS.BLOG);
-		if (!response.ok) throw new Error("Failed to fetch blog posts");
-		return await response.json();
+		const result = await safeGet<any[]>(API_ENDPOINTS.BLOG, { timeout: 10000 });
+
+		if (!result.success) {
+			console.warn("⚠️ Blog fetch error:", result.error);
+			return [];
+		}
+
+		return Array.isArray(result.data) ? result.data : [];
 	} catch (error) {
-		console.error("Blog fetch error:", error);
+		console.error("❌ Blog fetch error:", error instanceof Error ? error.message : String(error));
 		return [];
 	}
 };
 
-// Email Service Integration
+/**
+ * Send Email with Error Handling
+ */
 export const sendEmail = async (emailData: { to: string; subject: string; html: string; text?: string }) => {
 	try {
-		// TODO: Replace with actual email service
-		// Example integrations:
-		// - SendGrid API
-		// - Mailgun API
-		// - AWS SES
-		// - Nodemailer with SMTP
-		// - Resend API
+		// Validate email data
+		if (!emailData?.to || !emailData?.subject || !emailData?.html) {
+			throw new Error("Missing required email fields: to, subject, html");
+		}
 
-		console.log("✉️ Sending Email (PLACEHOLDER):", emailData);
+		console.log("✉️ Sending Email (PLACEHOLDER):", { to: emailData.to, subject: emailData.subject });
 
-		const response = await fetch(API_ENDPOINTS.EMAIL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(emailData) });
+		const result = await safePost<any>(API_ENDPOINTS.EMAIL, emailData, { timeout: 10000 });
 
-		return await response.json();
+		if (!result.success) {
+			throw new Error(result.error || "Failed to send email.");
+		}
+
+		console.log("✅ Email sent successfully");
+		return result.data;
 	} catch (error) {
-		console.error("Email sending error:", error);
+		console.error("❌ Email sending error:", error instanceof Error ? error.message : String(error));
 		throw error;
 	}
 };
 
-// File Upload Service
+/**
+ * File Upload with Error Handling
+ */
 export const uploadFile = async (file: File, type: "resume" | "portfolio" | "image") => {
 	try {
-		// TODO: Replace with actual file storage service
-		// Example integrations:
-		// - AWS S3
-		// - Cloudinary
-		// - Google Cloud Storage
-		// - Azure Blob Storage
-		// - Supabase Storage
+		// Validate file
+		if (!(file instanceof File)) {
+			throw new Error("Invalid file object");
+		}
 
-		console.log("📁 File Upload (PLACEHOLDER):", { fileName: file.name, type });
+		if (file.size === 0) {
+			throw new Error("File is empty");
+		}
+
+		console.log("📁 File Upload (PLACEHOLDER):", { fileName: file.name, fileSize: file.size, type });
 
 		const formData = new FormData();
 		formData.append("file", file);
 		formData.append("type", type);
 
-		const response = await fetch(API_ENDPOINTS.UPLOAD, { method: "POST", body: formData });
-
-		return await response.json();
-	} catch (error) {
-		console.error("File upload error:", error);
-		throw error;
-	}
-};
-
-// CMS Content Management
-export const updateContent = async (section: string, content: any) => {
-	try {
-		// TODO: Replace with actual CMS API
-		// Example integrations:
-		// - Strapi Admin API
-		// - Contentful Management API
-		// - Sanity Client
-		// - Custom admin API
-
-		console.log("📝 Content Update (PLACEHOLDER):", { section, content });
-
-		const response = await fetch(`${API_ENDPOINTS.CMS}/${section}`, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${process.env.CMS_API_KEY}`, // TODO: Add actual API key
-			},
-			body: JSON.stringify(content),
+		const result = await safeFetch<any>(API_ENDPOINTS.UPLOAD, {
+			method: "POST",
+			body: formData,
+			timeout: 30000, // 30s for file upload
 		});
 
-		return await response.json();
-	} catch (error) {
-		console.error("Content update error:", error);
-		throw error;
-	}
-};
-
-// Social Media Integration
-export const shareToSocial = async (platform: "twitter" | "linkedin" | "facebook", content: { text: string; url: string; image?: string }) => {
-	try {
-		// TODO: Replace with actual social media APIs
-		// Example integrations:
-		// - Twitter API v2
-		// - LinkedIn API
-		// - Facebook Graph API
-		// - Buffer API
-		// - Hootsuite API
-
-		console.log("📱 Social Media Share (PLACEHOLDER):", { platform, content });
-
-		const shareUrls = {
-			twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(content.text)}&url=${encodeURIComponent(content.url)}`,
-			linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(content.url)}`,
-			facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(content.url)}`,
-		};
-
-		// Open share dialog (client-side)
-		if (typeof window !== "undefined") {
-			window.open(shareUrls[platform], "_blank", "width=600,height=400");
+		if (!result.success) {
+			throw new Error(result.error || "Upload failed.");
 		}
 
-		return { success: true, platform, url: shareUrls[platform] };
+		console.log("✅ File uploaded successfully");
+		return result.data;
 	} catch (error) {
-		console.error("Social media share error:", error);
+		console.error("❌ File upload error:", error instanceof Error ? error.message : String(error));
 		throw error;
 	}
 };
 
-// Search Functionality (if added)
-export const searchContent = async (query: string, filters?: { type?: "projects" | "blog" | "all"; category?: string }) => {
+/**
+ * Search Content with Error Handling
+ */
+export const searchContent = async (
+	query: string,
+	filters?: { type?: "projects" | "blog" | "all"; category?: string },
+) => {
 	try {
-		// TODO: Replace with actual search service
-		// Example integrations:
-		// - Algolia Search
-		// - Elasticsearch
-		// - Fuse.js (client-side)
-		// - Custom search API
+		// Validate query
+		if (!query || typeof query !== "string" || query.trim().length === 0) {
+			throw new Error("Search query is required");
+		}
 
 		console.log("🔍 Content Search (PLACEHOLDER):", { query, filters });
 
-		const response = await fetch(`/search?q=${encodeURIComponent(query)}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(filters) });
+		const result = await safePost<{ results: any[] }>(`/search?q=${encodeURIComponent(query)}`, filters || {}, {
+			timeout: 10000,
+		});
 
-		return await response.json();
+		if (!result.success) {
+			console.warn("⚠️ Search error:", result.error);
+			return { results: [] };
+		}
+
+		return result.data || { results: [] };
 	} catch (error) {
-		console.error("Search error:", error);
+		console.error("❌ Search error:", error instanceof Error ? error.message : String(error));
 		return { results: [] };
 	}
 };
 
-// Dummy API service - simulates real API call
+/**
+ * Dummy API service - simulates real API call
+ */
 export const submitContactFormPre = async (data: ContactFormDataPre): Promise<ContactSubmissionResponse> => {
-	// Simulate API delay
-	await new Promise((resolve) => setTimeout(resolve, 1500));
+	try {
+		// Validate data
+		if (!data) {
+			throw new Error("Form data is required");
+		}
 
-	// Simulate random success/failure for demo purposes
-	const isSuccess = Math.random() > 0.1; // 90% success rate
+		// Simulate API delay
+		await new Promise((resolve) => setTimeout(resolve, 1500));
 
-	if (isSuccess) {
-		return { success: true, message: "Thank you for your interest! We'll be in touch soon.", id: `contact_${Date.now()}_${Math.random().toString(36).substr(2, 9)}` };
-	} else {
-		throw new Error("Failed to submit form. Please try again.");
+		// Simulate random success/failure for demo purposes
+		const isSuccess = Math.random() > 0.1; // 90% success rate
+
+		if (isSuccess) {
+			return {
+				success: true,
+				message: "Thank you for your interest! We'll be in touch soon.",
+				id: `contact_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+			};
+		} else {
+			throw new Error("Failed to submit form. Please try again.");
+		}
+	} catch (error) {
+		console.error("❌ Contact form submission error:", error instanceof Error ? error.message : String(error));
+		throw error;
 	}
 };
 
-// Performance Monitoring
+/**
+ * Performance Monitoring
+ */
 export const reportWebVitals = async (metric: { name: string; value: number; id: string }) => {
 	try {
-		// TODO: Replace with actual performance monitoring
-		// Example integrations:
-		// - Google Analytics
-		// - Vercel Analytics
-		// - New Relic
-		// - DataDog
-		// - Custom monitoring
+		// Validate metric
+		if (!metric || typeof metric !== "object") {
+			console.warn("⚠️ Invalid metric data");
+			return;
+		}
 
 		console.log("⚡ Web Vitals Report (PLACEHOLDER):", metric);
 
-		// Send to analytics service
-		await fetch("/vitals", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(metric) });
+		// Fire and forget - don't block on vitals
+		safePost("/vitals", metric, { timeout: 5000 })
+			.then((result) => {
+				if (!result.success) {
+					console.warn("⚠️ Vitals reporting error:", result.error);
+				}
+			})
+			.catch((error: any) => {
+				console.warn(
+					"⚠️ Vitals reporting error (non-critical):",
+					error instanceof Error ? error.message : String(error),
+				);
+			});
 	} catch (error) {
-		console.error("Web vitals reporting error:", error);
+		console.warn("⚠️ Vitals reporting error:", error instanceof Error ? error.message : String(error));
 	}
 };
