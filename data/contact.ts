@@ -17,15 +17,22 @@ export const SERVICE_OPTIONS: ServiceOption[] = [
 ];
 
 export const BUDGET_RANGES: string[] = [
-	"Under $5,000",
-	"$5,000 - $15,000",
-	"$15,000 - $35,000",
-	"$35,000 - $75,000",
-	"$75,000+",
+	"Under ₹50,000",
+	"₹50,000 – ₹1,50,000",
+	"₹1,50,000 – ₹5,00,000",
+	"₹5,00,000 – ₹15,00,000",
+	"₹15,00,000+",
 	"Let's Discuss",
 ];
 
-export const TIMELINE_OPTIONS: string[] = ["ASAP", "1 Month", "3 Months", "6 Months", "Flexible"];
+export const TIMELINE_OPTIONS: string[] = [
+	"2 Weeks",
+	"4-6 Weeks",
+	"8-10 Weeks",
+	"3-4 Months",
+	"6+ Months",
+	"Flexible",
+];
 
 export const CONTACT_INFO: ContactInfo[] = [
 	{

@@ -1,67 +1,139 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Send, User, Mail, Phone, Building, CheckCircle } from "lucide-react";
 import {
-  contactFormSchema,
-  type ContactFormData,
+	contactFormSchema,
+	type ContactFormData,
 } from "../../../lib/validations";
 import {
-  SERVICE_OPTIONS,
-  BUDGET_RANGES,
-  TIMELINE_OPTIONS,
+	SERVICE_OPTIONS,
+	BUDGET_RANGES,
+	TIMELINE_OPTIONS,
 } from "../../../data/contact";
 import FormField from "./FormField";
 import { submitContactForm, subscribeToNewsletter } from "@/lib/api";
 import { useErrorModal } from "@/components/ui/error-modal";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+
+// Map pricing plan names → sensible form pre-fill values
+const PLAN_PREFILL: Record<
+	string,
+	{ subject: string; body: string; budgetRange: string; timeline: string; services: string[] }
+> = {
+	Starter: {
+		subject: "Starter Plan Enquiry",
+		body: "Hi, I'm interested in the Starter plan (₹50,000 — 3-5 pages, responsive design, basic SEO). Could you share more details and confirm availability?",
+		budgetRange: "Under ₹50,000",
+		timeline: "2 Weeks",
+		services: ["custom_website", "seo_friendly"],
+	},
+	Professional: {
+		subject: "Professional Plan Enquiry",
+		body: "Hi, I'm interested in the Professional plan (₹1,50,000 — full-stack application with backend, database, authentication & cloud deployment). Could you walk me through the next steps?",
+		budgetRange: "₹50,000 – ₹1,50,000",
+		timeline: "8-10 Weeks",
+		services: ["custom_website", "backend_api", "auth_setup", "payment_integration", "seo_friendly"],
+	},
+	Enterprise: {
+		subject: "Enterprise Plan Enquiry",
+		body: "Hi, I'd like to discuss the Enterprise plan for a scalable, complex system requiring dedicated support. Could we schedule a consultation call?",
+		budgetRange: "Let's Discuss",
+		timeline: "8-10 Weeks",
+		services: ["custom_website", "backend_api", "admin_dashboard", "auth_setup", "realtime_features", "maintenance"],
+	},
+	Custom: {
+		subject: "Custom Project Quote Request",
+		body: "Hi, I have a project that doesn't fit the standard plans and I'd like to discuss a custom quote. Here are my requirements:\n\n",
+		budgetRange: "Let's Discuss",
+		timeline: "Flexible",
+		services: ["consultation"],
+	},
+};
 
 export default function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [submitSuccess, setSubmitSuccess] = useState(false);
+	const searchParams = useSearchParams();
+	const router = useRouter();
+	const pathname = usePathname();
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    reset,
-    watch,
-    formState: { errors, isValid },
-  } = useForm<ContactFormData>({
-    resolver: zodResolver(contactFormSchema),
-    mode: "onChange",
-    defaultValues: {
-      client: {
-        name: "",
-        email: "",
-        phone: "",
-        companyName: "",
-      },
-      projectDetails: {
-        servicesInterested: [],
-        budgetRange: "",
-        timelinePreference: "",
-      },
-      message: {
-        subject: "Website Development Request",
-        body: "",
-      },
-      preferences: {
-        preferredContactMethod: "Email",
-        newsletterOptIn: false,
-        privacyConsent: false,
-      },
-    },
-  });
+	const {
+		register,
+		handleSubmit,
+		control,
+		reset,
+		watch,
+		setValue,
+		formState: { errors, isValid },
+	} = useForm<ContactFormData>({
+		resolver: zodResolver(contactFormSchema),
+		mode: "onChange",
+		defaultValues: {
+			client: {
+				name: "",
+				email: "",
+				phone: "",
+				companyName: "",
+			},
+			projectDetails: {
+				servicesInterested: [],
+				budgetRange: "",
+				timelinePreference: "",
+			},
+			message: {
+				subject: "Website Development Request",
+				body: "",
+			},
+			preferences: {
+				preferredContactMethod: "Email",
+				newsletterOptIn: false,
+				privacyConsent: false,
+			},
+		},
+	});
 
-  const watchedServices = watch("projectDetails.servicesInterested");
-  const preferredContact = watch("preferences.preferredContactMethod");
-  const messageLength = watch("message.body")?.length || 0;
-  const { showError } = useErrorModal();
+	// Pre-fill the form when a pricing plan is selected
+	useEffect(() => {
+		const plan = searchParams.get("plan");
+		if (!plan) return;
+		const prefill = PLAN_PREFILL[plan];
+		if (!prefill) return;
 
-  const onSubmit = async (data: ContactFormData) => {
-    setIsSubmitting(true);
+		setValue("message.subject", prefill.subject, { shouldValidate: true });
+		setValue("message.body", prefill.body, { shouldValidate: true });
 
-    try {
+		// Pre-select budget range
+		if (BUDGET_RANGES.includes(prefill.budgetRange)) {
+			setValue("projectDetails.budgetRange", prefill.budgetRange, { shouldValidate: true });
+		}
+
+		// Pre-select timeline
+		if (TIMELINE_OPTIONS.includes(prefill.timeline)) {
+			setValue("projectDetails.timelinePreference", prefill.timeline, { shouldValidate: true });
+		}
+
+		// Pre-check the services that match the selected plan
+		setValue("projectDetails.servicesInterested", prefill.services, { shouldValidate: true });
+
+		// Remove ?plan= from URL so refreshing doesn't re-fill
+		const params = new URLSearchParams(searchParams.toString());
+		params.delete("plan");
+		const newSearch = params.toString();
+		router.replace(pathname + (newSearch ? `?${newSearch}` : ""), { scroll: false });
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [searchParams]);
+
+	const watchedServices = watch("projectDetails.servicesInterested");
+	const preferredContact = watch("preferences.preferredContactMethod");
+	const messageLength = watch("message.body")?.length || 0;
+	const { showError } = useErrorModal();
+
+
+	const onSubmit = async (data: ContactFormData) => {
+		setIsSubmitting(true);
+
+		try {
 			await submitContactForm(data);
 
 			// Subscribe to newsletter if requested (non-blocking)
@@ -81,19 +153,19 @@ export default function ContactForm() {
 			// Reset success state after 5 seconds
 			setTimeout(() => setSubmitSuccess(false), 15000);
 		} catch (error) {
-      console.error("Form submission error:", error);
-      if (showError) {
+			console.error("Form submission error:", error);
+			if (showError) {
 				showError("Failed to send message", (error as Error)?.message || "Please try again later.");
 			} else {
 				alert((error as Error)?.message || "Sorry, there was an error sending your message.");
 			}
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
 
-  if (submitSuccess) {
-    return (
+	if (submitSuccess) {
+		return (
 			<div className='bg-white rounded-xl shadow-lg p-8 border border-gray-100'>
 				<div className='text-center py-12'>
 					<CheckCircle className='w-16 h-16 text-green-500 mx-auto mb-4' />
@@ -109,9 +181,9 @@ export default function ContactForm() {
 				</div>
 			</div>
 		);
-  }
+	}
 
-  return (
+	return (
 		<div className='bg-white rounded-xl shadow-lg p-8 border border-gray-100'>
 			<div className='mb-8'>
 				<h3 className='text-2xl font-bold text-gray-900 mb-2'>Tell Me About Your Project</h3>
@@ -149,11 +221,10 @@ export default function ContactForm() {
 									type='text'
 									placeholder='Your full name'
 									aria-invalid={errors.client?.name ? "true" : "false"}
-									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
-										errors.client?.name ?
-											"border-red-300 focus:ring-red-500 focus:border-red-500"
-										:	"border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-									}`}
+									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${errors.client?.name ?
+										"border-red-300 focus:ring-red-500 focus:border-red-500"
+										: "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+										}`}
 								/>
 							</div>
 						</FormField>
@@ -169,11 +240,10 @@ export default function ContactForm() {
 									type='email'
 									placeholder='your@email.com'
 									aria-invalid={errors.client?.email ? "true" : "false"}
-									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
-										errors.client?.email ?
-											"border-red-300 focus:ring-red-500 focus:border-red-500"
-										:	"border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-									}`}
+									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${errors.client?.email ?
+										"border-red-300 focus:ring-red-500 focus:border-red-500"
+										: "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+										}`}
 								/>
 							</div>
 						</FormField>
@@ -191,11 +261,10 @@ export default function ContactForm() {
 									placeholder='+91 758 567 890'
 									aria-invalid={errors.client?.phone ? "true" : "false"}
 									required={preferredContact === "Phone" || preferredContact === "WhatsApp"}
-									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
-										errors.client?.phone ?
-											"border-red-300 focus:ring-red-500 focus:border-red-500"
-										:	"border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-									}`}
+									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${errors.client?.phone ?
+										"border-red-300 focus:ring-red-500 focus:border-red-500"
+										: "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+										}`}
 								/>
 							</div>
 						</FormField>
@@ -209,11 +278,10 @@ export default function ContactForm() {
 									{...register("client.companyName")}
 									type='text'
 									placeholder='Your company'
-									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
-										errors.client?.companyName ?
-											"border-red-300 focus:ring-red-500 focus:border-red-500"
-										:	"border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-									}`}
+									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${errors.client?.companyName ?
+										"border-red-300 focus:ring-red-500 focus:border-red-500"
+										: "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+										}`}
 								/>
 							</div>
 						</FormField>
@@ -231,7 +299,7 @@ export default function ContactForm() {
 							<FormField
 								label='Services Interested'
 								required
-								// error={errors.projectDetails?.servicesInterested}
+								error={errors.projectDetails?.servicesInterested as any}
 								description={`${watchedServices.length} service${watchedServices.length !== 1 ? "s" : ""} selected`}>
 								<div className='grid grid-cols-1 md:grid-cols-2 gap-3 max-h-64 overflow-y-auto border border-gray-200 rounded-lg p-4'>
 									{SERVICE_OPTIONS.map((service) => (
@@ -264,11 +332,10 @@ export default function ContactForm() {
 							error={errors.projectDetails?.budgetRange}>
 							<select
 								{...register("projectDetails.budgetRange")}
-								className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
-									errors.projectDetails?.budgetRange ?
-										"border-red-300 focus:ring-red-500 focus:border-red-500"
-									:	"border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-								}`}>
+								className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${errors.projectDetails?.budgetRange ?
+									"border-red-300 focus:ring-red-500 focus:border-red-500"
+									: "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+									}`}>
 								<option value=''>Select budget range</option>
 								{BUDGET_RANGES.map((range) => (
 									<option
@@ -285,11 +352,10 @@ export default function ContactForm() {
 							error={errors.projectDetails?.timelinePreference}>
 							<select
 								{...register("projectDetails.timelinePreference")}
-								className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
-									errors.projectDetails?.timelinePreference ?
-										"border-red-300 focus:ring-red-500 focus:border-red-500"
-									:	"border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-								}`}>
+								className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${errors.projectDetails?.timelinePreference ?
+									"border-red-300 focus:ring-red-500 focus:border-red-500"
+									: "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+									}`}>
 								<option value=''>Select timeline</option>
 								{TIMELINE_OPTIONS.map((option) => (
 									<option
@@ -336,11 +402,10 @@ export default function ContactForm() {
 							{...register("message.body")}
 							placeholder='Please describe your project requirements, goals, target audience, specific features you need, design preferences, and any other important details...'
 							rows={8}
-							className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors resize-none ${
-								errors.message?.body ?
-									"border-red-300 focus:ring-red-500 focus:border-red-500"
-								:	"border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-							}`}
+							className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors resize-none ${errors.message?.body ?
+								"border-red-300 focus:ring-red-500 focus:border-red-500"
+								: "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+								}`}
 						/>
 					</FormField>
 				</div>
@@ -383,9 +448,8 @@ export default function ContactForm() {
 									<input
 										{...register("preferences.privacyConsent")}
 										type='checkbox'
-										className={`h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1 ${
-											errors.preferences?.privacyConsent ? "border-red-300" : ""
-										}`}
+										className={`h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1 ${errors.preferences?.privacyConsent ? "border-red-300" : ""
+											}`}
 									/>
 									<span className='text-sm text-gray-700'>I agree to the Privacy Policy and Terms of Service *</span>
 								</label>
@@ -447,7 +511,7 @@ export default function ContactForm() {
 							</svg>
 							Sending Message...
 						</>
-					:	<>
+						: <>
 							<Send className='w-5 h-5 mr-2' />
 							Send Message
 						</>

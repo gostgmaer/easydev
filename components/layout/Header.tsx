@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Code, Github, Linkedin, Mail } from "lucide-react";
 import { siteContent } from "@/lib/content";
+import Link from "next/link";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,9 +40,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-lg" : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md shadow-lg" : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
@@ -72,6 +72,12 @@ export default function Header() {
             >
               Portfolio
             </button>
+            <Link
+              href="/case-studies"
+              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            >
+              Case Studies
+            </Link>
             <button
               onClick={() => scrollToSection("testimonials")}
               className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
@@ -148,6 +154,13 @@ export default function Header() {
               >
                 Portfolio
               </button>
+              <Link
+                href="/case-studies"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-left text-gray-700 hover:text-blue-600 transition-colors font-medium px-4 py-2"
+              >
+                Case Studies
+              </Link>
               <button
                 onClick={() => scrollToSection("testimonials")}
                 className="text-left text-gray-700 hover:text-blue-600 transition-colors font-medium px-4 py-2"
