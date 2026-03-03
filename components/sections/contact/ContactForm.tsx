@@ -26,21 +26,28 @@ const PLAN_PREFILL: Record<
 		body: "Hi, I'm interested in the Starter plan (₹50,000 — 3-5 pages, responsive design, basic SEO). Could you share more details and confirm availability?",
 		budgetRange: "Under ₹50,000",
 		timeline: "2 Weeks",
-		services: ["custom_website", "seo_friendly"],
+		services: ["custom_website", "seo_friendly", "maintenance"],
 	},
 	Professional: {
 		subject: "Professional Plan Enquiry",
 		body: "Hi, I'm interested in the Professional plan (₹1,50,000 — full-stack application with backend, database, authentication & cloud deployment). Could you walk me through the next steps?",
 		budgetRange: "₹50,000 – ₹1,50,000",
-		timeline: "8-10 Weeks",
-		services: ["custom_website", "backend_api", "auth_setup", "payment_integration", "seo_friendly"],
+		timeline: "6-8 Weeks",
+		services: ["custom_website", "backend_api", "auth_setup", "payment_integration", "seo_friendly", "maintenance"],
 	},
-	Enterprise: {
-		subject: "Enterprise Plan Enquiry",
-		body: "Hi, I'd like to discuss the Enterprise plan for a scalable, complex system requiring dedicated support. Could we schedule a consultation call?",
+	"E-commerce": {
+		subject: "E-commerce Plan Enquiry",
+		body: "Hi, I'm interested in the E-commerce plan (online store with product listings, cart, payment gateway, inventory management). Could you provide more details on setup and pricing?",
 		budgetRange: "Let's Discuss",
-		timeline: "8-10 Weeks",
-		services: ["custom_website", "backend_api", "admin_dashboard", "auth_setup", "realtime_features", "maintenance"],
+		timeline: "8-12 Weeks",
+		services: [
+			"custom_website",
+			"payment_integration",
+			"admin_dashboard",
+			"seo_friendly",
+			"inventory_management",
+			"maintenance",
+		],
 	},
 	Custom: {
 		subject: "Custom Project Quote Request",
@@ -97,7 +104,13 @@ export default function ContactForm() {
 	useEffect(() => {
 		const plan = searchParams.get("plan");
 		if (!plan) return;
-		const prefill = PLAN_PREFILL[plan];
+		// try exact match first, then normalized (lowercase, remove non-alphanumeric)
+		let prefill = PLAN_PREFILL[plan];
+		if (!prefill) {
+			const normalized = plan.toLowerCase().replace(/[^a-z0-9]/g, "");
+			const matchKey = Object.keys(PLAN_PREFILL).find((k) => k.toLowerCase().replace(/[^a-z0-9]/g, "") === normalized);
+			if (matchKey) prefill = PLAN_PREFILL[matchKey];
+		}
 		if (!prefill) return;
 
 		setValue("message.subject", prefill.subject, { shouldValidate: true });
@@ -122,7 +135,7 @@ export default function ContactForm() {
 		const newSearch = params.toString();
 		router.replace(pathname + (newSearch ? `?${newSearch}` : ""), { scroll: false });
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [searchParams]);
+	};, [searchParams]);
 
 	const watchedServices = watch("projectDetails.servicesInterested");
 	const preferredContact = watch("preferences.preferredContactMethod");
