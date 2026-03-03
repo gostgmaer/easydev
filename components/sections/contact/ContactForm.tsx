@@ -26,7 +26,7 @@ const PLAN_PREFILL: Record<
 		body: "Hi, I'm interested in the Starter plan (₹50,000 — 3-5 pages, responsive design, basic SEO). Could you share more details and confirm availability?",
 		budgetRange: "Under ₹50,000",
 		timeline: "2 Weeks",
-		services: ["custom_website", "seo_friendly", "maintenance"],
+		services: ["custom_website", "seo_friendly", "maintenance", "bug_fixing"],
 	},
 	Professional: {
 		subject: "Professional Plan Enquiry",
@@ -42,11 +42,16 @@ const PLAN_PREFILL: Record<
 		timeline: "8-12 Weeks",
 		services: [
 			"custom_website",
+			"backend_api",
+			"auth_setup",
 			"payment_integration",
+			"third_party_integration",
+			"realtime_features",
 			"admin_dashboard",
 			"seo_friendly",
 			"inventory_management",
 			"maintenance",
+			"bug_fixing",
 		],
 	},
 	Custom: {
@@ -135,7 +140,7 @@ export default function ContactForm() {
 		const newSearch = params.toString();
 		router.replace(pathname + (newSearch ? `?${newSearch}` : ""), { scroll: false });
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	};, [searchParams]);
+	}, [searchParams]);
 
 	const watchedServices = watch("projectDetails.servicesInterested");
 	const preferredContact = watch("preferences.preferredContactMethod");

@@ -29,7 +29,6 @@ export const TIMELINE_OPTIONS: string[] = [
 	"2 Weeks",
 	"4-6 Weeks",
 	"6-8 Weeks",
-	"8-10 Weeks",
 	"8-12 Weeks",
 	"12-14 Weeks",
 	"6+ Months",

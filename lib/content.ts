@@ -283,7 +283,7 @@ export const siteContent = {
 			{
 				name: "Professional",
 				price: "₹1,50,000",
-				duration: "8-10 Weeks",
+				duration: "6-8 Weeks",
 				description: "Full-featured applications with backend and database",
 				features: [
 					"✅ Complete web application",
@@ -303,7 +303,7 @@ export const siteContent = {
 			{
 				name: "E-commerce",
 				price: "Custom",
-				duration: "12-14 Weeks",
+				duration: "8-12 Weeks",
 				description: "Online store with product listings, cart, and payment integration",
 				features: [
 					"✅ Product management",
