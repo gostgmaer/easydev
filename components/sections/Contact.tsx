@@ -25,14 +25,17 @@ export default function Contact() {
 
 					{/* Contact Form */}
 					<div className='lg:col-span-2'>
-						<Suspense fallback={<div className='bg-white rounded-xl shadow-lg p-8 border border-gray-100 h-96 animate-pulse' />}>
+						<Suspense
+							fallback={
+								<div className='bg-white rounded-xl shadow-lg p-8 border border-gray-100 h-96 animate-pulse' />
+							}>
 							<ContactForm />
 						</Suspense>
 					</div>
 				</div>
 
 				{/* Calendly Booking Section */}
-				<div className='mt-16 max-w-4xl mx-auto'>
+				{/* <div className='mt-16 max-w-4xl mx-auto'>
 					<div className='text-center mb-12'>
 						<h3 className='text-2xl font-bold text-gray-900 mb-4'>Schedule a Free Consultation</h3>
 						<p className='text-gray-600'>Have specific questions? Book a 30-minute call with our team.</p>
@@ -47,7 +50,7 @@ export default function Contact() {
 							loading='lazy'
 							className='rounded-lg'></iframe>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</section>
 	);
