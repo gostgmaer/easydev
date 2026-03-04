@@ -51,9 +51,7 @@ export const submitContactForm = async (
       privacyConsent: formData?.preferences?.privacyConsent ?? false,
     };
 
-    const result = await safePost<any>(API_ENDPOINTS.CONTACT_FORM, payload, {
-      timeout: 10000,
-    });
+    const result = await safePost<any>(API_ENDPOINTS.CONTACT_FORM, payload, { timeout: 30000 });
 
     if (!result.success) {
       throw new Error(result.error || "Failed to submit contact form.");
@@ -90,11 +88,7 @@ export const subscribeToNewsletter = async (email: string) => {
       throw new Error("Invalid email format");
     }
 
-    const result = await safePost<any>(
-      API_ENDPOINTS.NEWSLETTER,
-      { email: normalizedEmail },
-      { timeout: 10000 },
-    );
+    const result = await safePost<any>(API_ENDPOINTS.NEWSLETTER, { email: normalizedEmail }, { timeout: 30000 });
 
     if (!result.success) {
       throw new Error(result.error || "Failed to subscribe to newsletter.");
@@ -154,7 +148,7 @@ export const fetchTestimonials = async () => {
  */
 export const fetchBlogPosts = async () => {
   try {
-    const result = await safeGet<any>(API_ENDPOINTS.BLOG, { timeout: 10000 });
+    const result = await safeGet<any>(API_ENDPOINTS.BLOG, { timeout: 30000 });
 
     if (!result.success) {
       console.warn("Blog fetch error:", result.error);
@@ -189,7 +183,7 @@ export const fetchPlans = async (filters?: {
       queryParams.append("targetAudience", filters.targetAudience);
 
     const url = `${API_ENDPOINTS.PLANS}${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
-    const result = await safeGet<any>(url, { timeout: 10000 });
+    const result = await safeGet<any>(url, { timeout: 30000 });
 
     if (!result.success) {
       console.warn("Plans fetch error:", result.error);
@@ -212,9 +206,7 @@ export const fetchPlans = async (filters?: {
  */
 export const fetchFeaturedPlans = async () => {
   try {
-    const result = await safeGet<any>(API_ENDPOINTS.PLANS_FEATURED, {
-      timeout: 10000,
-    });
+    const result = await safeGet<any>(API_ENDPOINTS.PLANS_FEATURED, { timeout: 30000 });
 
     if (!result.success) {
       console.warn("Featured plans fetch error:", result.error);

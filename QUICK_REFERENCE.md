@@ -275,7 +275,7 @@ Before deploying, verify:
 **Solution**: Add timeout
 
 ```typescript
-const result = await safeFetch(url, { timeout: 10000 });
+const result = await safeFetch(url, { timeout: 30000 });
 ```
 
 ### Issue: API error crashes component
