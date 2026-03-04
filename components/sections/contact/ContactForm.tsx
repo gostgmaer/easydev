@@ -1,67 +1,133 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Send, User, Mail, Phone, Building, CheckCircle } from "lucide-react";
-import {
-  contactFormSchema,
-  type ContactFormData,
-} from "../../../lib/validations";
-import {
-  SERVICE_OPTIONS,
-  BUDGET_RANGES,
-  TIMELINE_OPTIONS,
-} from "../../../data/contact";
+import { contactFormSchema, type ContactFormData } from "../../../lib/validations";
+import { SERVICE_OPTIONS, BUDGET_RANGES, TIMELINE_OPTIONS } from "../../../data/contact";
 import FormField from "./FormField";
 import { submitContactForm, subscribeToNewsletter } from "@/lib/api";
 import { useErrorModal } from "@/components/ui/error-modal";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+
+// Map pricing plan names → sensible form pre-fill values
+const PLAN_PREFILL: Record<
+	string,
+	{ subject: string; body: string; budgetRange: string; timeline: string; services: string[] }
+> = {
+	Starter: {
+		subject: "Starter Plan Enquiry",
+		body: "Hi, I'm interested in the Starter plan (₹50,000 — 3-5 pages, responsive design, basic SEO). Could you share more details and confirm availability?",
+		budgetRange: "Under ₹50,000",
+		timeline: "2 Weeks",
+		services: ["custom_website", "seo_friendly", "maintenance", "bug_fixing"],
+	},
+	Professional: {
+		subject: "Professional Plan Enquiry",
+		body: "Hi, I'm interested in the Professional plan (₹1,50,000 — full-stack application with backend, database, authentication & cloud deployment). Could you walk me through the next steps?",
+		budgetRange: "₹50,000 – ₹1,50,000",
+		timeline: "8-12 Weeks",
+		services: ["custom_website", "backend_api", "auth_setup", "payment_integration", "seo_friendly", "maintenance"],
+	},
+	"E-commerce": {
+		subject: "E-commerce Plan Enquiry",
+		body: "Hi, I'm interested in the E-commerce plan (online store with product listings, cart, payment gateway, inventory management). Could you provide more details on setup and pricing?",
+		budgetRange: "Let's Discuss",
+		timeline: "8-12 Weeks",
+		services: [
+			"custom_website",
+			"backend_api",
+			"auth_setup",
+			"payment_integration",
+			"third_party_integration",
+			"realtime_features",
+			"admin_dashboard",
+			"seo_friendly",
+			"inventory_management",
+			"maintenance",
+			"bug_fixing",
+		],
+	},
+	Custom: {
+		subject: "Custom Project Quote Request",
+		body: "Hi, I have a project that doesn't fit the standard plans and I'd like to discuss a custom quote. Here are my requirements:\n\n",
+		budgetRange: "Let's Discuss",
+		timeline: "Flexible",
+		services: ["consultation"],
+	},
+};
 
 export default function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [submitSuccess, setSubmitSuccess] = useState(false);
+	const searchParams = useSearchParams();
+	const router = useRouter();
+	const pathname = usePathname();
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    reset,
-    watch,
-    formState: { errors, isValid },
-  } = useForm<ContactFormData>({
-    resolver: zodResolver(contactFormSchema),
-    mode: "onChange",
-    defaultValues: {
-      client: {
-        name: "",
-        email: "",
-        phone: "",
-        companyName: "",
-      },
-      projectDetails: {
-        servicesInterested: [],
-        budgetRange: "",
-        timelinePreference: "",
-      },
-      message: {
-        subject: "Website Development Request",
-        body: "",
-      },
-      preferences: {
-        preferredContactMethod: "Email",
-        newsletterOptIn: false,
-        privacyConsent: false,
-      },
-    },
-  });
+	const {
+		register,
+		handleSubmit,
+		control,
+		reset,
+		watch,
+		setValue,
+		formState: { errors, isValid },
+	} = useForm<ContactFormData>({
+		resolver: zodResolver(contactFormSchema),
+		mode: "onChange",
+		defaultValues: {
+			client: { name: "", email: "", phone: "", companyName: "" },
+			projectDetails: { servicesInterested: [], budgetRange: "", timelinePreference: "" },
+			message: { subject: "Website Development Request", body: "" },
+			preferences: { preferredContactMethod: "Email", newsletterOptIn: false, privacyConsent: false },
+		},
+	});
 
-  const watchedServices = watch("projectDetails.servicesInterested");
-  const preferredContact = watch("preferences.preferredContactMethod");
-  const messageLength = watch("message.body")?.length || 0;
-  const { showError } = useErrorModal();
+	// Pre-fill the form when a pricing plan is selected
+	useEffect(() => {
+		const plan = searchParams.get("plan");
+		if (!plan) return;
+		// try exact match first, then normalized (lowercase, remove non-alphanumeric)
+		let prefill = PLAN_PREFILL[plan];
+		if (!prefill) {
+			const normalized = plan.toLowerCase().replace(/[^a-z0-9]/g, "");
+			const matchKey = Object.keys(PLAN_PREFILL).find((k) => k.toLowerCase().replace(/[^a-z0-9]/g, "") === normalized);
+			if (matchKey) prefill = PLAN_PREFILL[matchKey];
+		}
+		if (!prefill) return;
 
-  const onSubmit = async (data: ContactFormData) => {
-    setIsSubmitting(true);
+		setValue("message.subject", prefill.subject, { shouldValidate: true });
+		setValue("message.body", prefill.body, { shouldValidate: true });
 
-    try {
+		// Pre-select budget range
+		if (BUDGET_RANGES.includes(prefill.budgetRange)) {
+			setValue("projectDetails.budgetRange", prefill.budgetRange, { shouldValidate: true });
+		}
+
+		// Pre-select timeline
+		if (TIMELINE_OPTIONS.includes(prefill.timeline)) {
+			setValue("projectDetails.timelinePreference", prefill.timeline, { shouldValidate: true });
+		}
+
+		// Pre-check the services that match the selected plan
+		setValue("projectDetails.servicesInterested", prefill.services, { shouldValidate: true });
+
+		// Remove ?plan= from URL so refreshing doesn't re-fill
+		const params = new URLSearchParams(searchParams.toString());
+		params.delete("plan");
+		const newSearch = params.toString();
+		router.replace(pathname + (newSearch ? `?${newSearch}` : ""), { scroll: false });
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [searchParams]);
+
+	const watchedServices = watch("projectDetails.servicesInterested");
+	const preferredContact = watch("preferences.preferredContactMethod");
+	const messageLength = watch("message.body")?.length || 0;
+	const { showError } = useErrorModal();
+
+	const onSubmit = async (data: ContactFormData) => {
+		setIsSubmitting(true);
+
+		try {
 			await submitContactForm(data);
 
 			// Subscribe to newsletter if requested (non-blocking)
@@ -81,19 +147,19 @@ export default function ContactForm() {
 			// Reset success state after 5 seconds
 			setTimeout(() => setSubmitSuccess(false), 15000);
 		} catch (error) {
-      console.error("Form submission error:", error);
-      if (showError) {
+			console.error("Form submission error:", error);
+			if (showError) {
 				showError("Failed to send message", (error as Error)?.message || "Please try again later.");
 			} else {
 				alert((error as Error)?.message || "Sorry, there was an error sending your message.");
 			}
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
 
-  if (submitSuccess) {
-    return (
+	if (submitSuccess) {
+		return (
 			<div className='bg-white rounded-xl shadow-lg p-8 border border-gray-100'>
 				<div className='text-center py-12'>
 					<CheckCircle className='w-16 h-16 text-green-500 mx-auto mb-4' />
@@ -109,9 +175,9 @@ export default function ContactForm() {
 				</div>
 			</div>
 		);
-  }
+	}
 
-  return (
+	return (
 		<div className='bg-white rounded-xl shadow-lg p-8 border border-gray-100'>
 			<div className='mb-8'>
 				<h3 className='text-2xl font-bold text-gray-900 mb-2'>Tell Me About Your Project</h3>
@@ -231,7 +297,7 @@ export default function ContactForm() {
 							<FormField
 								label='Services Interested'
 								required
-								// error={errors.projectDetails?.servicesInterested}
+								error={errors.projectDetails?.servicesInterested as any}
 								description={`${watchedServices.length} service${watchedServices.length !== 1 ? "s" : ""} selected`}>
 								<div className='grid grid-cols-1 md:grid-cols-2 gap-3 max-h-64 overflow-y-auto border border-gray-200 rounded-lg p-4'>
 									{SERVICE_OPTIONS.map((service) => (

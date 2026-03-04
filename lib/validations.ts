@@ -24,10 +24,7 @@ export const contactFormSchema = z
 			timelinePreference: z.string().optional(),
 		}),
 		message: z.object({
-			subject: z
-				.string()
-				.min(5, "Subject must be at least 5 characters")
-				.max(100, "Subject must be less than 100 characters"),
+			subject: z.string().max(100, "Subject must be less than 100 characters").optional(),
 			body: z
 				.string()
 				.min(20, "Please provide more details about your project (minimum 20 characters)")

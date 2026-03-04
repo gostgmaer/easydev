@@ -1,11 +1,29 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import { siteContent } from "@/lib/content";
 import { Check, ArrowRight } from "lucide-react";
 
 export default function Pricing() {
 	const { pricing } = siteContent;
+	const router = useRouter();
+
+	const handlePlanSelect = (tierName: string) => {
+		// Write the selected plan to the URL so ContactForm can pick it up
+		const url = new URL(window.location.href);
+		url.searchParams.set("plan", tierName);
+		url.hash = "contact";
+		router.replace(url.pathname + url.search + "#contact", { scroll: false });
+
+		// Smooth-scroll to the contact section
+		setTimeout(() => {
+			const el = document.getElementById("contact");
+			if (el) {
+				el.scrollIntoView({ behavior: "smooth", block: "start" });
+			}
+		}, 50);
+	};
 
 	return (
 		<section className='py-20 bg-gradient-to-b from-white to-gray-50'>
@@ -21,11 +39,10 @@ export default function Pricing() {
 					{pricing.tiers.map((tier, index) => (
 						<div
 							key={index}
-							className={`rounded-2xl overflow-hidden transition-all duration-300 ${
-								tier.popular ?
+							className={`rounded-2xl overflow-hidden transition-all duration-300 ${tier.popular ?
 									"ring-2 ring-blue-500 shadow-2xl lg:scale-105"
-								:	"border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-gray-300"
-							} ${tier.popular ? "bg-gradient-to-br from-blue-50 to-blue-100" : "bg-white"}`}>
+									: "border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-gray-300"
+								} ${tier.popular ? "bg-gradient-to-br from-blue-50 to-blue-100" : "bg-white"}`}>
 							{/* Header */}
 							<div className={`px-6 pt-8 pb-6`}>
 								{tier.popular && (
@@ -39,16 +56,15 @@ export default function Pricing() {
 									<span className='text-5xl font-bold text-gray-900'>{tier.price}</span>
 								</div>
 								<p className='text-sm text-gray-700 mb-6'>{tier.duration}</p>
-								<a
-									href='#contact'
-									className={`flex w-full text-center py-3 px-6 rounded-xl font-semibold transition-all duration-300 items-center justify-center gap-2 ${
-										tier.popular ?
+								<button
+									onClick={() => handlePlanSelect(tier.name)}
+									className={`flex w-full text-center py-3 px-6 rounded-xl font-semibold transition-all duration-300 items-center justify-center gap-2 ${tier.popular ?
 											"bg-blue-600 text-white hover:bg-blue-700 shadow-md"
-										:	"bg-gray-100 text-gray-900 hover:bg-blue-50 border-2 border-transparent hover:border-blue-300"
-									}`}>
+											: "bg-gray-100 text-gray-900 hover:bg-blue-50 border-2 border-transparent hover:border-blue-300"
+										}`}>
 									{tier.cta}
 									<ArrowRight className='w-4 h-4' />
-								</a>
+								</button>
 							</div>
 
 							{/* Divider */}
@@ -79,12 +95,12 @@ export default function Pricing() {
 						Every business is unique. Our team can create a tailored package based on your specific requirements,
 						timeline, and budget.
 					</p>
-					<a
-						href='#contact'
+					<button
+						onClick={() => handlePlanSelect("Custom")}
 						className='inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors'>
 						Contact us for a custom quote
 						<ArrowRight className='w-4 h-4' />
-					</a>
+					</button>
 				</div>
 			</div>
 		</section>
