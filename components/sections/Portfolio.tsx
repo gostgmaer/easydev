@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { trackEvent, fetchProjects } from "@/lib/api";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { siteContent } from "@/lib/content";
+import { event as trackAnalyticsEvent } from "@/lib/analytics";
 import Image from "next/image";
 
 export default function Portfolio() {
@@ -22,30 +22,17 @@ export default function Portfolio() {
     "Real Estate",
   ];
 
-  const [projects, setProjects] = useState(
+  const [projects] = useState(
 		siteContent.portfolio.projects.map((p) => ({ ...p, liveUrl: "#", githubUrl: "#" })),
 	);
 
-	useEffect(() => {
-		let mounted = true;
-		(async () => {
-			try {
-				const remote = await fetchProjects();
-				if (mounted && Array.isArray(remote) && remote.length > 0) setProjects(remote as any);
-			} catch (e) {
-				// fetchProjects already logs errors; leave projects as fallback
-			}
-		})();
-		return () => {
-			mounted = false;
-		};
-	}, []);
+
 
   const filteredProjects = filter === "All" ? projects : projects.filter((project) => project.category === filter);
 
   const handleProjectView = async (projectTitle: string) => {
-    await trackEvent({
-      event: "project_view",
+    trackAnalyticsEvent({
+      action: "project_view",
       category: "Portfolio",
       label: projectTitle,
     });
@@ -53,8 +40,8 @@ export default function Portfolio() {
 
   const handleFilterChange = async (category: string) => {
     setFilter(category);
-    await trackEvent({
-      event: "portfolio_filter",
+    trackAnalyticsEvent({
+      action: "portfolio_filter",
       category: "Portfolio",
       label: category,
     });

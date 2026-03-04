@@ -1,8 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { fetchTestimonials } from "@/lib/api";
-import { useErrorModal } from "@/components/ui/error-modal";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 import { siteContent } from "@/lib/content";
@@ -11,25 +9,9 @@ import Image from "next/image";
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const { showError } = useErrorModal();
+	const [testimonials] = useState(siteContent.testimonials.list);
 
-	const [testimonials, setTestimonials] = useState(siteContent.testimonials.list);
 
-	useEffect(() => {
-		let mounted = true;
-		(async () => {
-			try {
-				const remote = await fetchTestimonials();
-				if (mounted && Array.isArray(remote) && remote.length > 0) setTestimonials(remote as any);
-			} catch (err) {
-				console.error("Failed to load testimonials:", err);
-				if (showError) showError("Failed to load testimonials", (err as Error)?.message || "Please try again later.");
-			}
-		})();
-		return () => {
-			mounted = false;
-		};
-	}, [showError]);
 
   useEffect(() => {
     const timer = setInterval(() => {

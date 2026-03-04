@@ -1,49 +1,47 @@
-import { ContactSubmissionResponse } from "@/types/contact";
+// API Integration with Comprehensive Error Handling
+// Replace these with actual API endpoints and implementations
+
+import { ContactFormData, ContactSubmissionResponse } from "@/types/contact";
 import { veriable } from "./config";
 import { ContactFormDataPre } from "@/components/sections/contact/Form";
-import { safeGet, safePost } from "./safe-fetch";
+import { safeFetch, safeGet, safePost } from "./safe-fetch";
 
 const { baseURL } = veriable;
 
 export const API_ENDPOINTS = {
-	// Existing backend routes
+	// Contact Form Submission
 	CONTACT_FORM: `${baseURL}/inquiry`,
+	// Newsletter Subscription
 	NEWSLETTER: `${baseURL}/newsletter/subscribe`,
+	// Blog Posts
 	BLOG: `${baseURL}/blogs`,
 };
 
 /**
  * Contact Form API Integration
- * Backend expects flat payload shape on /api/contact
  */
-export const submitContactForm = async (formData: any): Promise<ContactSubmissionResponse> => {
+export const submitContactForm = async (formData: any) => {
 	try {
+		// Validate formData
 		if (!formData) {
 			throw new Error("Form data is required");
 		}
 
-		const payload = {
-			name: formData?.client?.name,
-			email: formData?.client?.email,
-			phone: formData?.client?.phone,
-			company: formData?.client?.companyName,
-			subject: formData?.message?.subject || "Website Development Inquiry",
-			message: formData?.message?.body,
-		};
+		console.log("📧 Contact Form Submission:", {
+			...formData,
+			message: formData.message?.body?.substring(0, 50) + "..." || "N/A",
+		});
 
-		const result = await safePost<any>(API_ENDPOINTS.CONTACT_FORM, payload, { timeout: 10000 });
+		const result = await safePost<any>(API_ENDPOINTS.CONTACT_FORM, formData, { timeout: 10000 });
 
 		if (!result.success) {
 			throw new Error(result.error || "Failed to submit contact form.");
 		}
 
-		return {
-			success: true,
-			message: result.data?.message || "Thank you for contacting us. We will get back to you soon",
-			id: result.data?.data?.id || result.data?.id,
-		};
+		console.log("✅ Contact form submitted successfully");
+		return result.data;
 	} catch (error) {
-		console.error("Contact form submission error:", error instanceof Error ? error.message : String(error));
+		console.error("❌ Contact form submission error:", error instanceof Error ? error.message : String(error));
 		throw error;
 	}
 };
@@ -53,6 +51,7 @@ export const submitContactForm = async (formData: any): Promise<ContactSubmissio
  */
 export const subscribeToNewsletter = async (email: string) => {
 	try {
+		// Validate email
 		if (!email || typeof email !== "string") {
 			throw new Error("Valid email address is required");
 		}
@@ -63,97 +62,75 @@ export const subscribeToNewsletter = async (email: string) => {
 			throw new Error("Invalid email format");
 		}
 
+		console.log("📬 Newsletter Subscription (PLACEHOLDER):", normalizedEmail);
+
 		const result = await safePost<any>(API_ENDPOINTS.NEWSLETTER, { email: normalizedEmail }, { timeout: 10000 });
 
 		if (!result.success) {
 			throw new Error(result.error || "Failed to subscribe to newsletter.");
 		}
 
+		console.log("✅ Newsletter subscription successful");
 		return result.data;
 	} catch (error) {
-		console.error("Newsletter subscription error:", error instanceof Error ? error.message : String(error));
+		console.error("❌ Newsletter subscription error:", error instanceof Error ? error.message : String(error));
 		throw error;
 	}
 };
 
 /**
- * Analytics Event Tracking
- * No backend analytics endpoint in current backend. Keep client-side only.
+ * Analytics Event Tracking API
+ * Non-critical - errors should not affect user experience
  */
-export const trackEvent = async (eventData: any) => {
-	try {
-		if (!eventData || typeof eventData !== "object") {
-			return;
-		}
-
-		if (typeof window !== "undefined" && (window as any).gtag) {
-			(window as any).gtag("event", eventData.event, {
-				event_category: eventData.category,
-				event_label: eventData.label,
-				value: eventData.value,
-			});
-		}
-	} catch (error) {
-		console.warn("Analytics error (ignored):", error instanceof Error ? error.message : String(error));
-	}
-};
-
-/**
- * No public projects endpoint in current backend.
- */
-export const fetchProjects = async () => {
-	return [];
-};
-
-/**
- * No public testimonials endpoint in current backend.
- */
-export const fetchTestimonials = async () => {
-	return [];
-};
 
 /**
  * Fetch Blog Posts with Error Handling
  */
 export const fetchBlogPosts = async () => {
 	try {
-		const result = await safeGet<any>(API_ENDPOINTS.BLOG, { timeout: 10000 });
+		const result = await safeGet<any[]>(API_ENDPOINTS.BLOG, { timeout: 10000 });
 
 		if (!result.success) {
-			console.warn("Blog fetch error:", result.error);
+			console.warn("⚠️ Blog fetch error:", result.error);
 			return [];
 		}
 
-		const blogs = result.data?.data?.blogs || result.data?.blogs || result.data;
-		return Array.isArray(blogs) ? blogs : [];
+		return Array.isArray(result.data) ? result.data : [];
 	} catch (error) {
-		console.error("Blog fetch error:", error instanceof Error ? error.message : String(error));
+		console.error("❌ Blog fetch error:", error instanceof Error ? error.message : String(error));
 		return [];
 	}
 };
 
 /**
- * Backend has no public email endpoint for this client app.
+ * Search Content with Error Handling
  */
-export const sendEmail = async (_emailData: { to: string; subject: string; html: string; text?: string }) => {
-	throw new Error("Email endpoint is not available in backend.");
-};
+export const searchContent = async (
+	query: string,
+	filters?: { type?: "projects" | "blog" | "all"; category?: string },
+) => {
+	try {
+		// Validate query
+		if (!query || typeof query !== "string" || query.trim().length === 0) {
+			throw new Error("Search query is required");
+		}
 
-/**
- * Backend has no upload endpoint for this client app.
- */
-export const uploadFile = async (_file: File, _type: "resume" | "portfolio" | "image") => {
-	throw new Error("Upload endpoint is not available in backend.");
-};
+		console.log("🔍 Content Search (PLACEHOLDER):", { query, filters });
 
-/**
- * Backend has no search endpoint for this client app.
- */
-export const searchContent = async (query: string, _filters?: { type?: "projects" | "blog" | "all"; category?: string }) => {
-	if (!query || typeof query !== "string" || query.trim().length === 0) {
-		throw new Error("Search query is required");
+		const result = await safePost<{ results: any[] }>(`/search?q=${encodeURIComponent(query)}`, filters || {}, {
+			timeout: 10000,
+		});
+
+		if (!result.success) {
+			console.warn("⚠️ Search error:", result.error);
+			return { results: [] };
+		}
+
+		return result.data || { results: [] };
+	} catch (error) {
+		console.error("❌ Search error:", error instanceof Error ? error.message : String(error));
+		return { results: [] };
 	}
-	return { results: [] as any[] };
 };
 
 /**
@@ -161,12 +138,16 @@ export const searchContent = async (query: string, _filters?: { type?: "projects
  */
 export const submitContactFormPre = async (data: ContactFormDataPre): Promise<ContactSubmissionResponse> => {
 	try {
+		// Validate data
 		if (!data) {
 			throw new Error("Form data is required");
 		}
 
+		// Simulate API delay
 		await new Promise((resolve) => setTimeout(resolve, 1500));
-		const isSuccess = Math.random() > 0.1;
+
+		// Simulate random success/failure for demo purposes
+		const isSuccess = Math.random() > 0.1; // 90% success rate
 
 		if (isSuccess) {
 			return {
@@ -174,18 +155,42 @@ export const submitContactFormPre = async (data: ContactFormDataPre): Promise<Co
 				message: "Thank you for your interest! We'll be in touch soon.",
 				id: `contact_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
 			};
+		} else {
+			throw new Error("Failed to submit form. Please try again.");
 		}
-
-		throw new Error("Failed to submit form. Please try again.");
 	} catch (error) {
-		console.error("Contact form submission error:", error instanceof Error ? error.message : String(error));
+		console.error("❌ Contact form submission error:", error instanceof Error ? error.message : String(error));
 		throw error;
 	}
 };
 
 /**
- * No backend vitals endpoint in current backend.
+ * Performance Monitoring
  */
-export const reportWebVitals = async (_metric: { name: string; value: number; id: string }) => {
-	return;
+export const reportWebVitals = async (metric: { name: string; value: number; id: string }) => {
+	try {
+		// Validate metric
+		if (!metric || typeof metric !== "object") {
+			console.warn("⚠️ Invalid metric data");
+			return;
+		}
+
+		console.log("⚡ Web Vitals Report (PLACEHOLDER):", metric);
+
+		// Fire and forget - don't block on vitals
+		safePost("/vitals", metric, { timeout: 5000 })
+			.then((result) => {
+				if (!result.success) {
+					console.warn("⚠️ Vitals reporting error:", result.error);
+				}
+			})
+			.catch((error: any) => {
+				console.warn(
+					"⚠️ Vitals reporting error (non-critical):",
+					error instanceof Error ? error.message : String(error),
+				);
+			});
+	} catch (error) {
+		console.warn("⚠️ Vitals reporting error:", error instanceof Error ? error.message : String(error));
+	}
 };
