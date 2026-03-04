@@ -2,8 +2,7 @@
 
 import { Code, Github, Linkedin, Mail, Twitter, Heart } from "lucide-react";
 import { useState } from "react";
-import { subscribeToNewsletter } from "@/lib/api";
-import { event as trackAnalyticsEvent } from "@/lib/analytics";
+import { subscribeToNewsletter, trackEvent } from "@/lib/api";
 import { siteContent } from "@/lib/content";
 import { useErrorModal } from "@/components/ui/error-modal";
 
@@ -57,7 +56,7 @@ export default function Footer() {
 
 			// Track successful subscription
 			try {
-				trackAnalyticsEvent({ action: "newsletter_subscribe", category: "Newsletter", label: "footer_form" });
+				await trackEvent({ event: "newsletter_subscribe", category: "Newsletter", label: "footer_form" });
 			} catch (trackError) {
 				console.warn("⚠️ Failed to track subscription:", trackError instanceof Error ? trackError.message : String(trackError));
 				// Don't break the flow for tracking errors
@@ -76,7 +75,7 @@ export default function Footer() {
 
 			// Track subscription error
 			try {
-				trackAnalyticsEvent({ action: "newsletter_error", category: "Newsletter", label: "subscription_failed" });
+				await trackEvent({ event: "newsletter_error", category: "Newsletter", label: "subscription_failed" });
 			} catch (trackError) {
 				console.warn("⚠️ Failed to track error:", trackError instanceof Error ? trackError.message : String(trackError));
 			}

@@ -11,31 +11,30 @@ import Header from "@/components/layout/Header";
 import CommingSoon from "@/components/comingsoon";
 
 export default function Home() {
-	console.log("asda");
+  return (
+    <div className="min-h-screen bg-white">
+      {process.env.IS_MENTAINCE == "true" ? (
+        <main>
+          <CommingSoon />
+        </main>
+      ) : (
+        <>
+          {" "}
+          <Header />
+          <main>
+            <Hero />
+            <About />
+            <Services />
+            <Portfolio />
+            <Pricing />
+            <Testimonials />
 
-	return (
-		<div className='min-h-screen bg-white'>
-			{process.env.IS_MENTAINCE == "true" ?
-				<main>
-					<CommingSoon />
-				</main>
-				: <>
-					{" "}
-					<Header />
-					<main>
-						<Hero />
-						<About />
-						<Services />
-						<Portfolio />
-						<Pricing />
-						<Testimonials />
-
-						<Contact />
-						<FAQ />
-					</main>
-					<Footer />
-				</>
-			}
-		</div>
-	);
+            <Contact />
+            <FAQ />
+          </main>
+          <Footer />
+        </>
+      )}
+    </div>
+  );
 }
