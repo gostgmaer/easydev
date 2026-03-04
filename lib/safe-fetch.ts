@@ -23,7 +23,7 @@ interface FetchResponse<T> {
  */
 export async function safeFetch<T = any>(url: string, options: FetchOptions = {}): Promise<FetchResponse<T>> {
 	const {
-		timeout = 10000,
+		timeout = 30000,
 		maxRetries = 0,
 		retryDelay = 1000,
 		logRequest = true,
