@@ -23,23 +23,23 @@ export default function Portfolio() {
   ];
 
   const [projects, setProjects] = useState(
-		siteContent.portfolio.projects.map((p) => ({ ...p, liveUrl: "#", githubUrl: "#" })),
-	);
+    siteContent.portfolio.projects.map((p) => ({ ...p, liveUrl: "#", githubUrl: "#" })),
+  );
 
-	useEffect(() => {
-		let mounted = true;
-		(async () => {
-			try {
-				const remote = await fetchProjects();
-				if (mounted && Array.isArray(remote) && remote.length > 0) setProjects(remote as any);
-			} catch (e) {
-				// fetchProjects already logs errors; leave projects as fallback
-			}
-		})();
-		return () => {
-			mounted = false;
-		};
-	}, []);
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const remote = await fetchProjects();
+        if (mounted && Array.isArray(remote) && remote.length > 0) setProjects(remote as any);
+      } catch (e) {
+        // fetchProjects already logs errors; leave projects as fallback
+      }
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const filteredProjects = filter === "All" ? projects : projects.filter((project) => project.category === filter);
 
@@ -77,11 +77,10 @@ export default function Portfolio() {
               <button
                 key={category}
                 onClick={() => handleFilterChange(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  filter === category
-                    ? "bg-blue-600 text-white"
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === category
+                    ? "bg-primary text-primary-foreground"
                     : "bg-white text-gray-600 hover:bg-gray-100"
-                }`}
+                  }`}
               >
                 {category}
               </button>
@@ -135,7 +134,7 @@ export default function Portfolio() {
                     </h3>
                     <Badge
                       variant="secondary"
-                      className="bg-blue-100 text-blue-800"
+                      className="bg-primary/10 text-primary"
                     >
                       {project.category}
                     </Badge>
@@ -158,14 +157,14 @@ export default function Portfolio() {
                       <ul className="text-xs text-gray-600 space-y-1">
                         {project.highlights.map((highlight, idx) => (
                           <li key={idx} className="flex items-center">
-                            <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2"></div>
+                            <div className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></div>
                             {highlight}
                           </li>
                         ))}
                       </ul>
                     </div>
                   )}
-                  <div className="flex items-center text-blue-600 hover:text-blue-700 transition-colors cursor-pointer group">
+                  <div className="flex items-center text-primary hover:text-primary/80 transition-colors cursor-pointer group">
                     <button
                       className="font-medium"
                       onClick={() => handleProjectView(project.title)}
@@ -227,13 +226,13 @@ export default function Portfolio() {
                   <div className="flex items-center justify-between">
                     <div className="flex space-x-2">
                       <button
-                        className="text-gray-600 hover:text-blue-600 transition-colors"
+                        className="text-gray-600 hover:text-primary transition-colors"
                         onClick={() => handleProjectView(project.title)}
                       >
                         <ExternalLink className="w-4 h-4" />
                       </button>
                       <button
-                        className="text-gray-600 hover:text-blue-600 transition-colors"
+                        className="text-gray-600 hover:text-primary transition-colors"
                         onClick={() =>
                           handleProjectView(`${project.title} - Code`)
                         }
@@ -242,7 +241,7 @@ export default function Portfolio() {
                       </button>
                     </div>
                     <button
-                      className="text-sm text-blue-600 hover:text-blue-700 transition-colors"
+                      className="text-sm text-primary hover:text-primary/80 transition-colors"
                       onClick={() => handleProjectView(project.title)}
                     >
                       Learn more →
