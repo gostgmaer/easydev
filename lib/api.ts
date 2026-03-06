@@ -1,17 +1,26 @@
 import { ContactSubmissionResponse } from "@/types/contact";
+import { AuthSession, DashboardStats, InquiryItem, InquiryListResult, SendProposalPayload } from "@/types/dashboard";
 import { veriable } from "./config";
 import { ContactFormDataPre } from "@/lib/validations";
 import { safeGet, safePost } from "./safe-fetch";
+import { getAuthHeader } from "@/lib/auth-client";
 
 const { baseURL } = veriable;
 
 export const API_ENDPOINTS = {
-  // Existing backend routes
-  CONTACT_FORM: `${baseURL}/inquiry`,
-  NEWSLETTER: `${baseURL}/newsletter/subscribe`,
-  BLOG: `${baseURL}/blogs`,
-  PLANS: `${baseURL}/plans`,
-  PLANS_FEATURED: `${baseURL}/plans/featured`,
+	// Existing backend routes
+	CONTACT_FORM: `${baseURL}/inquiry`,
+	NEWSLETTER: `${baseURL}/newsletter/subscribe`,
+	BLOG: `${baseURL}/blogs`,
+	PLANS: `${baseURL}/plans`,
+	PLANS_FEATURED: `${baseURL}/plans/featured`,
+	AUTH_LOGIN: `${baseURL}/auth/login`,
+	AUTH_VERIFY: `${baseURL}/auth/verify`,
+	AUTH_FORGOT_PASSWORD: `${baseURL}/auth/forgot-password`,
+	AUTH_RESET_PASSWORD: `${baseURL}/auth/reset-password`,
+	INQUIRIES: `${baseURL}/inquiry`,
+	INQUIRY_STATS: `${baseURL}/inquiry/stats`,
+	UPLOAD_PROPOSAL: `${baseURL}/upload/proposal`,
 };
 
 /**
@@ -257,6 +266,161 @@ export const searchContent = async (
     throw new Error("Search query is required");
   }
   return { results: [] as any[] };
+};
+
+export const loginAdmin = async (payload: { email: string; password: string }): Promise<AuthSession> => {
+	const result = await safePost<any>(API_ENDPOINTS.AUTH_LOGIN, payload, { timeout: 30000 });
+
+	if (!result.success) {
+		throw new Error(result.error || "Login failed");
+	}
+
+	const data = result.data?.data;
+	if (!data?.token || !data?.admin) {
+		throw new Error("Invalid login response");
+	}
+
+	return { token: data.token, refreshToken: data.refreshToken, expiresIn: data.expiresIn, admin: data.admin };
+};
+
+export const verifyAdminToken = async (): Promise<boolean> => {
+	const result = await safeGet<any>(API_ENDPOINTS.AUTH_VERIFY, {
+		headers: getAuthHeader(),
+		timeout: 15000,
+		logRequest: false,
+	});
+
+	return !!result.success;
+};
+
+export const requestPasswordReset = async (email: string) => {
+	const result = await safePost<any>(API_ENDPOINTS.AUTH_FORGOT_PASSWORD, { email }, { timeout: 30000 });
+
+	if (!result.success) {
+		throw new Error(
+			result.error || "Password reset endpoint is unavailable. Please configure /api/auth/forgot-password in backend.",
+		);
+	}
+
+	return result.data;
+};
+
+export const resetPasswordWithToken = async (payload: {
+	token: string;
+	newPassword: string;
+	confirmPassword: string;
+}) => {
+	const result = await safePost<any>(API_ENDPOINTS.AUTH_RESET_PASSWORD, payload, { timeout: 30000 });
+
+	if (!result.success) {
+		throw new Error(
+			result.error || "Reset password endpoint is unavailable. Please configure /api/auth/reset-password in backend.",
+		);
+	}
+
+	return result.data;
+};
+
+export const fetchDashboardStats = async (): Promise<DashboardStats> => {
+	const result = await safeGet<any>(API_ENDPOINTS.INQUIRY_STATS, { headers: getAuthHeader(), timeout: 30000 });
+
+	if (!result.success) {
+		throw new Error(result.error || "Failed to fetch dashboard stats");
+	}
+
+	const byStatus = result.data?.data?.byStatus || {};
+	const total = Number(result.data?.data?.total || 0);
+
+	return {
+		totalRequests: total,
+		proposalSent: Number(byStatus.quoted || 0),
+		proposalAccepted: Number(byStatus.accepted || 0),
+		underReview: Number(byStatus.reviewing || 0),
+		ongoing: Number(byStatus.negotiating || 0),
+		completed: Number(byStatus.completed || 0),
+		liveSupport: Number(byStatus.contacted || 0),
+	};
+};
+
+export const fetchInquiries = async (params: {
+	page?: number;
+	limit?: number;
+	sort?: "createdAt" | "updatedAt" | "name" | "email" | "status";
+	order?: "asc" | "desc";
+	search?: string;
+	status?: string;
+}): Promise<InquiryListResult> => {
+	const query = new URLSearchParams();
+	query.set("page", String(params.page ?? 1));
+	query.set("limit", String(params.limit ?? 10));
+	if (params.sort) query.set("sort", params.sort);
+	if (params.order) query.set("order", params.order);
+	if (params.search) query.set("search", params.search);
+	if (params.status) query.set("status", params.status);
+
+	const result = await safeGet<any>(`${API_ENDPOINTS.INQUIRIES}?${query.toString()}`, {
+		headers: getAuthHeader(),
+		timeout: 30000,
+	});
+
+	if (!result.success) {
+		throw new Error(result.error || "Failed to fetch requests");
+	}
+
+	return {
+		inquiries: (result.data?.data?.inquiries || []) as InquiryItem[],
+		pagination: result.data?.data?.pagination || {
+			page: 1,
+			limit: 10,
+			total: 0,
+			totalPages: 1,
+			hasNext: false,
+			hasPrev: false,
+		},
+	};
+};
+
+export const fetchInquiryById = async (id: string): Promise<InquiryItem> => {
+	const result = await safeGet<any>(`${API_ENDPOINTS.INQUIRIES}/${id}`, { headers: getAuthHeader(), timeout: 30000 });
+
+	if (!result.success) {
+		throw new Error(result.error || "Failed to fetch request details");
+	}
+
+	return result.data?.data?.inquiry as InquiryItem;
+};
+
+export const uploadProposalFile = async (file: File): Promise<{ url: string }> => {
+	const content = await file.text();
+	const payload = {
+		fileName: file.name,
+		mimeType: file.type || "text/html",
+		contentBase64: btoa(unescape(encodeURIComponent(content))),
+	};
+
+	const result = await safePost<any>(API_ENDPOINTS.UPLOAD_PROPOSAL, payload, {
+		headers: getAuthHeader(),
+		timeout: 30000,
+	});
+
+	if (!result.success) {
+		throw new Error(result.error || "Failed to upload proposal file");
+	}
+
+	return { url: result.data?.data?.url };
+};
+
+export const sendProposalForInquiry = async (inquiryId: string, payload: SendProposalPayload) => {
+	const result = await safePost<any>(`${API_ENDPOINTS.INQUIRIES}/${inquiryId}/proposal`, payload, {
+		headers: getAuthHeader(),
+		timeout: 30000,
+	});
+
+	if (!result.success) {
+		throw new Error(result.error || "Failed to send proposal");
+	}
+
+	return result.data?.data;
 };
 
 /**
