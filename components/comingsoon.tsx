@@ -1,48 +1,31 @@
+"use client";
 import React, { useState } from "react";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Code,
-  Smartphone,
-  Globe,
-  ArrowRight,
-  CheckCircle,
-  Bug,
-} from "lucide-react";
+import { Mail, Phone, MapPin, Code, Smartphone, Globe, ArrowRight, CheckCircle, Bug } from "lucide-react";
 import { ContactForm } from "./sections/contact/Form";
 import Link from "next/link";
 
 function CommingSoon() {
-  const services = [
-    {
-      icon: <Code className="w-8 h-8" />,
-      title: "Custom Development",
-      description:
-        "Tailored web and mobile solutions built with cutting-edge technologies",
-    },
-    {
-        icon:<Bug className="w-8 h-8" />,
-      title: "Bug Fixing & Maintenance",
-      description:
-        "Fix frontend/backend issues, optimize performance, and maintain applications",
-      features: [
-        "Code Debugging",
-        "Performance Optimization",
-        "Security Fixes",
-        "Post-Launch Support",
-      ],
-      priceRange: "₹20,000 - ₹1,00,000",
-    },
-    {
-      icon: <Globe className="w-8 h-8" />,
-      title: "Web Solutions",
-      description:
-        "Modern, responsive websites and web applications that drive results",
-    },
-  ];
+	const services = [
+		{
+			icon: <Code className='w-8 h-8' />,
+			title: "Custom Development",
+			description: "Tailored web and mobile solutions built with cutting-edge technologies",
+		},
+		{
+			icon: <Bug className='w-8 h-8' />,
+			title: "Bug Fixing & Maintenance",
+			description: "Fix frontend/backend issues, optimize performance, and maintain applications",
+			features: ["Code Debugging", "Performance Optimization", "Security Fixes", "Post-Launch Support"],
+			priceRange: "₹20,000 - ₹1,00,000",
+		},
+		{
+			icon: <Globe className='w-8 h-8' />,
+			title: "Web Solutions",
+			description: "Modern, responsive websites and web applications that drive results",
+		},
+	];
 
-  return (
+	return (
 		<div className='min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900'>
 			{/* Header */}
 			<header className='container mx-auto px-6 py-8'>

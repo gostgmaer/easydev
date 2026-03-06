@@ -12,15 +12,7 @@ import Image from "next/image";
 export default function Portfolio() {
   const [filter, setFilter] = useState("All");
 
-  const categories = [
-    "All",
-    "E-commerce",
-    "Social Platform",
-    "Management System",
-    "Education",
-    "Healthcare",
-    "Real Estate",
-  ];
+  const categories = ["All", ...Array.from(new Set(siteContent.portfolio.projects.map((p) => p.category)))];
 
   const [projects, setProjects] = useState(
     siteContent.portfolio.projects.map((p) => ({ ...p, liveUrl: "#", githubUrl: "#" })),

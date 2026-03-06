@@ -1,6 +1,6 @@
 import { ContactSubmissionResponse } from "@/types/contact";
 import { veriable } from "./config";
-import { ContactFormDataPre } from "@/components/sections/contact/Form";
+import { ContactFormDataPre } from "@/lib/validations";
 import { safeGet, safePost } from "./safe-fetch";
 
 const { baseURL } = veriable;
@@ -260,7 +260,7 @@ export const searchContent = async (
 };
 
 /**
- * Dummy API service - simulates real API call
+ * Pre-launch / maintenance enquiry form submission
  */
 export const submitContactFormPre = async (
   data: ContactFormDataPre,
@@ -270,23 +270,31 @@ export const submitContactFormPre = async (
       throw new Error("Form data is required");
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    const isSuccess = Math.random() > 0.1;
+    const payload = {
+			name: data.client.name,
+			email: data.client.email,
+			...(data.client.companyName?.trim() ? { company: data.client.companyName.trim() } : {}),
+			subject: data.message.subject,
+			description: data.message.body,
+			projectType: "maintenance",
+			preferredContactMethod: data.preferences.preferredContactMethod,
+			newsletterOptIn: data.preferences.newsletterOptIn,
+			privacyConsent: data.preferences.privacyConsent,
+		};
 
-    if (isSuccess) {
-      return {
-        success: true,
-        message: "Thank you for your interest! We'll be in touch soon.",
-        id: `contact_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      };
-    }
+		const result = await safePost<any>(API_ENDPOINTS.CONTACT_FORM, payload, { timeout: 30000 });
 
-    throw new Error("Failed to submit form. Please try again.");
+		if (!result.success) {
+			throw new Error(result.error || "Failed to submit enquiry.");
+		}
+
+    return {
+			success: true,
+			message: result.data?.message || "Thank you for your interest! We'll be in touch soon.",
+			id: result.data?.data?.id || result.data?.id,
+		};
   } catch (error) {
-    console.error(
-      "Contact form submission error:",
-      error instanceof Error ? error.message : String(error),
-    );
+    console.error("Pre-launch form submission error:", error instanceof Error ? error.message : String(error));
     throw error;
   }
 };

@@ -51,3 +51,33 @@ export const contactFormSchema = z
 	});
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;
+
+// Simplified schema used by the maintenance / coming-soon enquiry form
+export const contactFormSchemaPre = z.object({
+	client: z.object({
+		name: z
+			.string()
+			.min(2, "Name must be at least 2 characters")
+			.max(50, "Name must be less than 50 characters")
+			.regex(/^[a-zA-Z\s]+$/, "Name can only contain letters and spaces"),
+		email: z.string().email("Please enter a valid email address").max(100, "Email must be less than 100 characters"),
+		companyName: z.string().max(100, "Company name must be less than 100 characters").optional(),
+	}),
+	message: z.object({
+		subject: z
+			.string()
+			.min(5, "Subject must be at least 5 characters")
+			.max(100, "Subject must be less than 100 characters"),
+		body: z
+			.string()
+			.min(20, "Please provide more details about your project (minimum 20 characters)")
+			.max(2000, "Message must be less than 2000 characters"),
+	}),
+	preferences: z.object({
+		preferredContactMethod: z.enum(["Email", "Phone", "WhatsApp"]),
+		newsletterOptIn: z.boolean(),
+		privacyConsent: z.boolean().refine((val) => val === true, "You must agree to the Privacy Policy"),
+	}),
+});
+
+export type ContactFormDataPre = z.infer<typeof contactFormSchemaPre>;

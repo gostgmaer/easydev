@@ -3,48 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowRight, CheckCircle, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
-
-
-
-import { z } from 'zod';
-import { submitContactForm, submitContactFormPre } from '@/lib/api';
-export const contactFormSchema = z.object({
-  client: z.object({
-    name: z
-      .string()
-      .min(2, "Name must be at least 2 characters")
-      .max(50, "Name must be less than 50 characters")
-      .regex(/^[a-zA-Z\s]+$/, "Name can only contain letters and spaces"),
-    email: z
-      .string()
-      .email("Please enter a valid email address")
-      .max(100, "Email must be less than 100 characters"),
-    companyName: z
-      .string()
-      .max(100, "Company name must be less than 100 characters")
-      .optional(),
-  }),
-
-  message: z.object({
-    subject: z
-      .string()
-      .min(5, "Subject must be at least 5 characters")
-      .max(100, "Subject must be less than 100 characters"),
-    body: z
-      .string()
-      .min(20, "Please provide more details about your project (minimum 20 characters)")
-      .max(2000, "Message must be less than 2000 characters"),
-  }),
-  preferences: z.object({
-    preferredContactMethod: z.enum(["Email", "Phone", "WhatsApp"]),
-    newsletterOptIn: z.boolean(),
-    privacyConsent: z
-      .boolean()
-      .refine(val => val === true, "You must agree to the Privacy Policy"),
-  }),
-});
-
-export type ContactFormDataPre = z.infer<typeof contactFormSchema>;
+import { contactFormSchemaPre, type ContactFormDataPre } from "@/lib/validations";
+import { submitContactFormPre } from "@/lib/api";
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -66,38 +26,31 @@ export const ContactForm: React.FC = () => {
 }, []);
 
   const {
-    register,
-    handleSubmit,
-    control,
-    reset,
-    watch,
-    formState: { errors, isValid },
-  } = useForm<ContactFormDataPre>({
-    resolver: zodResolver(contactFormSchema),
-    mode: "onChange",
-    defaultValues: {
-      client: {
-        name: "",
-        email: "",
-       
-        companyName: "",
-      },
-    //   projectDetails: {
-    //     servicesInterested: [],
-    //     budgetRange: "",
-    //     timelinePreference: "",
-    //   },
-      message: {
-        subject: "Site Mentanence Request",
-        body: "",
-      },
-      preferences: {
-        preferredContactMethod: "Email",
-        newsletterOptIn: true,
-        privacyConsent: true,
-      },
-    },
-  });
+		register,
+		handleSubmit,
+		control,
+		reset,
+		watch,
+		formState: { errors, isValid },
+	} = useForm<ContactFormDataPre>({
+		resolver: zodResolver(contactFormSchemaPre),
+		mode: "onChange",
+		defaultValues: {
+			client: {
+				name: "",
+				email: "",
+
+				companyName: "",
+			},
+			//   projectDetails: {
+			//     servicesInterested: [],
+			//     budgetRange: "",
+			//     timelinePreference: "",
+			//   },
+			message: { subject: "Site Maintenance Request", body: "" },
+			preferences: { preferredContactMethod: "Email", newsletterOptIn: true, privacyConsent: true },
+		},
+	});
 
 
 
@@ -106,7 +59,7 @@ export const ContactForm: React.FC = () => {
     setErrorMessage('');
 
     try {
-      const response = await submitContactForm(data);
+      const response = await submitContactFormPre(data);
       setSubmissionId(response.id || '');
       setFormState('success');
       localStorage.setItem(CONTACT_FORM_STORAGE_KEY, 'true');
