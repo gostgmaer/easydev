@@ -4,14 +4,16 @@ export const measurePerformance = () => {
 		// Core Web Vitals
 		const observer = new PerformanceObserver((list) => {
 			for (const entry of list.getEntries()) {
-		      if (entry.entryType === "largest-contentful-paint") {
-						// LCP recorded — pipe to monitoring service if needed
-					}
+				if (entry.entryType === "largest-contentful-paint") {
+					console.log("LCP:", entry.startTime);
+				}
 				if (entry.entryType === "first-input") {
-					// FID / INP recorded
+					// console.log('FID:', entry.processingStart - entry.startTime);
 				}
 				if (entry.entryType === "layout-shift") {
-					// CLS recorded
+					if (!(entry as any).hadRecentInput) {
+						console.log("CLS:", (entry as any).value);
+					}
 				}
 			}
 		});

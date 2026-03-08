@@ -13,23 +13,23 @@ export default function Testimonials() {
 
   const { showError } = useErrorModal();
 
-  const [testimonials, setTestimonials] = useState(siteContent.testimonials.list);
+	const [testimonials, setTestimonials] = useState(siteContent.testimonials.list);
 
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      try {
-        const remote = await fetchTestimonials();
-        if (mounted && Array.isArray(remote) && remote.length > 0) setTestimonials(remote as any);
-      } catch (err) {
-        console.error("Failed to load testimonials:", err);
-        if (showError) showError("Failed to load testimonials", (err as Error)?.message || "Please try again later.");
-      }
-    })();
-    return () => {
-      mounted = false;
-    };
-  }, [showError]);
+	useEffect(() => {
+		let mounted = true;
+		(async () => {
+			try {
+				const remote = await fetchTestimonials();
+				if (mounted && Array.isArray(remote) && remote.length > 0) setTestimonials(remote as any);
+			} catch (err) {
+				console.error("Failed to load testimonials:", err);
+				if (showError) showError("Failed to load testimonials", (err as Error)?.message || "Please try again later.");
+			}
+		})();
+		return () => {
+			mounted = false;
+		};
+	}, [showError]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -62,9 +62,9 @@ export default function Testimonials() {
 
         {/* Main Testimonial Carousel */}
         <div className="relative max-w-4xl mx-auto mb-12">
-          <Card className="border-none shadow-xl bg-gradient-to-br from-primary/5 to-white">
+          <Card className="border-none shadow-xl bg-gradient-to-br from-blue-50 to-white">
             <CardContent className="p-8 md:p-12">
-              <Quote className="w-12 h-12 text-primary/30 mb-6" />
+              <Quote className="w-12 h-12 text-blue-300 mb-6" />
               <blockquote className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8">
                 &quot;{testimonials[currentIndex].content}&quot;
               </blockquote>
@@ -84,7 +84,7 @@ export default function Testimonials() {
                     <p className="text-gray-600">
                       {testimonials[currentIndex].role}
                     </p>
-                    <p className="text-primary font-medium">
+                    <p className="text-blue-600 font-medium">
                       {testimonials[currentIndex].company}
                     </p>
                   </div>
@@ -101,25 +101,17 @@ export default function Testimonials() {
             </CardContent>
           </Card>
 
-          {/* Navigation Buttons — absolute on sm+, static below on mobile */}
-          <div className="flex justify-center gap-4 mt-4 sm:hidden">
-            <button onClick={goToPrevious} className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-primary hover:shadow-xl transition-all" aria-label="Previous testimonial">
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button onClick={goToNext} className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-primary hover:shadow-xl transition-all" aria-label="Next testimonial">
-              <ChevronRight className="w-6 h-6" />
-            </button>
-          </div>
+          {/* Navigation Buttons */}
           <button
             onClick={goToPrevious}
-            className="hidden sm:flex absolute left-0 sm:-left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg items-center justify-center text-gray-600 hover:text-primary hover:shadow-xl transition-all"
-            aria-label="Previous testimonial">
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-blue-600 hover:shadow-xl transition-all"
+          >
             <ChevronLeft className="w-6 h-6" />
           </button>
           <button
             onClick={goToNext}
-            className="hidden sm:flex absolute right-0 sm:-right-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg items-center justify-center text-gray-600 hover:text-primary hover:shadow-xl transition-all"
-            aria-label="Next testimonial">
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-blue-600 hover:shadow-xl transition-all"
+          >
             <ChevronRight className="w-6 h-6" />
           </button>
 
@@ -129,8 +121,9 @@ export default function Testimonials() {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-colors ${index === currentIndex ? "bg-primary" : "bg-gray-300"
-                  }`}
+                className={`w-3 h-3 rounded-full transition-colors ${
+                  index === currentIndex ? "bg-blue-600" : "bg-gray-300"
+                }`}
               />
             ))}
           </div>
@@ -179,23 +172,23 @@ export default function Testimonials() {
         <div className="mt-16 bg-gray-50 rounded-2xl p-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">100%</div>
+              <div className="text-3xl font-bold text-blue-600 mb-2">100%</div>
               <div className="text-gray-600">Client Satisfaction</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">
+              <div className="text-3xl font-bold text-blue-600 mb-2">
                 {siteContent.hero.stats.clients}
               </div>
               <div className="text-gray-600">Happy Clients</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">
+              <div className="text-3xl font-bold text-blue-600 mb-2">
                 {siteContent.hero.stats.projects}
               </div>
               <div className="text-gray-600">Projects Delivered</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">
+              <div className="text-3xl font-bold text-blue-600 mb-2">
                 {siteContent.hero.stats.experience}
               </div>
               <div className="text-gray-600">Years Experience</div>

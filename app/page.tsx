@@ -12,28 +12,29 @@ import CommingSoon from "@/components/comingsoon";
 
 export default function Home() {
   return (
-		<div className='min-h-screen bg-white'>
-			{process.env.IS_MAINTENANCE == "true" ?
-				<main>
-					<CommingSoon />
-				</main>
-			:	<>
-					{" "}
-					<Header />
-					<main>
-						<Hero />
-						<About />
-						<Services />
-						<Portfolio />
-						<Pricing />
-						<Testimonials />
+    <div className="min-h-screen bg-white">
+      {process.env.IS_MENTAINCE == "true" ? (
+        <main>
+          <CommingSoon />
+        </main>
+      ) : (
+        <>
+          {" "}
+          <Header />
+          <main>
+            <Hero />
+            <About />
+            <Services />
+            <Portfolio />
+            <Pricing />
+            <Testimonials />
 
-						<Contact />
-						<FAQ />
-					</main>
-					<Footer />
-				</>
-			}
-		</div>
-	);
+            <Contact />
+            <FAQ />
+          </main>
+          <Footer />
+        </>
+      )}
+    </div>
+  );
 }

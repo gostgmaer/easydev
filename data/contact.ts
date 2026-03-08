@@ -2,19 +2,30 @@ import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import type { ContactInfo, ServiceOption, FAQ } from "../types/contact";
 
 export const SERVICE_OPTIONS: ServiceOption[] = [
-	{ key: "custom_website", value: "Custom Website & Web App Development" },
-	// { key: "landing_page", value: "High-Converting Landing Page Development" },
-	{ key: "inventory_management", value: "Inventory & Order Management" },
-	{ key: "backend_api", value: "Scalable Backend Development & API Integration" },
-	{ key: "admin_dashboard", value: "Admin Dashboard & Internal Tools" },
-	{ key: "bug_fixing", value: "Bug Fixing, Optimization & Performance Enhancements" },
-	{ key: "payment_integration", value: "Payment Gateway Setup & Integration" },
-	{ key: "third_party_integration", value: "Third-Party API & Plugin Integrations" },
-	{ key: "auth_setup", value: "Secure Authentication & User Management" },
-	{ key: "realtime_features", value: "Real-Time Features (Chat, Notifications, Live Updates)" },
-	{ key: "seo_friendly", value: "SEO-Optimized Web Development" },
-	{ key: "consultation", value: "Product Strategy & Technical Consultation" },
-	{ key: "maintenance", value: "Ongoing Maintenance & Support" },
+  { key: "custom_website", value: "Custom Website & Web App Development" },
+  // { key: "landing_page", value: "High-Converting Landing Page Development" },
+  {
+    key: "backend_api",
+    value: "Scalable Backend Development & API Integration",
+  },
+  { key: "admin_dashboard", value: "Admin Dashboard & Internal Tools" },
+  {
+    key: "bug_fixing",
+    value: "Bug Fixing, Optimization & Performance Enhancements",
+  },
+  { key: "payment_integration", value: "Payment Gateway Setup & Integration" },
+  {
+    key: "third_party_integration",
+    value: "Third-Party API & Plugin Integrations",
+  },
+  { key: "auth_setup", value: "Secure Authentication & User Management" },
+  {
+    key: "realtime_features",
+    value: "Real-Time Features (Chat, Notifications, Live Updates)",
+  },
+  { key: "seo_friendly", value: "SEO-Optimized Web Development" },
+  { key: "consultation", value: "Product Strategy & Technical Consultation" },
+  { key: "maintenance", value: "Ongoing Maintenance & Support" },
 ];
 
 export const BUDGET_RANGES: ServiceOption[] = [
@@ -37,34 +48,34 @@ export const TIMELINE_OPTIONS: ServiceOption[] = [
 ];
 
 export const CONTACT_INFO: ContactInfo[] = [
-	{
-		title: "Email",
-		value: "contact@easydev.in",
-		href: "mailto:contact@easydev.in",
-		description: "Get in touch for project inquiries",
-		icon: Mail,
-	},
-	{
-		title: "Phone",
-		value: "+91 863-731-7273",
-		href: "tel:+918637317273",
-		description: "Available Monday to Friday",
-		icon: Phone,
-	},
-	{
-		title: "Location",
-		value: "San Francisco, CA",
-		href: "#",
-		description: "Remote work available worldwide",
-		icon: MapPin,
-	},
-	{
-		title: "Response Time",
-		value: "Within 24 hours",
-		href: "#",
-		description: "Quick turnaround guaranteed",
-		icon: Clock,
-	},
+  {
+    title: "Email",
+    value: "hello@easydev.in",
+    href: "mailto:hello@easydev.in",
+    description: "Get in touch for project inquiries",
+    icon: Mail,
+  },
+  {
+    title: "Phone",
+    value: "+91 863-731-7273",
+    href: "tel:+918637317273",
+    description: "Available Monday to Friday",
+    icon: Phone,
+  },
+  {
+    title: "Location",
+    value: "San Francisco, CA",
+    href: "#",
+    description: "Remote work available worldwide",
+    icon: MapPin,
+  },
+  {
+    title: "Response Time",
+    value: "Within 24 hours",
+    href: "#",
+    description: "Quick turnaround guaranteed",
+    icon: Clock,
+  },
 ];
 
 export const FAQS: FAQ[] = [

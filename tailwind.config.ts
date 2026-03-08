@@ -60,12 +60,6 @@ const config: Config = {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
-        // ── EasyDev brand tokens ──
-        brand: {
-          blue: 'hsl(var(--brand-blue))',
-          emerald: 'hsl(var(--brand-emerald))',
-          indigo: 'hsl(var(--brand-indigo))',
-        },
       },
       keyframes: {
         'accordion-down': {

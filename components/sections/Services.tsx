@@ -1,9 +1,9 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-  Code,
-  Database,
+import { 
+  Code, 
+  Database, 
   Server,
   Settings,
   Shield,
@@ -12,7 +12,7 @@ import {
 import { siteContent } from '@/lib/content';
 
 export default function Services() {
-  const iconMap: any = {
+  const iconMap:any = {
     'Express.js Development': Code,
     'Database Design & Optimization': Database,
     'API Development': Server,
@@ -37,16 +37,16 @@ export default function Services() {
             {siteContent.services.subtitle}
           </p>
         </div>
-
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <Card
-              key={index}
+            <Card 
+              key={index} 
               className="border-none shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
             >
               <CardHeader className="pb-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
-                  <service.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors" />
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors">
+                  <service.icon className="w-6 h-6 text-blue-600 group-hover:text-white transition-colors" />
                 </div>
                 <CardTitle className="text-lg font-bold text-gray-900">
                   {service.title}
@@ -59,7 +59,7 @@ export default function Services() {
                 <ul className="space-y-2">
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="text-xs text-gray-500 flex items-center">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></div>
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2"></div>
                       {feature}
                     </li>
                   ))}
@@ -68,13 +68,14 @@ export default function Services() {
             </Card>
           ))}
         </div>
-
+        
         {/* CTA Section */}
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-brand-blue to-brand-emerald rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">Ready to Start Your Web Project?</h3>
-            <p className="text-white/80 mb-6 max-w-2xl mx-auto">
-              Let&apos;s discuss how our team can build robust, scalable web solutions tailored to your specific requirements.
+          <div className="bg-gradient-to-r from-blue-600 to-emerald-600 rounded-2xl p-8 text-white">
+            <h3 className="text-2xl font-bold mb-4">Ready to Start Your Backend Project?</h3>
+            <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+              Let&apos;s discuss how I can help build robust backend solutions with Express.js and database expertise 
+              tailored to your specific requirements.
             </p>
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}

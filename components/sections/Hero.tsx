@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Database, Globe } from "lucide-react";
+import { ArrowRight, Download, Code, Database, Globe } from "lucide-react";
 import { siteContent } from "@/lib/content";
 
 export default function Hero() {
@@ -52,40 +52,40 @@ export default function Hero() {
 		return (
 			<section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-emerald-50 overflow-hidden">
 				<div className="text-center">
-					<div className="inline-block w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+					<div className="inline-block w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
 				</div>
 			</section>
 		);
 	}
 
 	// Fallback if roles are not available
-	const displayRole = roles && roles.length > 0 ? roles[currentRole] : "Full-Stack Development Agency";
-	const agencyGreeting = siteContent?.hero?.greeting || "Hello, we are";
-	const heroDescription = siteContent?.hero?.description || "We design, build, and scale web products for ambitious businesses.";
-	const agencyName = siteContent?.hero?.name || siteContent?.personal?.name || "EasyDev";
+	const displayRole = roles && roles.length > 0 ? roles[currentRole] : "Web Developer";
+	const heroGreeting = siteContent?.hero?.greeting || "Hi, I'm";
+	const heroDescription = siteContent?.hero?.description || "Building beautiful, functional websites";
+	const personName = siteContent?.personal?.name || "Developer";
 	const herStats = siteContent?.hero?.stats || { experience: "5+", projects: "50+", clients: "30+" };
 
 	return (
 		<section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-emerald-50 overflow-hidden">
 			{/* Animated Background Elements */}
-			<div className="absolute inset-0 overflow-hidden pointer-events-none">
-				<div className="absolute -top-1/2 -right-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-				<div className="absolute -bottom-1/2 -left-1/2 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+			<div className="absolute inset-0 overflow-hidden">
+				<div className="absolute -top-1/2 -right-1/2 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl animate-pulse"></div>
+				<div className="absolute -bottom-1/2 -left-1/2 w-96 h-96 bg-emerald-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
 			</div>
 
-			<div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+			<div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 					{/* Content */}
 					<div className="text-center lg:text-left">
-						<div className="inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6">
+						<div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
 							<span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
 							{siteContent?.personal?.availability || "Available for projects"}
 						</div>
 
 						<h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-							{agencyGreeting}{" "}
-							<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-emerald">
-								{agencyName}
+							{heroGreeting}{" "}
+							<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
+								{personName}
 							</span>
 						</h1>
 
@@ -95,12 +95,12 @@ export default function Hero() {
 							</strong>
 						</div>
 
-						<p className="text-base sm:text-lg text-gray-700 mb-8 max-w-2xl mx-auto lg:mx-0">{heroDescription}</p>
+						<p className="text-lg text-gray-700 mb-8 max-w-2xl">{heroDescription}</p>
 
 						<div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
 							<Button
 								onClick={() => scrollToSection("contact")}
-								className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg group"
+								className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg group"
 							>
 								Get In Touch
 								<ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -115,7 +115,7 @@ export default function Hero() {
 						</div>
 
 						{/* Stats */}
-						<div className="grid grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
+						<div className="grid grid-cols-3 gap-6 lg:gap-8">
 							<div className="text-center lg:text-left">
 								<div className="text-2xl sm:text-3xl font-bold text-gray-900">
 									{herStats?.experience || "5+"}
@@ -137,8 +137,8 @@ export default function Hero() {
 						</div>
 					</div>
 
-					{/* Visual Element — hidden on mobile, shown on lg+ */}
-					<div className="relative hidden lg:block">
+					{/* Visual Element */}
+					<div className="relative">
 						<div className="relative w-full max-w-md mx-auto">
 							{/* Main Circle */}
 							<div className="w-80 h-80 mx-auto relative">

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Send, User, Mail, Phone, Building, CheckCircle } from "lucide-react";
-import LegalModal from "@/components/ui/legal-modal";
 import {
   contactFormSchema,
   type ContactFormData,
@@ -80,7 +79,6 @@ const PLAN_PREFILL: Record<
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [legalModal, setLegalModal] = useState<"privacy" | "terms" | null>(null);
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -199,7 +197,7 @@ export default function ContactForm() {
       } else {
         alert(
           (error as Error)?.message ||
-          "Sorry, there was an error sending your message.",
+            "Sorry, there was an error sending your message.",
         );
       }
     } finally {
@@ -221,7 +219,7 @@ export default function ContactForm() {
           </p>
           <button
             onClick={() => setSubmitSuccess(false)}
-            className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             aria-busy={isSubmitting ? "true" : "false"}
             disabled={isSubmitting}
           >
@@ -235,11 +233,11 @@ export default function ContactForm() {
   return (
     <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
       <div className="mb-8">
-        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
-          Tell Us About Your Project
+        <h3 className="text-2xl font-bold text-gray-900 mb-2">
+          Tell Me About Your Project
         </h3>
         <p className="text-gray-600">
-          The more details you provide, the better we can understand your needs
+          The more details you provide, the better I can understand your needs
           and provide an accurate quote.
         </p>
       </div>
@@ -268,10 +266,11 @@ export default function ContactForm() {
                   type="text"
                   placeholder="Your full name"
                   aria-invalid={errors.client?.name ? "true" : "false"}
-                  className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${errors.client?.name
-                    ? "border-red-300 focus:ring-red-500 focus:border-red-500"
-                    : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                    }`}
+                  className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
+                    errors.client?.name
+                      ? "border-red-300 focus:ring-red-500 focus:border-red-500"
+                      : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                  }`}
                 />
               </div>
             </FormField>
@@ -288,10 +287,11 @@ export default function ContactForm() {
                   type="email"
                   placeholder="your@email.com"
                   aria-invalid={errors.client?.email ? "true" : "false"}
-                  className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${errors.client?.email
-                    ? "border-red-300 focus:ring-red-500 focus:border-red-500"
-                    : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                    }`}
+                  className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
+                    errors.client?.email
+                      ? "border-red-300 focus:ring-red-500 focus:border-red-500"
+                      : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                  }`}
                 />
               </div>
             </FormField>
@@ -310,10 +310,11 @@ export default function ContactForm() {
                     preferredContact === "Phone" ||
                     preferredContact === "WhatsApp"
                   }
-                  className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${errors.client?.phone
-                    ? "border-red-300 focus:ring-red-500 focus:border-red-500"
-                    : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                    }`}
+                  className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
+                    errors.client?.phone
+                      ? "border-red-300 focus:ring-red-500 focus:border-red-500"
+                      : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                  }`}
                 />
               </div>
             </FormField>
@@ -325,10 +326,11 @@ export default function ContactForm() {
                   {...register("client.companyName")}
                   type="text"
                   placeholder="Your company"
-                  className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${errors.client?.companyName
-                    ? "border-red-300 focus:ring-red-500 focus:border-red-500"
-                    : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                    }`}
+                  className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
+                    errors.client?.companyName
+                      ? "border-red-300 focus:ring-red-500 focus:border-red-500"
+                      : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                  }`}
                 />
               </div>
             </FormField>
@@ -368,7 +370,7 @@ export default function ContactForm() {
                             : field.value.filter((v) => v !== value);
                           field.onChange(newValue);
                         }}
-                        className="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary mt-0.5"
+                        className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-0.5"
                       />
                       <span className="text-sm text-gray-700 leading-relaxed">
                         {service.value}
@@ -387,10 +389,11 @@ export default function ContactForm() {
             >
               <select
                 {...register("projectDetails.budgetRange")}
-                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${errors.projectDetails?.budgetRange
-                  ? "border-red-300 focus:ring-red-500 focus:border-red-500"
-                  : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                  }`}
+                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
+                  errors.projectDetails?.budgetRange
+                    ? "border-red-300 focus:ring-red-500 focus:border-red-500"
+                    : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                }`}
               >
                 <option value="">Select budget range</option>
                 {BUDGET_RANGES.map((range) => (
@@ -407,10 +410,11 @@ export default function ContactForm() {
             >
               <select
                 {...register("projectDetails.timelinePreference")}
-                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${errors.projectDetails?.timelinePreference
-                  ? "border-red-300 focus:ring-red-500 focus:border-red-500"
-                  : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                  }`}
+                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
+                  errors.projectDetails?.timelinePreference
+                    ? "border-red-300 focus:ring-red-500 focus:border-red-500"
+                    : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                }`}
               >
                 <option value="">Select timeline</option>
                 {TIMELINE_OPTIONS.map((option) => (
@@ -457,10 +461,11 @@ export default function ContactForm() {
               {...register("message.body")}
               placeholder="Please describe your project requirements, goals, target audience, specific features you need, design preferences, and any other important details..."
               rows={8}
-              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors resize-none ${errors.message?.body
-                ? "border-red-300 focus:ring-red-500 focus:border-red-500"
-                : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                }`}
+              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors resize-none ${
+                errors.message?.body
+                  ? "border-red-300 focus:ring-red-500 focus:border-red-500"
+                  : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+              }`}
             />
           </FormField>
         </div>
@@ -478,7 +483,7 @@ export default function ContactForm() {
             >
               <select
                 {...register("preferences.preferredContactMethod")}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors bg-white"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white"
               >
                 <option value="Email">Email</option>
                 <option value="Phone">Phone</option>
@@ -504,27 +509,12 @@ export default function ContactForm() {
                   <input
                     {...register("preferences.privacyConsent")}
                     type="checkbox"
-                    className={`h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1 ${errors.preferences?.privacyConsent ? "border-red-300" : ""
-                      }`}
+                    className={`h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1 ${
+                      errors.preferences?.privacyConsent ? "border-red-300" : ""
+                    }`}
                   />
-                  <span className="text-sm text-gray-700 leading-snug">
-                    I agree to the{" "}
-                    <button
-                      type="button"
-                      onClick={() => setLegalModal("privacy")}
-                      className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors font-medium"
-                    >
-                      Privacy Policy
-                    </button>
-                    {" "}and{" "}
-                    <button
-                      type="button"
-                      onClick={() => setLegalModal("terms")}
-                      className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors font-medium"
-                    >
-                      Terms of Service
-                    </button>
-                    {" "}*
+                  <span className="text-sm text-gray-700">
+                    I agree to the Privacy Policy and Terms of Service *
                   </span>
                 </label>
               </FormField>
@@ -533,7 +523,7 @@ export default function ContactForm() {
         </fieldset>
 
         {/* What happens next */}
-        <div className="bg-primary/5 rounded-lg p-6 border border-primary/20">
+        <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
           <h4 className="font-semibold text-blue-900 mb-3 flex items-center">
             <CheckCircle className="w-5 h-5 mr-2" />
             What happens next?
@@ -563,7 +553,7 @@ export default function ContactForm() {
           disabled={isSubmitting || !isValid}
           aria-busy={isSubmitting ? "true" : "false"}
           aria-disabled={isSubmitting || !isValid ? "true" : "false"}
-          className="w-full bg-primary hover:bg-primary/90 disabled:bg-gray-400 disabled:cursor-not-allowed text-primary-foreground py-4 px-6 rounded-lg font-semibold text-lg flex items-center justify-center transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:transform-none"
+          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white py-4 px-6 rounded-lg font-semibold text-lg flex items-center justify-center transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:transform-none"
         >
           {isSubmitting ? (
             <>
@@ -597,9 +587,6 @@ export default function ContactForm() {
           )}
         </button>
       </form>
-
-      {/* Legal Modal triggered from consent links */}
-      <LegalModal type={legalModal} onClose={() => setLegalModal(null)} />
     </div>
   );
 }
