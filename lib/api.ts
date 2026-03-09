@@ -327,7 +327,12 @@ export const uploadProposal = async (
 
 // ─── Authentication (proxied → user-auth-service) ─────────────────────────────
 
-export type AuthTokens = { accessToken: string; refreshToken: string };
+export type AuthTokens = {
+	accessToken: string;
+	refreshToken: string;
+	accessExpiresIn?: number;
+	refreshExpiresIn?: number;
+};
 export type AuthUser = {
   id: string;
   email: string;
@@ -350,10 +355,12 @@ export const loginUser = async (
     throw new Error(result.error || "Login failed. Check your credentials.");
   const data = result.data?.data ?? result.data;
   return {
-    accessToken: data.accessToken,
-    refreshToken: data.refreshToken,
-    user: data.user,
-  };
+		accessToken: data.accessToken,
+		refreshToken: data.refreshToken,
+		accessExpiresIn: data.accessExpiresIn,
+		refreshExpiresIn: data.refreshExpiresIn,
+		user: data.user,
+	};
 };
 
 /** Send a password-reset link to the given email address. */
