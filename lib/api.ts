@@ -186,25 +186,25 @@ export const submitContactForm = async (
   const services: string[] = formData?.projectDetails?.servicesInterested ?? [];
 
   const payload = {
-    firstName,
-    lastName,
-    email: formData?.client?.email,
-    subject: subject || "Project Inquiry",
-    message: formData?.message?.body,
-    ...(phone ? { phone } : {}),
-    gdprConsent: formData?.preferences?.privacyConsent ?? false,
-    budget: mapBudget(formData?.projectDetails?.budgetRange),
-    timeline: mapTimeline(formData?.projectDetails?.timelinePreference),
-    projectType: mapProjectType(services[0]),
-    preferredContactMethod: mapContactMethod(
-      formData?.preferences?.preferredContactMethod,
-    ),
-    customFields: {
-      ...(company ? { company } : {}),
-      newsletterOptIn: formData?.preferences?.newsletterOptIn ?? false,
-      services,
-    },
-  };
+		firstName,
+		lastName,
+		email: formData?.client?.email,
+		subject: subject || "Project Inquiry",
+		message: formData?.message?.body,
+		...(phone ? { phone } : {}),
+		...(company ? { company } : {}),
+		gdprConsent: formData?.preferences?.privacyConsent ?? false,
+		budget: mapBudget(formData?.projectDetails?.budgetRange),
+		timeline: mapTimeline(formData?.projectDetails?.timelinePreference),
+		projectType: mapProjectType(services[0]),
+		category: "General Inquiry",
+		preferredContactMethod: mapContactMethod(formData?.preferences?.preferredContactMethod),
+		customFields: {
+			...(company ? { company } : {}),
+			newsletterOptIn: formData?.preferences?.newsletterOptIn ?? false,
+			services,
+		},
+	};
 
   const result = await safePost<any>(API_ENDPOINTS.LEAD_SUBMIT, payload, {
     headers: apiHeaders(),
@@ -248,9 +248,7 @@ export const subscribeToNewsletter = async (email: string) => {
 /** Confirm a newsletter subscription using the token from the confirmation email link. */
 export const confirmNewsletterSubscription = async (token: string) => {
   if (!token) throw new Error("Confirmation token is required");
-  const result = await safeGet<any>(API_ENDPOINTS.NEWSLETTER_CONFIRM(token), {
-    timeout: 15000,
-  });
+  const result = await safeGet<any>(API_ENDPOINTS.NEWSLETTER_CONFIRM(token), { headers: apiHeaders(), timeout: 15000 });
   if (!result.success)
     throw new Error(result.error || "Failed to confirm subscription.");
   return result.data;
@@ -279,20 +277,12 @@ export const unsubscribeFromNewsletter = async (
 
 /** Fire-and-forget: notify the backend that a newsletter email was opened. */
 export const trackNewsletterOpen = (email: string): void => {
-  safePost(
-    API_ENDPOINTS.NEWSLETTER_TRACK_OPEN,
-    { email },
-    { timeout: 5000 },
-  ).catch(() => {});
+  safePost(API_ENDPOINTS.NEWSLETTER_TRACK_OPEN, { email }, { headers: apiHeaders(), timeout: 5000 }).catch(() => {});
 };
 
 /** Fire-and-forget: notify the backend that a newsletter email link was clicked. */
 export const trackNewsletterClick = (email: string): void => {
-  safePost(
-    API_ENDPOINTS.NEWSLETTER_TRACK_CLICK,
-    { email },
-    { timeout: 5000 },
-  ).catch(() => {});
+  safePost(API_ENDPOINTS.NEWSLETTER_TRACK_CLICK, { email }, { headers: apiHeaders(), timeout: 5000 }).catch(() => {});
 };
 
 // ─── Proposal Upload (auth required) ─────────────────────────────────────────
