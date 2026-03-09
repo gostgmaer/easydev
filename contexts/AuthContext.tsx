@@ -49,6 +49,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [accessTokenExpiry, setAccessTokenExpiry] = useState<number | null>(null);
 
   // Ref keeps the current access token available inside callbacks without stale closure
   const tokenRef = useRef<string | null>(null);
@@ -72,16 +73,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // ── Public actions ─────────────────────────────────────────────────────────
 
   const login = useCallback(async (email: string, password: string) => {
-    const data = await loginUser(email, password);
-    storeRefreshToken(data.refreshToken);
-    setAccessToken(data.accessToken);
-    // Fetch full user profile; fall back to data.user if present
-    try {
-      const profile = await getCurrentUser(data.accessToken);
-      setUser(profile);
-    } catch {
-      if (data.user) setUser(data.user);
-    }
+		const data = await loginUser(email, password);
+		storeRefreshToken(data.refreshToken);
+		setAccessToken(data.accessToken);
+		// Calculate expiry timestamp
+		if (data.accessExpiresIn) {
+			setAccessTokenExpiry(Date.now() + data.accessExpiresIn * 1000);
+		}
+		// Fetch full user profile; fall back to data.user if present
+		try {
+			const profile = await getCurrentUser(data.accessToken);
+			setUser(profile);
+		} catch {
+			if (data.user) setUser(data.user);
+		}
   }, []);
 
   const sendForgotPassword = useCallback(async (email: string) => {
@@ -125,13 +130,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return;
       }
       try {
-        const newToken = await refreshAccessToken(stored);
-        if (cancelled) return;
-        setAccessToken(newToken);
-        const profile = await getCurrentUser(newToken);
-        if (cancelled) return;
-        setUser(profile);
-      } catch {
+				const newToken = await refreshAccessToken(stored);
+				if (cancelled) return;
+				setAccessToken(newToken);
+				// Set expiry if available from refresh
+				// You may need to parse expiry from refresh response if available
+				const profile = await getCurrentUser(newToken);
+				if (cancelled) return;
+				setUser(profile);
+			} catch {
         if (!cancelled) {
           clearRefreshToken();
           setAccessToken(null);
@@ -149,22 +156,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // ── Proactive token refresh every 10 minutes ──────────────────────────────
 
   useEffect(() => {
-    const interval = setInterval(
-      async () => {
-        if (!tokenRef.current) return; // not logged in
-        const stored = getStoredRefreshToken();
-        if (!stored) return;
-        try {
-          const newToken = await refreshAccessToken(stored);
-          setAccessToken(newToken);
-        } catch {
-          // Let the request-time 401 handler deal with it
-        }
-      },
-      10 * 60 * 1000,
-    ); // 10 min
-    return () => clearInterval(interval);
-  }, []);
+    // Schedule refresh shortly before expiry
+    if (!accessTokenExpiry) return;
+    const now = Date.now();
+    const msUntilRefresh = accessTokenExpiry - now - 5 * 60 * 1000; // 5 min before expiry
+    if (msUntilRefresh <= 0) return;
+    const timer = setTimeout(async () => {
+      const stored = getStoredRefreshToken();
+      if (!stored) return;
+      try {
+        const newToken = await refreshAccessToken(stored);
+        setAccessToken(newToken);
+        // If refresh response includes expiry, update it
+        // setAccessTokenExpiry(newExpiryTimestamp);
+      } catch {
+        // Let the request-time 401 handler deal with it
+      }
+    }, msUntilRefresh);
+    return () => clearTimeout(timer);
+  }, [accessTokenExpiry]);
 
   return (
     <AuthContext.Provider
